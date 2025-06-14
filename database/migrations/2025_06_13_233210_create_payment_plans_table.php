@@ -1,0 +1,32 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('payment_plans', function (Blueprint $table) {
+            $table->id();
+            $table->string('name'); // مثل: خطة سنة
+            $table->integer('years'); // عدد السنوات
+            $table->integer('installments_count'); // عدد الدفعات (مثلاً 12، 24)
+            $table->decimal('down_payment_percent', 5, 2); // نسبة المقدم من 0 لـ 100
+            $table->text('description')->nullable();
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('payment_plans');
+    }
+};

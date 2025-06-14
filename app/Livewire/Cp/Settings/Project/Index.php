@@ -23,6 +23,7 @@ class Index extends Component
             'code' => $this->code,
             'notes' => $this->notes
         ]);
+        $this->dispatch('backToMainData');
         $this->reset(['name', 'code', 'notes']);
         $this->dispatch('message', message: __('Done Save'));
     }
@@ -49,6 +50,7 @@ class Index extends Component
             'code' => $this->code,
             'notes' => $this->notes
         ]);
+        $this->dispatch('backToMainData');
         $this->reset(['name', 'code', 'notes']);
         $this->dispatch('message', message: __('Done Save'));
     }

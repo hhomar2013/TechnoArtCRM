@@ -16,7 +16,6 @@ class Index extends Component
 
     public function createDistricts()
     {
-
         $this->validate([
             'name' => 'required',
             'code' => 'required',
@@ -28,6 +27,7 @@ class Index extends Component
             'notes' => $this->notes,
             'gov_id' => $this->goverment,
         ]);
+        $this->dispatch('backToMainData');
         $this->dispatch('message', message: __('Done Save'));
         $this->reset();
     }
@@ -55,6 +55,7 @@ class Index extends Component
             'notes' => $this->notes,
             'gov_id' => $this->goverment,
         ]);
+        $this->dispatch('backToMainData');
         $this->dispatch('message', message: __('Done Save'));
         $this->reset();
     }

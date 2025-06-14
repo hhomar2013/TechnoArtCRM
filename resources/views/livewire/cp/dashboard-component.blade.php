@@ -9,11 +9,11 @@
                 <div class="card">
                     <div class="stat-widget-one card-body">
                         <div class="stat-icon d-inline-block">
-                            <i class="ti-shopping-cart-full text-dark border-dark"></i>
+                            <i class="ti-home text-dark border-dark"></i>
                         </div>
                         <div class="stat-content d-inline-block">
-                            <div class="stat-text">{{ __('Stores') }}</div>
-                            <div class="stat-digit" >100</div>
+                            <div class="stat-text">{{ __('Total Projects') }}</div>
+                            <div class="stat-digit" >{{ $projects }}</div>
                         </div>
                     </div>
                 </div>
@@ -25,8 +25,8 @@
                             <i class="ti-user text-primary border-primary"></i>
                         </div>
                         <div class="stat-content d-inline-block">
-                            <div class="stat-text">{{ __('Vendors') }}</div>
-                            <div class="stat-digit">100</div>
+                            <div class="stat-text">{{ __('Total Customers') }}</div>
+                            <div class="stat-digit">{{ $customers }}</div>
                         </div>
                     </div>
                 </div>

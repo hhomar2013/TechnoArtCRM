@@ -108,11 +108,13 @@
 
 
                        <li class="nav-item dropdown header-profile">
-                            <a class="nav-link" href="#" role="button" data-toggle="dropdown"><small>{{ Auth::user()->name }}</small>
+                            <a class="nav-link"  href="#" role="button" data-toggle="dropdown">
+                                {{-- <small>{{ Auth::user()->name }}</small> --}}
                             <i class="mdi mdi-account"></i>
                             </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <span class="dropdown-item">{{ Auth::user()->name }} </span>
+                            <span class="dropdown-item disabled text-primary">{{ Auth::user()->name }} </span>
+                            <small class="dropdown-item disabled text-danger" >{{ implode(', ', Auth::user()->roles->pluck('name')->toArray()) }} </small>
                             <hr>
                             {{-- <a href="{{ route('admins.profile') }}" class="dropdown-item">
                                 <i class="icon-user"></i>

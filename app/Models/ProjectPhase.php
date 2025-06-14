@@ -8,4 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class ProjectPhase extends Model
 {
     use HasFactory;
+    protected $guarded=[];
+
+    public function project()
+    {
+        return $this->belongsTo(Project::class, 'project_id', 'id');
+    }
+
+
+    public function phase()
+    {
+        return $this->belongsTo(phases::class, 'phase_id', 'id');
+    }
+
 }

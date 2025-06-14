@@ -71,7 +71,6 @@ class Index extends Component
             'name' => 'required',
             'email' => 'required|email',
             'phone' => 'required',
-            'currency' => 'required',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'favicon' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);

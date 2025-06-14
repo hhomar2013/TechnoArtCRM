@@ -42,7 +42,7 @@
                             wire:click.prevent="navigateTo('projects')">
                             <i
                                 class="{{ $navigate == 'projects' ? 'fa-regular fa-circle-dot' : 'fa-regular fa-circle' }}"></i>
-                            &nbsp; <span class="nav-text">{{ __('Projects Management') }}</span>
+                            &nbsp; <span class="nav-text">{{ __('Projects') }}</span>
                         </a>
                         <a href="#"
                             class="list-group-item list-group-item-action rounded {{ $navigate == 'goverments' ? 'active' : '' }}"
@@ -67,21 +67,54 @@
                             &nbsp; <span class="nav-text">{{ __('Owner Management') }}</span>
                         </a>
 
+                        <a href="#"
+                            class="list-group-item list-group-item-action rounded {{ $navigate == 'banks' ? 'active' : '' }}"
+                            wire:click.prevent="navigateTo('banks')">
+                            <i
+                                class="{{ $navigate == 'banks' ? 'fa-regular fa-circle-dot' : 'fa-regular fa-circle' }}"></i>
+                            &nbsp; <span class="nav-text">{{ __('Banks Management') }}</span>
+                        </a>
+
 
                         <a href="#"
                             class="list-group-item list-group-item-action rounded {{ $navigate == 'marketing' ? 'active' : '' }}"
                             wire:click.prevent="navigateTo('marketing')">
                             <i
-                                class="{{ $navigate == 'owners' ? 'fa-regular fa-circle-dot' : 'fa-regular fa-circle' }}"></i>
+                                class="{{ $navigate == 'marketing' ? 'fa-regular fa-circle-dot' : 'fa-regular fa-circle' }}"></i>
                             &nbsp; <span class="nav-text">{{ __('Marketing Companies Management') }}</span>
                         </a>
+
+                        <a href="#"
+                            class="list-group-item list-group-item-action rounded {{ $navigate == 'developers' ? 'active' : '' }}"
+                            wire:click.prevent="navigateTo('developers')">
+                            <i
+                                class="{{ $navigate == 'developers' ? 'fa-regular fa-circle-dot' : 'fa-regular fa-circle' }}"></i>
+                            &nbsp; <span class="nav-text">{{ __('Developers Management') }}</span>
+                        </a>
+
+                        <a href="#"
+                            class="list-group-item list-group-item-action rounded {{ $navigate == 'consultant' ? 'active' : '' }}"
+                            wire:click.prevent="navigateTo('consultant')">
+                            <i
+                                class="{{ $navigate == 'consultant' ? 'fa-regular fa-circle-dot' : 'fa-regular fa-circle' }}"></i>
+                            &nbsp; <span class="nav-text">{{ __('Consultant Management') }}</span>
+                        </a>
+
+                        <a href="#"
+                        class="list-group-item list-group-item-action rounded {{ $navigate == 'phase' ? 'active' : '' }}"
+                        wire:click.prevent="navigateTo('phase')">
+                        <i
+                            class="{{ $navigate == 'phase' ? 'fa-regular fa-circle-dot' : 'fa-regular fa-circle' }}"></i>
+                        &nbsp; <span class="nav-text">{{ __('Phase Management') }}</span>
+                    </a>
+
 
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-8">
+        <div class="col-9">
 
             @switch($navigate)
                 @case('users')
@@ -118,6 +151,22 @@
 
                 @case('marketing')
                     @livewire('cp.settings.marketing.index')
+                @break
+
+                @case('developers')
+                    @livewire('cp.settings.developers.index')
+                @break
+
+                @case('banks')
+                    @livewire('cp.settings.banks.index')
+                @break
+
+                @case('consultant')
+                    @livewire('cp.settings.consultants.index')
+                @break
+
+                @case('phase')
+                    @livewire('cp.settings.phases.index')
                 @break
 
                 @default

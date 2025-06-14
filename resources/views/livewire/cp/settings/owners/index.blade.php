@@ -2,6 +2,7 @@
     <div class="card">
         <div class="card-header">
             <h4> <i class="fa-solid fa-bars"></i> {{ __('Owner Management') }}</h4>
+
             <select class="form-control-sm" wire:model.live="pageNumber">
                 <option value="5">5</option>
                 <option value="10">10</option>
