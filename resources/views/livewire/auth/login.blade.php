@@ -13,7 +13,7 @@
                                 <form wire:submit.prevent="login">
                                     <div class="form-group">
                                         <label><strong>{{ __('Email Address') }}</strong></label>
-                                        <input type="email"
+                                        <input type="text"
                                             class="form-control @error('email') is-invalid @enderror {{ session()->has('error') ? 'is-invalid' : '' }}"
                                             wire:model="email" />
                                         @error('email')

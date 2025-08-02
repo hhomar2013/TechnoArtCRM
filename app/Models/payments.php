@@ -9,10 +9,10 @@ class payments extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'installment_plan_id', 'amount', 'due_date', 'paid_at', 'type', 'status',
-    ];
-
+    // protected $fillable = [
+    //     'installment_plan_id', 'amount', 'due_date', 'paid_at', 'type', 'status',
+    // ];
+    protected $guarded =[];
     public function installmentPlan()
     {
         return $this->belongsTo(installment_plans::class);
@@ -22,4 +22,11 @@ class payments extends Model
     {
         return $this->hasMany(payment_transactions::class);
     }
+
+
+    public function reamings()
+    {
+        return $this->hasMany(payments_reaming::class, 'payment_id');
+    }
+
 }

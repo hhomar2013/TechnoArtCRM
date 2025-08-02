@@ -16,9 +16,12 @@ return new class extends Migration
             $table->unsignedBigInteger('installment_plan_id');
             $table->decimal('amount', 10, 2);
             $table->date('due_date'); // تاريخ الاستحقاق
-            $table->date('paid_at')->nullable(); // إذا تم الدفع
+            $table->string('paid_at')->nullable(); // إذا تم الدفع
+            $table->string('bank')->nullable();
+            $table->string('transaction_id')->nullable();
+            $table->string('transaction_date')->nullable();
             $table->enum('type', ['down_payment', 'installment']); // نوع الدفعة
-            $table->string('status')->default('pending'); // paid, pending, late
+            $table->string('status')->default('pending'); // paid, pending, late , with reaming
             $table->timestamps();
 
             $table->foreign('installment_plan_id')->references('id')->on('installment_plans')->onDelete('cascade');

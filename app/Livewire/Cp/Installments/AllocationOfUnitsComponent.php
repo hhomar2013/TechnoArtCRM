@@ -4,39 +4,131 @@ namespace App\Livewire\Cp\Installments;
 
 use App\Models\Apartments;
 use App\Models\Buildings;
+use App\Models\costs;
+use App\Models\costs_installments;
 use App\Models\Customers;
 use App\Models\installment_plans;
+use App\Models\instllmentCustomers;
 use App\Models\payment_plans;
 use App\Models\payments;
+use App\Models\phases;
 use App\Models\Project;
 use Carbon\Carbon;
+use Illuminate\Support\Carbon as SupportCarbon;
+use Illuminate\Support\Facades\DB;
+use Livewire\Attributes\Url;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class AllocationOfUnitsComponent extends Component
 {
-    public $customer, $customer_id, $unit_id, $unit_price, $unit_area, $unit_number, $unit_floor, $unit_type, $unit_status, $unit_availability, $selected_customers = [];
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
+    public $customer, $customer_id, $unit_id, $phase, $unit_price, $unit_area, $unit_number, $unit_floor, $unit_type, $unit_status, $unit_availability, $selected_customers = [];
     public $building, $building_id, $appartment;
     public $project, $project_id;
-    public $payment_plan ,$total_amount;
-    public $start_down_payment_date ,$start_installment_date ,$installmentPlans ,$installment_id ,$customer_payment = [];
+    public $payment_plan = 1, $total_amount;
+    public $start_down_payment_date, $start_installment_date, $installmentPlans,
+        $installment_id, $customer_payment = [], $downPayment, $downPaymentParts, $installments_count, $installment_value, $installment_pages = 10, $costs_pages = 10,
+        $costs_installments_count, $costs_installments_period, $customer_units;
     protected $listeners = ['getInstallmentPlans' => 'getInstallmentPlans'];
+
+    public $costs = [];
+
+    public $actionsOptions = [
+        'one_payment' => 'دفعه واحده',
+        'payments' => 'مقسمه على دفعات',
+    ];
+    public function addCost()
+    {
+        $this->costs[] = [
+            'cost_id' => '',
+            'value' => 0,
+            'date' => 0,
+            'actions' => '',
+            'costs_installments_count' => '',
+            'costs_installments_period' => '',
+        ];
+    }
+
+    public function deleteAllCosts()
+    {
+        $this->reset(['costs']);
+    }
+
+    public function check_customer_count($customerId)
+    {
+        $search =  DB::table('customers')
+            ->select(
+                'customers.id',
+                'customers.name',
+                'instllment_customers.installment_plan_id',
+                'installment_plans.project_id',
+                'projects.name as project_name',
+                'phases.name as phase_name',
+                'phases.id as phase_id'
+            )
+            ->join('instllment_customers', 'customers.id', '=', 'instllment_customers.customersId')
+            ->join('installment_plans', 'instllment_customers.installment_plan_id', '=', 'installment_plans.id')
+            ->join('projects', 'installment_plans.project_id', '=', 'projects.id')
+            ->join('phases', 'installment_plans.phase_id', '=', 'phases.id')
+            ->where('customers.id', $customerId)
+            ->get();
+        return $search;
+    }
+
+    public function generateCostPayments($index)
+    {
+        $costId = $this->costs[$index]['cost_id'];
+        $date = $this->costs[$index]['date'];
+        $value = $this->costs[$index]['value'];
+        $installment_count = $this->costs[$index]['costs_installments_count'];
+        $dateCount = $this->costs[$index]['costs_installments_period'];
+        $new_date = '';
+        for ($i = 1; $i <= $installment_count; $i++) {
+            $new_date = SupportCarbon::parse($date)->addMonths($i * $dateCount)->toDateString();
+            $this->costs[] = [
+                'cost_id' => $costId,
+                'value' => $value,
+                'date' => $new_date,
+                'actions' => 'one_payment',
+                'costs_installments_count' => '',
+                'costs_installments_period' => '',
+            ];
+        }
+        $this->removeCosts($index);
+    }
+
     public function generate()
     {
-        $plan = payment_plans::findOrFail($this->payment_plan);
-        $downPayment = ($plan->down_payment_percent / 100) * $this->total_amount;
-        $installmentAmount = ($this->total_amount - $downPayment) / $plan->installments_count;
+        $this->validate([
+            'selected_customers' => 'required',
+
+        ]);
+        // $plan = payment_plans::findOrFail($this->payment_plan);
+        // $downPayment = ($plan->down_payment_percent / 100) * $this->total_amount;
+        // $installmentAmount = ($this->total_amount - $this->downPayment) / $plan->installments_count;
         $installmentPlan = installment_plans::create([
-            'customer_id' => $this->customer,
+            'customers' => json_encode($this->selected_customers),
             'payment_plan_id' => $this->payment_plan,
-            'total_amount' => $this->total_amount,
-            'down_payment_total' => $downPayment,
-            'down_payment_parts' => 4,
+            'phase_id' => $this->phase,
+            'total_amount' => 0,
+            'down_payment_total' => 0,
+            'down_payment_parts' => 0,
             'status' => 'pending',
+            'project_id' => $this->project,
+            'user_id' => auth()->id(),
         ]);
         $this->installment_id = $installmentPlan->id;
 
+        foreach ($this->selected_customers as $key => $value) {
+            instllmentCustomers::create([
+                'customersId' => $value['id'],
+                'installment_plan_id' => $installmentPlan->id,
+            ]);
+        }
         // دفعات المقدم
-        $downPaymentPart = $downPayment / 4;
+        /*     $downPaymentPart = $this->downPayment / $this->downPaymentParts;
         for ($i = 1; $i <= 4; $i++) {
             payments::create([
                 'installment_plan_id' => $installmentPlan->id,
@@ -45,34 +137,41 @@ class AllocationOfUnitsComponent extends Component
                 'type' => 'down_payment',
                 'status' => 'pending',
             ]);
-        }
+        } */
 
         // دفعات التقسيط
-        for ($i = 1; $i <= $plan->installments_count; $i++) {
+        for ($i = 1; $i <= $this->installments_count; $i++) {
             payments::create([
                 'installment_plan_id' => $installmentPlan->id,
-                'amount' => $installmentAmount,
-                'due_date' => Carbon::now()->addMonths($i + 3), // تبدأ بعد المقدم
+                'amount' => $this->installment_value,
+                'due_date' => Carbon::parse($this->start_installment_date)->addMonths($i - 1), // تبدأ بعد المقدم
                 'type' => 'installment',
                 'status' => 'pending',
             ]);
         }
+
+        $this->GenerateCosts($this->installment_id);
         $this->dispatch('getInstallmentPlans');
-        $this->dispatch('message',message:'تم توليد الدفعات بنجاح ✅');
+        $this->dispatch('message', message: 'تم توليد الدفعات بنجاح ✅');
     }
 
     public function getInstallmentPlans()
     {
-
-        $this->customer_payment = payments::query()->where('installment_plan_id',$this->installment_id)->get();
+        $this->resetPage();
+        $this->customer_payment = payments::query()->where('installment_plan_id', $this->installment_id)->get();
     }
 
-    public function updated($property){
+    public function updated($property)
+    {
         switch ($property) {
             case 'appartment':
                 $a = Apartments::query()->find($this->appartment);
-                $this->unit_price = $a->total;
-                $this->total_amount = $a->total;
+                // $this->unit_price = $a->total;
+                // $this->total_amount = $a->total;
+                break;
+
+            case 'installment_pages':
+                $this->resetPage();
                 break;
 
 
@@ -80,7 +179,6 @@ class AllocationOfUnitsComponent extends Component
                 # code...
                 break;
         }
-
     }
 
 
@@ -89,12 +187,15 @@ class AllocationOfUnitsComponent extends Component
         // $this->building = Buildings::where('project_id', $this->project)->get();
     }
 
-
-
     public function updateCode()
     {
         $customers = Customers::find($this->customer);
-        $this->customer_id = $customers->code;
+        if ($this->customer) {
+            $this->customer_id = $customers->code;
+        } else {
+            $this->customer_id = null;
+        }
+
         // تأكد أن العميل موجود
         // if (!$customers) {
         //     $this->dispatch('error', message: 'Customer not found');
@@ -140,9 +241,17 @@ class AllocationOfUnitsComponent extends Component
 
         // لو مش موجود، ضيفه
         $this->selected_customers[] = [
+            'id' => $customers->id,
             'code' => $customers->code,
             'name' => $customers->name,
         ];
+    }
+
+
+    public function removeCosts($index)
+    {
+        unset($this->costs[$index]);
+        $this->costs = array_values($this->costs);
     }
 
 
@@ -161,13 +270,27 @@ class AllocationOfUnitsComponent extends Component
             $customers = Customers::query()
                 ->where('code', 'like', '%' . $search . '%')
                 ->orWhere('name', 'like', '%' . $search . '%')
+                ->orWhere('mobile', 'like', '%' . $search . '%')
                 ->first();
             if ($customers) {
                 $this->customer = $customers->id;
+                $this->customer_units = $this->check_customer_count($this->customer);
             }
         }
     }
 
+    public function GenerateCosts($installment_plan_id)
+    {
+        // dd($installment_plan_id);
+        foreach ($this->costs as $key => $value) {
+            costs_installments::query()->create([
+                'installment_plan_id' => $installment_plan_id,
+                'cost_id' => $value['cost_id'],
+                'date' => $value['date'],
+                'value' => $value['value'],
+            ]);
+        }
+    }
 
     public function render()
     {
@@ -176,17 +299,22 @@ class AllocationOfUnitsComponent extends Component
         $projects = Project::query()->get();
         $appartments = Apartments::query()->where('building_id', $this->building_id)->get();
         $payment_plans = payment_plans::query()->get();
-
-
-
+        $costsData = costs::query()->get();
+        $phases = phases::all();
         return view(
             'livewire.cp.installments.allocation-of-units-component',
             [
                 'customers' => $customers,
                 'buildings' => $buildings,
                 'projects' => $projects,
+                'phases' => $phases,
                 'appartments' => $appartments,
                 'payment_plans' => $payment_plans,
+                'customer_payments' => payments::query()->where('installment_plan_id', $this->installment_id)->paginate($this->installment_pages),
+                'customer_costs' => costs_installments::query()
+                    ->with('costs')
+                    ->where('installment_plan_id', $this->installment_id)->get(),
+                'costsData' => $costsData,
             ]
         )->extends('layouts.app');
     }

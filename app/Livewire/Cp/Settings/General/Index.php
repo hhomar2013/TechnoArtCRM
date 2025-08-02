@@ -31,13 +31,13 @@ class Index extends Component
             $this->logo = $mySettings->logo;
             $this->favicon = $mySettings->favicon;
         } else {
-            $this->mySettings = [
-                'name' => null,
-                'app_email' => null,
-                'app_phone' => null,
-                'app_logo' => null,
-                'app_favicon' => null,
-            ];
+            mySettings::query()->create([
+                'app_name'=>'technoArt CRM',
+                'app_email'=>0,
+                'app_phone'=>0,
+                'logo'=>0,
+                'favicon'=>0
+            ]);
         }
     } //mount
 

@@ -21,6 +21,15 @@
                                     class="{{ $navigate == 'users' ? 'fa-regular fa-circle-dot' : 'fa-regular fa-circle' }}"></i>
                                 &nbsp; <span class="nav-text">{{ __('users') }}</span>
                             </a>
+
+
+                              <a href="#"
+                                class="list-group-item list-group-item-action rounded {{ $navigate == 'sales' ? 'active' : '' }}"
+                                wire:click.prevent="navigateTo('sales')">
+                                <i
+                                    class="{{ $navigate == 'sales' ? 'fa-regular fa-circle-dot' : 'fa-regular fa-circle' }}"></i>
+                                &nbsp; <span class="nav-text">{{ __('Employees') }}</span>
+                            </a>
                         @endcan
                         <a href="#"
                             class="list-group-item list-group-item-action rounded {{ $navigate == 'roles' ? 'active' : '' }}"
@@ -101,12 +110,37 @@
                         </a>
 
                         <a href="#"
-                        class="list-group-item list-group-item-action rounded {{ $navigate == 'phase' ? 'active' : '' }}"
-                        wire:click.prevent="navigateTo('phase')">
-                        <i
-                            class="{{ $navigate == 'phase' ? 'fa-regular fa-circle-dot' : 'fa-regular fa-circle' }}"></i>
-                        &nbsp; <span class="nav-text">{{ __('Phase Management') }}</span>
-                    </a>
+                            class="list-group-item list-group-item-action rounded {{ $navigate == 'phase' ? 'active' : '' }}"
+                            wire:click.prevent="navigateTo('phase')">
+                            <i
+                                class="{{ $navigate == 'phase' ? 'fa-regular fa-circle-dot' : 'fa-regular fa-circle' }}"></i>
+                            &nbsp; <span class="nav-text">{{ __('Phase Management') }}</span>
+                        </a>
+
+                        <a href="#"
+                            class="list-group-item list-group-item-action rounded {{ $navigate == 'payment_plans' ? 'active' : '' }}"
+                            wire:click.prevent="navigateTo('payment_plans')">
+                            <i
+                                class="{{ $navigate == 'payment_plans' ? 'fa-regular fa-circle-dot' : 'fa-regular fa-circle' }}"></i>
+                            &nbsp; <span class="nav-text">{{ __('Payment Plans') }}</span>
+                        </a>
+
+                        <a href="#"
+                            class="list-group-item list-group-item-action rounded {{ $navigate == 'costs' ? 'active' : '' }}"
+                            wire:click.prevent="navigateTo('costs')">
+                            <i
+                                class="{{ $navigate == 'costs' ? 'fa-regular fa-circle-dot' : 'fa-regular fa-circle' }}"></i>
+                            &nbsp; <span class="nav-text">{{ __('Costs') }}</span>
+                        </a>
+
+                        <a href="#"
+                            class="list-group-item list-group-item-action rounded {{ $navigate == 'customer_type' ? 'active' : '' }}"
+                            wire:click.prevent="navigateTo('customer_type')">
+                            <i
+                                class="{{ $navigate == 'customer_type' ? 'fa-regular fa-circle-dot' : 'fa-regular fa-circle' }}"></i>
+                            &nbsp; <span class="nav-text">{{ __('Customers Types') }}</span>
+                        </a>
+
 
 
                     </div>
@@ -119,6 +153,10 @@
             @switch($navigate)
                 @case('users')
                     @livewire('cp.settings.users.index')
+                @break
+
+                @case('sales')
+                    @livewire('cp.settings.sales.index')
                 @break
 
                 @case('permissions')
@@ -167,6 +205,19 @@
 
                 @case('phase')
                     @livewire('cp.settings.phases.index')
+                @break
+
+                @case('payment_plans')
+                    @livewire('cp.settings.payments-plan.index')
+                @break
+
+
+                @case('costs')
+                    @livewire('cp.settings.costs.index')
+                @break
+
+                @case('customer_type')
+                    @livewire('cp.settings.customer-types.index')
                 @break
 
                 @default

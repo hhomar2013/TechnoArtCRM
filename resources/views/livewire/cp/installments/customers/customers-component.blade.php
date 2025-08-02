@@ -25,7 +25,7 @@
                                     <div class="col-lg-6">
                                         <label for="">{{ __('Customer Code') }}</label>
                                         <input type="text" wire:model="code" placeholder="{{ __('Customer Code') }}"
-                                            class="form-control">
+                                            readonly class="form-control">
                                         @error('code')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -40,8 +40,8 @@
                                         <br>
 
                                         <label for="">{{ __('ID Number') }}</label>
-                                        <input type="number" wire:model="idCard" placeholder="{{ __('ID Number') }}" min="0"
-                                            class="form-control">
+                                        <input type="number" wire:model="idCard" placeholder="{{ __('ID Number') }}"
+                                            min="0" class="form-control">
                                         @error('idCard')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -73,16 +73,35 @@
 
                                     </div>
                                     <div class="col-lg-6">
+                                        <label for="">{{ __('Customers Types') }}</label>
+                                        <select class="form-control" wire:model.live="customersTypeId">
+                                            <option value="">{{ __('Select an option') }}</option>
+                                            @foreach ($customersType as $customersTypes)
+                                                <option value="{{ $customersTypes->id }}">{{ $customersTypes->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        <br>
+                                        <label for="">{{ __('Sales') }}</label>
+                                        <select class="form-control" wire:model.live="salesId">
+                                            <option value="">{{ __('Select an option') }}</option>
+                                            @foreach ($sales as $sales_val)
+                                                <option value="{{ $sales_val->id }}">{{ $sales_val->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+
+                                        <br>
                                         <label for="">{{ __('Area') }}</label>
-                                        <input type="number" wire:model="area" placeholder="{{ __('Area') }}" min="0"
-                                            class="form-control">
+                                        <input type="number" wire:model="area" placeholder="{{ __('Area') }}"
+                                            min="0" class="form-control">
                                         @error('area')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                         <br>
                                         <label for="">{{ __('Floor') }}</label>
-                                        <input type="number" wire:model="floor" placeholder="{{ __('Floor') }}" min="0"
-                                            class="form-control">
+                                        <input type="number" wire:model="floor" placeholder="{{ __('Floor') }}"
+                                            min="0" class="form-control">
                                         @error('floor')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
@@ -97,7 +116,8 @@
                                         <br>
 
                                         <label for="">{{ __('Contract Total') }}</label>
-                                        <input type="number" wire:model="total" placeholder="{{ __('Contract Total') }}" min="0"
+                                        <input type="number" wire:model="total"
+                                            placeholder="{{ __('Contract Total') }}" min="0"
                                             class="form-control">
                                         @error('total')
                                             <span class="text-danger">{{ $message }}</span>

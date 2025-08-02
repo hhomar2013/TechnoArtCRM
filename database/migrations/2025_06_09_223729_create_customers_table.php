@@ -24,7 +24,10 @@ return new class extends Migration
             $table->string('floor')->nullable();
             $table->string('other')->nullable();
             $table->string('total')->nullable();
+            $table->foreignId('customer_type')->nullable()->constrained('customer_types')->onDelete('cascade');
+            $table->foreignId('sales_id')->nullable()->constrained('sales')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

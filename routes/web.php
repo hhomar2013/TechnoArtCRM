@@ -4,9 +4,15 @@ use App\Livewire\Auth\Login;
 use App\Livewire\Auth\Logout;
 use App\Livewire\Cp\DashboardComponent;
 use App\Livewire\Cp\Installments\AllocationOfUnitsComponent;
+use App\Livewire\Cp\Installments\CollectionComponent;
 use App\Livewire\Cp\Installments\Customers\CustomersComponent;
+use App\Livewire\Cp\Pdf\CustomerPaymentsComponent;
 use App\Livewire\Cp\ProjectManagement\ProjectManagementComponent;
+use App\Livewire\Cp\Reports\CustomerDateComponent;
+use App\Livewire\Cp\Reports\PaymentMovmentComponent;
+use App\Livewire\Cp\Reports\TotalProjectsReportComponent;
 use App\Livewire\Cp\Settings\SettingsComponent;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,18 +26,42 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('guest')->group(function(){
+Route::middleware('guest')->group(function () {
     Route::get('/login', Login::class)->name('login');
-
 });
 
-Route::middleware('auth')->group(function(){
+Route::middleware('auth')->group(function () {
     Route::get('/', DashboardComponent::class)->name('dashboard');
-    Route::get('/settings',SettingsComponent::class)->name('settings');
+    Route::get('/settings', SettingsComponent::class)->name('settings');
     Route::get('/project-management', ProjectManagementComponent::class)->name('project-management');
-    Route::get('/customers',CustomersComponent::class)->name('customers');
-    Route::get('/allocation-of-units',AllocationOfUnitsComponent::class)->name('allocation-of-units');
+    Route::get('/customers', CustomersComponent::class)->name('customers');
+    Route::get('/allocation-of-units', AllocationOfUnitsComponent::class)->name('allocation-of-units');
+    Route::get('/collection', CollectionComponent::class)->name('collection');
+
+
+    /* Reports */
+
+    Route::get('/reports/payment-movements', PaymentMovmentComponent::class)->name('reports.payment-movements');
+    Route::get('/reports/totel-projects', TotalProjectsReportComponent::class)->name('reports.totel-projects');
+    Route::get('/reports/customer-data', CustomerDateComponent::class)->name('reports.customer-data');
+    /* End Reports */
+
+    /*  PDF Reports*/
+    Route::get('/pdf/customer-payments', CustomerPaymentsComponent::class)->name('pdf.customer-payments');
+    /* End PDF Reports*/
+
+
+
+
+
+
     //Logout
     Route::get('/logout', Logout::class)->name('logout');
+});
 
+
+Route::get('/storage-link', function () {
+    $targetFolder = storage_path('app/public');
+    $linkFolder = $_SERVER['DOCUMENT_ROOT'] . '/storage';
+    symlink($targetFolder, $linkFolder);
 });

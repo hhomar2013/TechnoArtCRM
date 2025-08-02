@@ -1,0 +1,74 @@
+<?php
+
+namespace App\Livewire\Cp\Reports;
+
+use App\Models\Customers;
+use App\Models\customerTypes;
+use Livewire\Component;
+use Livewire\WithPagination;
+
+class CustomerDateComponent extends Component
+{
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
+    public $pageNumber, $search, $customersData;
+    // public $customers = [];
+    public $customer_id;
+    public $customer_details, $customerTypesId;
+
+    public function mount()
+    {
+        $this->pageNumber = 20;
+        $this->resetPage();
+    }
+
+    public function updatedSearch()
+    {
+        if (!$this->search) {
+            $this->resetPage();
+        }
+    }
+    public function updatedCustomerTypesId()
+    {
+        // dd($this->customerTypesId);
+    }
+
+    public function resetSearch(){
+        $this->customerTypesId = null;
+        $this->search = null;
+    }
+
+    public function customerdEdit($id)
+    {
+        session()->flash('edit_id', $id);
+        return redirect()->to('/customers');
+    }
+
+    public function render()
+    {
+         $customers = [];
+        $cutomerTypes = customerTypes::query()->get();
+        $search = str_replace(' ', '%', $this->search);
+        if (!$this->search && !$this->customerTypesId) {
+             $customers = '';
+            $customers = Customers::query()
+                ->paginate($this->pageNumber);
+        } elseif ($this->customerTypesId) {
+            $customers = Customers::query()
+                ->where('customer_type', $this->customerTypesId)
+                ->paginate($this->pageNumber);
+        } else {
+            $customers = '';
+            $customers = Customers::query()
+                ->where('id', 'like', '%' . $search . '%')
+                ->orWhere('code', 'like', '%' . $search . '%')
+                ->orWhere('name', 'like', '%' . $search . '%')
+                ->orWhere('mobile', 'like', '%' . $search . '%')
+                ->orderBy('id', 'asc')
+                ->paginate($this->pageNumber);
+        }
+
+
+        return view('livewire.cp.reports.customer-date-component', compact('customers', 'cutomerTypes'))->extends('layouts.app');
+    }
+}

@@ -142,25 +142,14 @@
     <script src="{{ asset('assets/vendor/select2/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins-init/select2-init.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"></script>
-
-
-
-
     <script>
         document.addEventListener('livewire:load', () => {
             Livewire.onPageExpired((response, message) => {
                 window.location('/login');
             })
         })
-
     </script>
-
-
-
-    <script>
-        @include('tools.message')
-    </script>
-
+    @include('tools.message')
     @livewireScripts
     <!-- OpenLayers JS -->
     <script src="https://cdn.jsdelivr.net/npm/ol@v7.3.0/dist/ol.js"></script>

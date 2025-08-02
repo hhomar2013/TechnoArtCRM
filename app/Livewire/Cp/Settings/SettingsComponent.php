@@ -12,9 +12,8 @@ class SettingsComponent extends Component
 
     public function mount()
     {
-        $this->navigate = request()->query('navigate', 'general'); // جلب القيمه من الـ URL
+        $this->navigate = request()->query('navigate', 'general');
     }
-
 
     #[Url]
     public function navigateTo($page)

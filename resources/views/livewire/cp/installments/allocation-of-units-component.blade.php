@@ -10,13 +10,13 @@
             <hr>
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-2">
-                        <label for="">{{ __('Search') }}&nbsp;{{ __('Customer Code') }} &nbsp; &
-                            {{ __('Customer Name') }}</label>
+                    <div class="col-lg-3">
+                        <label for="">{{ __('Search') }} : &nbsp;{{ __('Customer Code') }} &nbsp; &
+                            {{ __('Customer Name') }} &nbsp; & {{ __('Mobile') }}</label>
                         <input type="text" class="form-control" wire:model="customer_id" wire:keyup="searchCustomer" />
                     </div>
 
-                    <div class="col-lg-4">
+                    <div class="col-lg-3">
                         <label for="">{{ __('Customers') }}</label>
                         <select class="form-control" name="" id="" wire:model="customer"
                             wire:change="updateCode">
@@ -27,88 +27,168 @@
                         </select>
 
                     </div>
-                    <label class="btn btn-primary btn-rounded my-4"
+
+                    <div class="col-lg-2">
+                               <label class="btn btn-primary btn-rounded my-4"
                         for="selectCustomer">{{ __('Add Customer To Contract') }}</label>
                     <button wire:click="selectCustomer" id="selectCustomer" hidden></button>
+                    </div>
+                    @if($customer_units)
+                       <div class="col-lg-4">
+                         <div class="card-body">
+                            <div class="basic-list-group">
+                                <ul class="list-group">
+                                    @foreach ($customer_units as $customer_units_val)
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                  <h4><b>{{ __('Project Name') }}</b> :
+                                            {{ $customer_units_val->project_name }}</h4>
+                                                <h4><b>{{ __('Phase Name') }}</b> : {{ $customer_units_val->phase_name }}</h4>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                    @endif
+
 
                 </div>
-
-                <div class="row">
-                    {{-- <div class="col-lg-2">
-                        <label for="">{{ __('Search') }}&nbsp;{{ __('Building Code') }} &nbsp; &
-                            {{ __('Building Name') }}</label>
-                        <input type="text" class="form-control" wire:model="building_id"
-                            wire:keyup="searchBuilding" />
-                    </div> --}}
-
-                    <div class="col-lg-6">
-                        <div class="row">
-                            <div class="col-lg-3">
-                                <label for="">{{ __('Projects') }}</label>
-                                <select class="form-control" wire:model="project" wire:change="selectProject">
-                                    <option value="">{{ __('Select an option') }}</option>
-                                    @foreach ($projects as $project_val)
-                                        <option value="{{ $project_val->id }}">{{ $project_val->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="col-lg-3">
-                                <label for="">{{ __('Buildings') }}</label>
-                                <select class="form-control" wire:model.live="building_id">
-                                    <option value="">{{ __('Select an option') }}</option>
-                                    @foreach ($buildings as $building_val)
-                                        <option value="{{ $building_val->id }}">{{ $building_val->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-                            <div class="col-lg-3">
-                                <label for="">{{ __('Appartments') }}</label>
-                                <select class="form-control" wire:model.live="appartment">
-                                    <option value="">{{ __('Select an option') }}</option>
-                                    @foreach ($appartments as $appartments_val)
-                                        <option value="{{ $appartments_val->id }}">
-                                            {{ __('#') . ':' . $appartments_val->code . ' - ' . $appartments_val->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            @if ($appartment)
+                @if ($selected_customers)
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="row">
                                 <div class="col-lg-3">
-                                    <label for="">{{ __('total') }}</label>
-                                    <input type="text" class="form-control" wire:model="unit_price" readonly>
+                                    <label for="">{{ __('Projects') }}</label>
+                                    <select class="form-control" wire:model.live="project" wire:change="selectProject">
+                                        <option value="">{{ __('Select an option') }}</option>
+                                        @foreach ($projects as $project_val)
+                                            <option value="{{ $project_val->id }}">{{ $project_val->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
-                            @endif
+                                <div class="col-lg-3 ">
+                                    <label for="">{{ __('Phases') }}</label>
+                                    <select class="form-control" wire:model.live="phase">
+                                        <option value="">{{ __('Select an option') }}</option>
+                                        @foreach ($phases as $phase)
+                                            <option value="{{ $phase->id }}">{{ $phase->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    @if ($phase && $project)
 
-
+                        <div class="col-lg-12">
+                            <button class="btn btn-primary btn-rounded"
+                                wire:click="addCost">{{ __('Add Costs') }}</button>
+                                @if($costs)
+                                   <button class="btn btn-danger btn-rounded"
+                                wire:click="deleteAllCosts">{{ __('Delete Resource') }}</button>
+                                @endif
 
                         </div>
+                        <div class="row mt-4">
+                            @foreach ($costs as $index => $value_cost)
+                                <div class="col-lg-2 col-md-4">
+                                    <h4># : {{ $index + 1 }}</h4>
+                                    <select class="form-control" wire:model="costs.{{ $index }}.cost_id">
+                                        <option value="" disabled>{{ __('type') }}</option>
+                                        @foreach ($costsData as $costsDataVal)
+                                            <option value="{{ $costsDataVal->id }}">{{ $costsDataVal->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+
+                                    <input type="date" wire:model="costs.{{ $index }}.date"
+                                        class="form-control" placeholder="{{ __('t.date') }}">
+
+                                    <input type="number" wire:model="costs.{{ $index }}.value"
+                                        class="form-control" placeholder="{{ __('Value') }}">
+
+                                    <select class="form-control" wire:model.live="costs.{{ $index }}.actions">
+                                        <option value="">{{ __('Select an option') }}</option>
+                                        @foreach ($actionsOptions as $key => $label)
+                                            <option value="{{ $key }}">{{ $label }}</option>
+                                        @endforeach
+                                    </select>
+                                    <br>
+                                    @if ($value_cost['actions'] === 'payments')
+                                        <div class="row" wire:key="{{ $index }}">
+                                            <div class="col-lg-6">
+                                                <label>عدد الأقساط</label>
+                                                <input type="number" class="form-control"
+                                                    wire:model="costs.{{ $index }}.costs_installments_count" />
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <label>الفتره بعدد الشهور</label>
+                                                <input type="number" class="form-control"
+                                                    wire:model="costs.{{ $index }}.costs_installments_period" />
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <button type="button" wire:click="generateCostPayments({{ $index }})"
+                                            class="btn btn-sm btn-primary btn-rounded">
+                                            <i class="fa-solid fa-list-check"></i>
+                                            {{ __('Sume The Installments') }}
+                                        </button>
+                                    @endif
+                                    <hr>
+                                    <button type="button" wire:click="removeCosts({{ $index }})"
+                                        class="btn btn-sm btn-danger"> <i class="fa fa-trash"></i>
+                                    </button>
+                                    <br>
+                                </div> {{-- col-lg-4 --}}
+                            @endforeach
+
+                        </div><hr>
 
 
-                    </div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-lg-6">
+
+
+                    @endif
+
+
+                    <br>
+                    @if ($costs)
                         <div class="row">
-                            <div class="col-lg-4">
-                                <label for="">{{ __('Payment Plans') }}</label>
-                                <select class="form-control" wire:model="payment_plan">
-                                    <option value="">{{ __('Select an option') }}</option>
-                                    @foreach ($payment_plans as $payment_plans_val)
-                                        <option value="{{ $payment_plans_val->id }}">{{ $payment_plans_val->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="col-lg-4">
-                                <label class="btn btn-warning btn-rounded my-4"
-                                    for="generate">{{ __('Sume The Installments') }}</label>
-                                <button wire:click="generate" id="generate" hidden></button>
+                            <div class="col-lg-6">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <label for="">{{ __('Installment Value') }}</label>
+                                        <input type="text" name="" id="" class="form-control"
+                                            wire:model="installment_value" placeholder="{{ __('Installment Value') }}">
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <label for="">{{ __('Number of installments') }}</label>
+                                        <input type="text" name="" id="" class="form-control"
+                                            wire:model="installments_count"
+                                            placeholder="{{ __('Number of installments') }}">
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <label for="">{{ __('Starting from the date') }}</label>
+                                        <input type="date" name="" id="" class="form-control"
+                                            wire:model="start_installment_date"
+                                            placeholder="{{ __('Starting from the date') }}">
+                                    </div>
+
+                                    <div class="col-lg-4">
+                                        <label class="btn btn-warning btn-rounded my-4"
+                                            for="generate">{{ __('Sume The Installments') }}</label>
+                                        <button wire:click="generate" id="generate" hidden></button>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
+                    @endif
+
+
+                @endif
+
 
 
                 <br />
@@ -149,44 +229,115 @@
 
                         <div class="row">
 
+                            <div class="col-lg-6">
+                                {{-- Start Table --}}
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4 class="card-title">{{ __('Costs') }}</h4>
+                                    </div>
 
-                            {{-- Start Table --}}
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">{{ __('Installment system') }}</h4>
-                                </div>
-                                <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table
-                                            class="table table-bordered table-striped verticle-middle table-responsive-sm">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col"> # </th>
-                                                    <th scope="col">{{ __('t.date') }}</th>
-                                                    <th scope="col">{{ __('Amount') }}</th>
-                                                    <th scope="col">{{ __('type') }}</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php $i = 1; ?>
-                                                @foreach ($customer_payment as $customer_payment_val)
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table
+                                                class="table table-bordered table-striped verticle-middle table-responsive-sm text-dark h5">
+                                                <thead>
                                                     <tr>
-                                                        <td>{{ $i++ }}</td>
-                                                        <td>{{ $customer_payment_val->due_date }}</td>
-                                                        <td>{{ $customer_payment_val->amount }}</td>
-                                                        <td>
-                                                            <span
-                                                                class="badge {{ $customer_payment_val->type == 'down_payment' ? 'badge-primary' : 'badge-success' }}">
-                                                                {{ $customer_payment_val->type  == 'down_payment' ? 'دفعه مقدم' :'دفعه قسط'}}</span>
-                                                        </td>
+                                                        <th scope="col"> # </th>
+                                                        <th scope="col">{{ __('t.date') }}</th>
+                                                        <th scope="col">{{ __('Amount') }}</th>
+                                                        <th scope="col">{{ __('type') }}</th>
                                                     </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
+                                                </thead>
+                                                <tbody>
+                                                    <?php $i = 1; ?>
+                                                    @foreach ($customer_costs as $customer_costs_val)
+                                                        <tr>
+                                                            <td>{{ $i++ }}</td>
+                                                            <td>{{ $customer_costs_val->date }}</td>
+                                                            <td>{{ number_format($customer_costs_val->value, 2) }}</td>
+                                                            <td>
+                                                                <span
+                                                                    class="badge badge-primary badge-rounded text-white">
+                                                                    {{ $customer_costs_val->costs->name }}
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        {{-- <div>
+                                            {{ $customer_costs != null ? $customer_costs->links(data: ['scrollTo' => false]) : '' }}
+                                        </div> --}}
                                     </div>
                                 </div>
+                                {{-- End Table --}}
                             </div>
-                            {{-- End Table --}}
+
+                            <div class="col-lg-6">
+                                {{-- Start Table --}}
+                                <div class="card" id="installments-table">
+                                    <div class="card-header">
+                                        <h4 class="card-title">{{ __('Installments') }}</h4>
+                                        <select class="form-control-sm" wire:model.live="installment_pages">
+                                            <option value="10">10</option>
+                                            <option value="20">20</option>
+                                            <option value="50">50</option>
+                                            <option value="100">100</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table
+                                                class="table table-bordered table-striped verticle-middle table-responsive-sm text-dark h5"
+                                                {{-- style="display: inline-block; overflow: auto; height: 200px;" --}}>
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col"> # </th>
+                                                        <th scope="col">{{ __('t.date') }}</th>
+                                                        <th scope="col">{{ __('Amount') }}</th>
+                                                        <th scope="col">{{ __('type') }}</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <?php $i = ($customer_payments->currentPage() - 1) * $customer_payments->perPage() + 1; ?>
+                                                    @foreach ($customer_payments as $customer_payment_val)
+                                                        <tr>
+                                                            <td>{{ $i++ }}</td>
+                                                            <td>{{ $customer_payment_val->due_date }}</td>
+                                                            <td>{{ number_format($customer_payment_val->amount, 2) }}
+                                                            </td>
+                                                            <td>
+                                                                <span
+                                                                    class="badge {{ $customer_payment_val->type == 'down_payment' ? 'badge-primary' : 'badge-danger badge-rounded text-white' }}">
+                                                                    {{ $customer_payment_val->type == 'down_payment' ? 'دفعه مقدم' : 'دفعه قسط' }}</span>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                    {{-- <tr>
+                                                        <td>
+                                                            <span class="badge badge-primary">{{ __('total') }}</span>
+                                                        </td>
+                                                        <td colspan="3">{{ $customer_payments->sum('amount')}}</td>
+                                                    </tr> --}}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div>
+                                            {{ $customer_payments != null ? $customer_payments->links(data: ['scrollTo' => false]) : '' }}
+                                        </div>
+                                    </div>
+                                </div>
+                                {{-- End Table --}}
+                            </div>
+
+
+
                         </div>
                     </div>
 
@@ -202,29 +353,44 @@
 </div>
 @section('title', __('Allocation Of Units'))
 @script
-    @include('tools.message')
+@include('tools.message')
 @endscript
 
-@script
-    <script>
-        // منع F5 و Ctrl+R و Shift+F5
-        window.addEventListener('keydown', function(e) {
-            if (
-                e.key === 'F5' ||
-                (e.ctrlKey && e.key === 'r') ||
-                (e.ctrlKey && e.shiftKey && e.key === 'R')
-            ) {
-                e.preventDefault();
-                alert('تم تعطيل تحديث الصفحة');
-            }
-        });
 
-        // منع تحديث الصفحة باستخدام context menu reload
-        window.addEventListener('beforeunload', function(e) {
-            // دا بيمنع التحديث عند اغلاق أو اعادة تحميل
+<script>
+    // منع F5 و Ctrl+R و Shift+F5
+    window.addEventListener('keydown', function(e) {
+        if (
+            e.key === 'F5' ||
+            (e.ctrlKey && e.key === 'r') ||
+            (e.ctrlKey && e.shiftKey && e.key === 'R')
+        ) {
             e.preventDefault();
-            alert('تم تعطيل تحديث الصفحة');
-            e.returnValue = '';
+            // alert('تم تعطيل تحديث الصفحة');
+            Swal.fire({
+                // position: "top-start",
+                position: "center",
+                title: "لا يمكن تحديث الصفحه",
+                type: "error",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+    });
+
+    // منع تحديث الصفحة باستخدام context menu reload
+    window.addEventListener('beforeunload', function(e) {
+        // دا بيمنع التحديث عند اغلاق أو اعادة تحميل
+        e.preventDefault();
+        // alert('تم تعطيل تحديث الصفحة');
+        Swal.fire({
+            // position: "top-start",
+            position: "center",
+            title: "لا يمكن تحديث الصفحه",
+            type: "error",
+            showConfirmButton: false,
+            timer: 1500
         });
-    </script>
-@endscript
+        e.returnValue = '';
+    });
+</script>

@@ -16,7 +16,7 @@ class Login extends Component
     {
         $this->validate([
             'type'     => 'required|in:web,vendor',
-            'email'    => 'required|email',
+            'email'    => 'required',
             'password' => 'required|min:6',
         ]);
 
