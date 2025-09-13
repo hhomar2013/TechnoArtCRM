@@ -10,9 +10,17 @@
             <hr>
             <div class="container-fluid">
                 <div class="row">
+                    <div class="col-lg-2">
+                        <label for="">{{ __('Choose Search type') }}</label>
+                        <select class="form-control" wire:model.live="search_type">
+                            <option value="code">{{ __('Customer Code') }}</option>
+                            <option value="name">{{ __('Customer Name') }}</option>
+                            <option value="mobile">{{ __('Mobile') }}</option>
+                        </select>
+                    </div>
+
                     <div class="col-lg-3">
-                        <label for="">{{ __('Search') }} : &nbsp;{{ __('Customer Code') }} &nbsp; &
-                            {{ __('Customer Name') }} &nbsp; & {{ __('Mobile') }}</label>
+                        <label for="">{{ __('Search') }} </label>
                         <input type="text" class="form-control" wire:model="customer_id" wire:keyup="searchCustomer" />
                     </div>
 
