@@ -21,7 +21,7 @@
                                 @enderror
                                 <br>
                                 <label for="">{{ __('Email') }}</label>
-                                <input type="email" wire:model="email" placeholder="Email" class="form-control">
+                                <input type="text" wire:model="email" placeholder="Email" class="form-control">
                                 @error('email')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
