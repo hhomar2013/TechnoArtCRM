@@ -45,6 +45,11 @@ class CollectionComponent extends Component
         }
     }
 
+    public function previewCustomerReport($id)
+    {
+        return redirect()->to('/pdf/customer-payments/'. $id);
+    }
+
     public function updated($variable)
     {
         switch ($variable) {
@@ -327,7 +332,7 @@ class CollectionComponent extends Component
         $cost->save();
     }
 
-      public function updatePaymentsInstallmentsStatus($id, $status)
+    public function updatePaymentsInstallmentsStatus($id, $status)
     {
         $payment = payments::find($id);
         $payment->bank = $this->bank;

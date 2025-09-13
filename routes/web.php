@@ -47,7 +47,7 @@ Route::middleware('auth')->group(function () {
     /* End Reports */
 
     /*  PDF Reports*/
-    Route::get('/pdf/customer-payments', CustomerPaymentsComponent::class)->name('pdf.customer-payments');
+    Route::get('/pdf/customer-payments/{id}', CustomerPaymentsComponent::class)->name('pdf.customer-payments');
     /* End PDF Reports*/
 
 

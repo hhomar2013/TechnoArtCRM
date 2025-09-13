@@ -194,13 +194,20 @@
                             <div class="basic-list-group">
                                 <ul class="list-group">
                                     @foreach ($greaterThanCustomerCount as $greaterThanCustomerCount_val)
-                                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                                  <h4><b>{{ __('Project Name') }}</b> :
-                                            {{ $greaterThanCustomerCount_val->project_name }}</h4>
-                                                <h4><b>{{ __('Phase Name') }}</b> : {{ $greaterThanCustomerCount_val->phase_name }}</h4>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <h4><b>{{ __('Project Name') }}</b> :
+                                                {{ $greaterThanCustomerCount_val->project_name }}</h4>
+                                            <h4><b>{{ __('Phase Name') }}</b> :
+                                                {{ $greaterThanCustomerCount_val->phase_name }}</h4>
                                             <span class="badge badge-primary badge-pill">
-                                               <button class="btn text-white" wire:click="getSearch({{ $greaterThanCustomerCount_val->installment_plan_id }})"><i class="fa fa-eye"></i></button>
+                                                <button class="btn text-white"
+                                                    wire:click="getSearch({{ $greaterThanCustomerCount_val->installment_plan_id }})"><i
+                                                        class="fa fa-eye"></i></button>
                                             </span>
+                                            <button class="btn btn-danger btn-rounded text-white"
+                                                wire:click="previewCustomerReport({{ $greaterThanCustomerCount_val->installment_plan_id }})">
+                                                <i class="fa fa-print"></i>
+                                                {{ __('Preview') }}</button>
                                         </li>
                                     @endforeach
                                 </ul>
@@ -391,7 +398,8 @@
                                     wire:click.prevent="$set('collectCosts',true)">{{ __('Collect') . ' ' . __('Costs') }}<i
                                         class="fa-solid fa-money-bill"></i></button>
 
-                                <button class="btn btn-danger" wire:click="removeAll">{{ __('Remove All') }}</button>
+                                <button class="btn btn-danger"
+                                    wire:click="removeAll">{{ __('Remove All') }}</button>
                             @endif
                         </div>
 

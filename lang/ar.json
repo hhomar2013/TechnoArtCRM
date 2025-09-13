@@ -641,7 +641,11 @@
         "Total receipt" : "إجمالي الإيصال",
         "reaming" : "المتبقي",
         "Partially collected" : "محصل جزئياََ",
-        "Customer Balance" : "رصيد العميل"
+        "Customer Balance" : "رصيد العميل",
+        "Total payments" : "إجمالي المدفوعات",
+        "Statement" :"البيان",
+        "bank" :"البنك",
+        "Receipt Date" :"تاريخ الإيصال"
     }
 
 

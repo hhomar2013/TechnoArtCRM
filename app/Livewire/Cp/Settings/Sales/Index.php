@@ -4,12 +4,14 @@ namespace App\Livewire\Cp\Settings\Sales;
 
 use App\Models\sales;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Index extends Component
 {
     public $pageNumber = 5;
     public $code, $name, $jop, $mobile, $idCard, $address, $salesId;
-
+    protected $paginationTheme = 'bootstrap';
+    use WithPagination;
 
 
     public function lastCode()
@@ -21,6 +23,7 @@ class Index extends Component
     public function mount()
     {
         $this->lastCode();
+        $this->resetPage();
     }
 
     public function store()
