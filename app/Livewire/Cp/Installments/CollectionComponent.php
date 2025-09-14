@@ -195,7 +195,7 @@ class CollectionComponent extends Component
             $search    = str_replace(' ', '%', $search);
             $customers = Customers::query();
             if ($this->search_type == 'code') {
-                $customers->where('code', 'like', '%' . $search . '%')->get();
+                $customers->where('code', '=', $search)->get();
             } elseif ($this->search_type == 'name') {
                 $customers->where('name', 'like', '%' . $search . '%')->get();
             } elseif ($this->search_type == 'mobile') {

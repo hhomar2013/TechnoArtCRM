@@ -51,7 +51,7 @@ class ReservationsComponent extends Component
         $query  = installment_plans::query()->with(['project', 'phases']);
         if ($this->searchType == 'code') {
             $query->whereHas('customers.customer', function ($q) use ($search) {
-                $q->where('code', 'like', "%{$search}%");
+                $q->where('code', '=', $search);
             });
         } elseif ($this->searchType == 'name') {
             $query->whereHas('customers.customer', function ($q) use ($search) {

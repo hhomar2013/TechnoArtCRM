@@ -13,7 +13,6 @@ use App\Models\payment_plans;
 use App\Models\phases;
 use App\Models\Project;
 use Carbon\Carbon;
-use Illuminate\Support\Carbon as SupportCarbon;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -85,7 +84,8 @@ class AllocationOfUnitsComponent extends Component
         $dateCount         = $this->costs[$index]['costs_installments_period'];
         $new_date          = '';
         for ($i = 1; $i <= $installment_count; $i++) {
-            $new_date      = SupportCarbon::parse($date)->addMonths($i * $dateCount)->toDateString();
+            // $new_date      = SupportCarbon::parse($date)->addMonths($i * $dateCount)->toDateString();
+            $new_date = Carbon::parse($date)->addMonths(($i * $dateCount) - $dateCount)->toDateString();
             $this->costs[] = [
                 'cost_id'                   => $costId,
                 'value'                     => $value,
@@ -104,9 +104,7 @@ class AllocationOfUnitsComponent extends Component
             'selected_customers' => 'required',
 
         ]);
-        // $plan = payment_plans::findOrFail($this->payment_plan);
-        // $downPayment = ($plan->down_payment_percent / 100) * $this->total_amount;
-        // $installmentAmount = ($this->total_amount - $this->downPayment) / $plan->installments_count;
+
         $installmentPlan = installment_plans::create([
             'customers'          => json_encode($this->selected_customers),
             'payment_plan_id'    => $this->payment_plan,
@@ -126,17 +124,6 @@ class AllocationOfUnitsComponent extends Component
                 'installment_plan_id' => $installmentPlan->id,
             ]);
         }
-        // دفعات المقدم
-        /*     $downPaymentPart = $this->downPayment / $this->downPaymentParts;
-        for ($i = 1; $i <= 4; $i++) {
-            payments::create([
-                'installment_plan_id' => $installmentPlan->id,
-                'amount' => $downPaymentPart,
-                'due_date' => Carbon::now()->addMonths($i - 1),
-                'type' => 'down_payment',
-                'status' => 'pending',
-            ]);
-        } */
 
         // دفعات التقسيط
         for ($i = 1; $i <= $this->installments_count; $i++) {
@@ -269,9 +256,9 @@ class AllocationOfUnitsComponent extends Component
 
             if ($this->search_type == 'name') {
                 $customers = Customers::query()->where('name', 'like', '%' . $search . '%')->first();
-            }elseif ($this->search_type == 'code'){
-                $customers = Customers::query()->where('code', 'like', '%' . $search . '%')->first();
-            }elseif ($this->search_type == 'mobile'){
+            } elseif ($this->search_type == 'code') {
+                $customers = Customers::query()->where('code', '=', $search)->first();
+            } elseif ($this->search_type == 'mobile') {
                 $customers = Customers::query()->where('mobile', 'like', '%' . $search . '%')->first();
             }
 
