@@ -201,10 +201,15 @@ class CollectionComponent extends Component
             } elseif ($this->search_type == 'mobile') {
                 $customers->where('mobile', 'like', '%' . $search . '%')->get();
             }
-            if ($customers) {
-                  $this->customer_details         = $customers->first();
-                $this->customer                 = $customers->get();
-                $customer_count                 = $this->check_customer_count($this->customer_details->id);
+            if ($customers->count() < 1) {
+                $this->dispatch('error', message: __('No Results Found.'));
+            } else {
+                $this->customer_details = $customers->first();
+                $this->customer         = $customers->get();
+                $customer_count         = $this->check_customer_count($this->customer_details->id);
+                // if ($customer_count->count() < 1) {
+                //     $this->dispatch('error', message: __('No Results Found.'));
+                // }
                 $this->greaterThanCustomerCount = $customer_count;
             }
         } else {

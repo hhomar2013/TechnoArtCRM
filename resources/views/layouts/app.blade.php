@@ -140,7 +140,8 @@
     <script src="{{ asset('assets/js/custom.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/sweetalert2/dist/sweetalert2.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/select2/js/select2.full.min.js') }}"></script>
-    <script src="{{ asset('assets/js/plugins-init/select2-init.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/plugins-init/select2-init.js') }}"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"></script>
     <script>
         document.addEventListener('livewire:load', () => {

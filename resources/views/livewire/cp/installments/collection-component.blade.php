@@ -150,8 +150,7 @@
                                 </div>
                                 {{-- <div class="col-lg-2">
                                     <label for=""><i class="fa fa-search"></i></label> <br>
-                                    <button class="btn btn-primary btn-rounded" wire:click="searchCustomer">{{ __('Search') }}</button>
-
+                                    <button class="btn btn-primary btn-rounded" wire:click="searchCustomer({{ $customer_id }})">{{ __('Search') }}</button>
                                 </div> --}}
 
                                 <div class="col-lg-3">

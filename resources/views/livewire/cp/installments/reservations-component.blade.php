@@ -50,7 +50,7 @@
                             <div class="tab-content">
                                 <div class="tab-pane fade {{ $tabs == "home" ? "active show" : '' }}" id="home" role="tabpanel">
                                     @foreach($results as $plan)
-                                    <div class="card mb-3 text-dark">
+                                    <div class="card mb-3 text-dark" wire:key="card-{{ $plan->id }}">
                                         <div class="card-header">
 
                                         </div>
@@ -62,7 +62,8 @@
                                                     <p>{{ __('Phase Name') }} : {{ $plan->phases->name }}</p>
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <button class="btn btn-sm btn-danger btn-rounded text-end" type="submit" wire:click.prevent="reservationInfo({{ $plan->id }})">{{ __('Show') }}</button>
+                                                    <button class="btn btn-sm btn-info btn-rounded text-end" type="submit" wire:click.prevent="reservationInfo({{ $plan->id }})">{{ __('Show') }}</button>
+                                                    <button class="btn btn-sm btn-danger btn-rounded text-end" type="button" onclick="confirmDelete({{ $plan->id }} ,'deleteReservation')">{{ __('Delete') }}</button>
                                                 </div>
                                             </div>
 
@@ -96,6 +97,7 @@
 </div>
 
 @section('title', __('Reservations'))
+@include('tools.confimDelete',['method'=>'deleteReservation'])
 @script
 @include('tools.message')
 @endscript

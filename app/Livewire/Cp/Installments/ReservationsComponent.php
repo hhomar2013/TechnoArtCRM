@@ -13,6 +13,8 @@ class ReservationsComponent extends Component
     public $tabs             = "home";
     public $reservation_Info = [];
 
+    protected $listeners = ['refreshReservations' => '$refresh', 'deleteReservation'=>'delete'];
+
     public function changeTabs($tab)
     {
         $this->tabs = $tab;
@@ -44,7 +46,6 @@ class ReservationsComponent extends Component
             });
         }
         $this->results = $query->with('customers.customer')->get();
-        // dd( $this->results);
         if (count($this->results) < 1) {
             $this->dispatch('error', message: __('No Results Found.'));
             $this->reset(['results', 'reservation_Info']);
@@ -56,7 +57,16 @@ class ReservationsComponent extends Component
     {
         $this->reservation_Info = instllmentCustomers::query()->where('installment_plan_id', $id)->with('customer')->get();
         $this->tabs             = 'info';
-        // dd($id);
+    }
+
+    public function delete($id){
+            $installmentPlans = installment_plans::find($id);
+            if($installmentPlans){
+                $installmentPlans->delete();
+                $this->searchCustomer();
+                $this->dispatch('refreshReservations');
+
+            }
     }
 
     public function render()

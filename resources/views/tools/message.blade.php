@@ -4,7 +4,7 @@
             // position: "top-start",
             position: "center",
             title: event.message,
-            type: "success",
+            icon: "success",
             showConfirmButton: false,
             timer: 1500
             });
@@ -16,11 +16,13 @@
             // position: "top-start",
             position: "center",
             title: event.message,
-            type: "error",
+            icon: "error",
             showConfirmButton: false,
             timer: 1500
             });
     });
 </script>
+
+
 
 

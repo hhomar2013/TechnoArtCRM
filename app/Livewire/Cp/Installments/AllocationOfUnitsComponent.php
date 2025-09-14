@@ -152,6 +152,7 @@ class AllocationOfUnitsComponent extends Component
         $this->GenerateCosts($this->installment_id);
         $this->dispatch('getInstallmentPlans');
         $this->dispatch('message', message: 'تم توليد الدفعات بنجاح ✅');
+        $this->reset();
     }
 
     public function getInstallmentPlans()
