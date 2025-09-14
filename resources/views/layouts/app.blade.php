@@ -148,13 +148,15 @@
                 window.location('/login');
             })
         })
+
     </script>
-    @include('tools.message')
-    @livewireScripts
+    {{-- @include('tools.message') --}}
+
     <!-- OpenLayers JS -->
     <script src="https://cdn.jsdelivr.net/npm/ol@v7.3.0/dist/ol.js"></script>
     <!-- Custom JS -->
     @stack('js')
     @yield('js')
+    @livewireScripts
 </body>
 </html>

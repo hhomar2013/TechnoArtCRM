@@ -646,7 +646,12 @@
         "Statement" :"البيان",
         "bank" :"البنك",
         "Receipt Date" :"تاريخ الإيصال",
-        "Choose Search type" :"اختر نوع البحث"
+        "Choose Search type" :"اختر نوع البحث",
+        "Contracts" : "العقود",
+        "Reservations" : "إستمارات الحجز",
+        "Operations" : "العمليات",
+        "Main data" :"البيانات الرئيسيه",
+        "Reservation info":"تفاصيل الاستمارة"
     }
 
 

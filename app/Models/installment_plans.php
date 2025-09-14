@@ -34,7 +34,7 @@ class installment_plans extends Model
 
     public function project()
     {
-        return $this->belongsTo(Project::class);
+        return $this->belongsTo(Project::class,'project_id');
     }
 
 
@@ -42,7 +42,7 @@ class installment_plans extends Model
     {
         return $this->belongsTo(phases::class, 'phase_id', 'id');
     }
-    public function customer(){
+    public function customers(){
         return $this->hasMany(instllmentCustomers::class,'installment_plan_id');
     }
 }

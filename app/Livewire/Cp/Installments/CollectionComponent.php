@@ -1,14 +1,12 @@
 <?php
-
 namespace App\Livewire\Cp\Installments;
 
 use App\Models\Banks;
 use App\Models\boxs;
 use App\Models\costs_installments;
 use App\Models\costs_reamig;
-use App\Models\customer_account;
 use App\Models\Customers;
-use App\Models\installment_plans;
+use App\Models\customer_account;
 use App\Models\instllmentCustomers;
 use App\Models\payments;
 use App\Models\payments_reaming;
@@ -24,30 +22,31 @@ class CollectionComponent extends Component
     public $customer = [];
     public $customer_id;
     public $customer_details;
-    public $costs = [];
-    public $payments = [];
+    public $costs            = [];
+    public $payments         = [];
     public $selectedPayments = [];
-    public $selectedCosts = [];
+    public $selectedCosts    = [];
     public $customer_balance;
-    public $collectCosts = false;
+    public $collectCosts    = false;
     public $collectPayments = false;
+    public $search_type     = 'code';
     public $bank, $transaction_id, $transaction_date, $time,
-        $receipt_value = 0.0, $reaming = 0.0, $total_payment = 0.0, $cost_reaming = false, $payment_reaming = false,
-        $greaterThanCustomerCount = false, $selected_installment_id;
+    $receipt_value            = 0.0, $reaming            = 0.0, $total_payment            = 0.0, $cost_reaming            = false, $payment_reaming            = false,
+    $greaterThanCustomerCount = false, $selected_installment_id;
 
     public function mount()
     {
         if (session()->has('installmentId') && session()->has('customerId')) {
             $this->customer_id = session('customerId');
-            $this->customer = session('customerId');
-            $customer_search = $this->searchCustomer($this->customer_id);
+            $this->customer    = session('customerId');
+            $customer_search   = $this->searchCustomer($this->customer_id);
             $this->getSearch(session('installmentId'));
         }
     }
 
     public function previewCustomerReport($id)
     {
-        return redirect()->to('/pdf/customer-payments/'. $id);
+        return redirect()->to('/pdf/customer-payments/' . $id);
     }
 
     public function updated($variable)
@@ -70,31 +69,31 @@ class CollectionComponent extends Component
 
     public function selectCostReaming($id)
     {
-        $costs = costs_reamig::where('cost_id', $id)->first();
-        $this->cost_reaming = $id;
+        $costs                 = costs_reamig::where('cost_id', $id)->first();
+        $this->cost_reaming    = $id;
         $this->selectedCosts[] = [
-            'id' => $costs->id,
+            'id'    => $costs->id,
             'value' => $costs->remaining,
-            'cost' => $costs->notes,
-            'date' => $costs->date,
+            'cost'  => $costs->notes,
+            'date'  => $costs->date,
         ];
     }
     public function selectPaymentReaming($id)
     {
-        $payment_reaming = payments_reaming::query()->where('payment_id', $id)->first();
-        $payment = payments::query()->find($id);
+        $payment_reaming          = payments_reaming::query()->where('payment_id', $id)->first();
+        $payment                  = payments::query()->find($id);
         $this->selectedPayments[] = [
-            'id' => $payment_reaming->id,
+            'id'     => $payment_reaming->id,
             'amount' => $payment_reaming->remaining,
-            'type' => $payment_reaming->notes,
-            'date' => $payment->due_date,
+            'type'   => $payment_reaming->notes,
+            'date'   => $payment->due_date,
         ];
         $this->payment_reaming = $id;
     }
 
     public function save_cost_reaming()
     {
-        $costs_reaming = costs_reamig::where('cost_id', $this->cost_reaming)->first();
+        $costs_reaming         = costs_reamig::where('cost_id', $this->cost_reaming)->first();
         $costs_reaming->status = 'paid';
         $costs_reaming->save();
         if ($costs_reaming) {
@@ -104,14 +103,14 @@ class CollectionComponent extends Component
             ]);
             boxs::query()->create([
                 'in_or_out' => 0,
-                'value' => $costs_reaming->remaining,
-                'notes' => 'تم تحصيل : ' . ' ' . $costs_reaming->remaining . ' ' . 'من العميل : ' . $this->customer_details->name . ' بتاريخ : ' . ' ' . $this->transaction_date,
-                'date' => $this->transaction_date,
-                'time' => $this->time,
-                'user_id' => Auth::id(),
+                'value'     => $costs_reaming->remaining,
+                'notes'     => 'تم تحصيل : ' . ' ' . $costs_reaming->remaining . ' ' . 'من العميل : ' . $this->customer_details->name . ' بتاريخ : ' . ' ' . $this->transaction_date,
+                'date'      => $this->transaction_date,
+                'time'      => $this->time,
+                'user_id'   => Auth::id(),
             ]);
         }
-        $this->cost_reaming = false;
+        $this->cost_reaming  = false;
         $this->selectedCosts = [];
         $this->dispatch('message', message: __('Done Save'));
         $this->reset(['bank', 'transaction_id', 'transaction_date', 'time', 'reaming', 'receipt_value']);
@@ -121,7 +120,7 @@ class CollectionComponent extends Component
 
     public function save_payments_reaming()
     {
-        $payment_reamings = payments_reaming::where('payment_id', $this->payment_reaming)->first();
+        $payment_reamings         = payments_reaming::where('payment_id', $this->payment_reaming)->first();
         $payment_reamings->status = 'paid';
         $payment_reamings->save();
         if ($payment_reamings) {
@@ -131,14 +130,14 @@ class CollectionComponent extends Component
             ]);
             boxs::query()->create([
                 'in_or_out' => 0,
-                'value' => $payment_reamings->remaining,
-                'notes' => 'تم تحصيل : ' . ' ' . $payment_reamings->remaining . ' ' . 'من العميل : ' . $this->customer_details->name . ' بتاريخ : ' . ' ' . $this->transaction_date,
-                'date' => $this->transaction_date,
-                'time' => $this->time,
-                'user_id' => Auth::id(),
+                'value'     => $payment_reamings->remaining,
+                'notes'     => 'تم تحصيل : ' . ' ' . $payment_reamings->remaining . ' ' . 'من العميل : ' . $this->customer_details->name . ' بتاريخ : ' . ' ' . $this->transaction_date,
+                'date'      => $this->transaction_date,
+                'time'      => $this->time,
+                'user_id'   => Auth::id(),
             ]);
         }
-        $this->payment_reaming = false;
+        $this->payment_reaming  = false;
         $this->selectedPayments = [];
         $this->dispatch('message', message: __('Done Save'));
         $this->reset(['bank', 'transaction_id', 'transaction_date', 'time', 'reaming', 'receipt_value']);
@@ -151,27 +150,27 @@ class CollectionComponent extends Component
     }
     public function totalReaming()
     {
-        $value = 0;
+        $value               = 0;
         $this->total_payment = '';
         if ($this->selectedPayments) {
-            foreach ($this->selectedPayments as  $payment_val) {
+            foreach ($this->selectedPayments as $payment_val) {
                 $value += $payment_val['amount'];
             }
             $this->total_payment = $value;
             // $this->reaming = $this->receipt_value - $this->total_payment;
         } else if ($this->selectedCosts) {
-            foreach ($this->selectedCosts as  $costs_val) {
+            foreach ($this->selectedCosts as $costs_val) {
                 $value += $costs_val['value'];
             }
             $this->total_payment = $value;
         }
 
-        return  $this->reaming = (float)$this->receipt_value - (float)$this->total_payment;
+        return $this->reaming = (float) $this->receipt_value - (float) $this->total_payment;
     }
 
     public function check_customer_count($customerId)
     {
-        $search =  DB::table('customers')
+        $search = DB::table('customers')
             ->select(
                 'customers.id',
                 'customers.name',
@@ -189,32 +188,34 @@ class CollectionComponent extends Component
             ->get();
         return $search;
     }
-    public function searchCustomer($query)
+    public function searchCustomer($query = null)
     {
         if ($query != null) {
-            $search = $query;
-            $search = str_replace(' ', '%', $search);
-            $customers = Customers::query()
-                ->where('id', 'like', '%' . $search . '%')
-                ->orWhere('code', 'like', '%' . $search . '%')
-                ->orWhere('name', 'like', '%' . $search . '%')
-                ->orWhere('mobile', 'like', '%' . $search . '%')
-                ->get();
+            $search    = $query;
+            $search    = str_replace(' ', '%', $search);
+            $customers = Customers::query();
+            if ($this->search_type == 'code') {
+                $customers->where('code', 'like', '%' . $search . '%')->get();
+            } elseif ($this->search_type == 'name') {
+                $customers->where('name', 'like', '%' . $search . '%')->get();
+            } elseif ($this->search_type == 'mobile') {
+                $customers->where('mobile', 'like', '%' . $search . '%')->get();
+            }
             if ($customers) {
-                $this->customer =  $customers;
-                $this->customer_details = $customers->first();
-                $customer_count = $this->check_customer_count($this->customer_details->id);
+                  $this->customer_details         = $customers->first();
+                $this->customer                 = $customers->get();
+                $customer_count                 = $this->check_customer_count($this->customer_details->id);
                 $this->greaterThanCustomerCount = $customer_count;
             }
         } else {
-            $this->reset();
+            $this->reset('customer');
             $this->reset(['customer', 'customer_details', 'greaterThanCustomerCount']);
         }
     }
     public function getSearch($installment_p_id)
     {
         $this->selected_installment_id = $installment_p_id;
-        $custId = $this->customer_details->id;
+        $custId                        = $this->customer_details->id;
         if ($custId == null) {
             $this->dispatch('error', message: __('No Current Data'));
             $this->reset();
@@ -223,12 +224,12 @@ class CollectionComponent extends Component
             $customer_installment = instllmentCustomers::query()->where('customersId', '=', $custId)->first();
             if ($customer_installment) {
                 $installment_plan_id = $customer_installment->installment_plan_id;
-                $this->costs = costs_installments::query()->where('installment_plan_id', '=', $installment_p_id)
+                $this->costs         = costs_installments::query()->where('installment_plan_id', '=', $installment_p_id)
                     ->with('costs')
                     ->with('reamings')
                     ->get();
                 $this->payments = payments::query()
-                    // ->where('status', 'pending')
+                // ->where('status', 'pending')
                     ->where('installment_plan_id', '=', $installment_p_id)
                     ->with('reamings')
                     ->get();
@@ -246,7 +247,7 @@ class CollectionComponent extends Component
     {
         $payments = payments::query()->find($id);
 
-        if (!$payments) {
+        if (! $payments) {
             $this->dispatch('error', message: __('No Results Found.'));
             return;
         }
@@ -261,10 +262,10 @@ class CollectionComponent extends Component
             return;
         }
         $this->selectedPayments[] = [
-            'id' => $payments->id,
+            'id'     => $payments->id,
             'amount' => $payments->amount,
-            'type' => $payments->type == 'installment' ? 'قسط' :  $payments->type,
-            'date' => $payments->due_date,
+            'type'   => $payments->type == 'installment' ? 'قسط' : $payments->type,
+            'date'   => $payments->due_date,
         ];
     }
 
@@ -272,7 +273,7 @@ class CollectionComponent extends Component
     {
         $costs = costs_installments::query()->find($id);
 
-        if (!$costs) {
+        if (! $costs) {
             $this->dispatch('error', message: __('No Results Found.'));
             return;
         }
@@ -286,10 +287,10 @@ class CollectionComponent extends Component
             return;
         }
         $this->selectedCosts[] = [
-            'id' => $costs->id,
+            'id'    => $costs->id,
             'value' => $costs->value,
-            'cost' => $costs->costs->name,
-            'date' => $costs->date,
+            'cost'  => $costs->costs->name,
+            'date'  => $costs->date,
         ];
     }
 
@@ -310,7 +311,6 @@ class CollectionComponent extends Component
         $this->selectedPayments = array_values($this->selectedPayments);
     }
 
-
     public function collectCosts()
     {
         $this->collectCosts = true;
@@ -323,56 +323,56 @@ class CollectionComponent extends Component
 
     public function updateCostsInstallmentsStatus($id, $status)
     {
-        $cost = costs_installments::find($id);
-        $cost->bank = $this->bank;
-        $cost->time = $this->time;
-        $cost->transaction_id = $this->transaction_id;
+        $cost                   = costs_installments::find($id);
+        $cost->bank             = $this->bank;
+        $cost->time             = $this->time;
+        $cost->transaction_id   = $this->transaction_id;
         $cost->transaction_date = $this->transaction_date;
-        $cost->status = $status;
+        $cost->status           = $status;
         $cost->save();
     }
 
     public function updatePaymentsInstallmentsStatus($id, $status)
     {
-        $payment = payments::find($id);
-        $payment->bank = $this->bank;
-        $payment->paid_at = $this->time;
-        $payment->transaction_id = $this->transaction_id;
+        $payment                   = payments::find($id);
+        $payment->bank             = $this->bank;
+        $payment->paid_at          = $this->time;
+        $payment->transaction_id   = $this->transaction_id;
         $payment->transaction_date = $this->transaction_date;
-        $payment->status = $status;
+        $payment->status           = $status;
         $payment->save();
     }
 
     public function saveCosts()
     {
         $this->validate([
-            'bank' => 'required',
-            'transaction_id' => 'required',
+            'bank'             => 'required',
+            'transaction_id'   => 'required',
             'transaction_date' => 'required',
-            'time' => 'required',
-            'reaming' => 'required',
+            'time'             => 'required',
+            'reaming'          => 'required',
         ]);
-        $print = [];
-        $last_key = array_key_last($this->selectedCosts);
-        $this->reaming = str_contains($this->reaming, '-') ? (float) str_replace('-', '', $this->reaming) : $this->reaming;
+        $print               = [];
+        $last_key            = array_key_last($this->selectedCosts);
+        $this->reaming       = str_contains($this->reaming, '-') ? (float) str_replace('-', '', $this->reaming) : $this->reaming;
         $receipt_value_costs = 0.0;
-        $totalCostsValue = array_sum(array_column($this->selectedCosts, 'value'));
+        $totalCostsValue     = array_sum(array_column($this->selectedCosts, 'value'));
         $receipt_value_costs = $this->receipt_value;
-        if ($this->receipt_value ==  $totalCostsValue) {
+        if ($this->receipt_value == $totalCostsValue) {
             for ($i = 0; $i < count($this->selectedCosts); $i++) {
                 $receipt_value_costs -= $this->selectedCosts[$i]['value'];
                 $this->updateCostsInstallmentsStatus($this->selectedCosts[$i]['id'], 'paid');
                 if ($i == $last_key) {
-                    $box =  boxs::query()->create([
+                    $box = boxs::query()->create([
                         'in_or_out' => 0,
-                        'value' => $this->receipt_value,
-                        'notes' =>
-                        ' تم تحصيل : '  . $this->selectedCosts[$i]['cost'] .
-                            ' من العميل :  ' . $this->customer_details->name .
-                            ' بتاريخ  :  '   . $this->selectedCosts[$i]['date'],
-                        'date' => Carbon::now(),
-                        'time' => $this->time,
-                        'user_id' => auth()->id(),
+                        'value'     => $this->receipt_value,
+                        'notes'     =>
+                        ' تم تحصيل : ' . $this->selectedCosts[$i]['cost'] .
+                        ' من العميل :  ' . $this->customer_details->name .
+                        ' بتاريخ  :  ' . $this->selectedCosts[$i]['date'],
+                        'date'      => Carbon::now(),
+                        'time'      => $this->time,
+                        'user_id'   => auth()->id(),
                     ]);
                 }
             }
@@ -384,27 +384,27 @@ class CollectionComponent extends Component
 
                     $this->updateCostsInstallmentsStatus($this->selectedCosts[$i]['id'], 'paid');
 
-                    $customer_account =   customer_account::query()->create([
+                    $customer_account = customer_account::query()->create([
                         'customersId' => $this->customer_details->id,
-                        'debit' => 0,
-                        'credit' => $receipt_value_costs,
-                        'status' => 0,
-                        'notes' => 'سداد تكاليف',
-                        'user_id' => auth()->id(),
+                        'debit'       => 0,
+                        'credit'      => $receipt_value_costs,
+                        'status'      => 0,
+                        'notes'       => 'سداد تكاليف',
+                        'user_id'     => auth()->id(),
                     ]);
 
                     if ($customer_account) {
-                        $box =  boxs::query()->create([
+                        $box = boxs::query()->create([
                             'in_or_out' => 0,
-                            'value' => $this->receipt_value,
-                            'notes' =>
-                            ' تم تحصيل : '  . $this->selectedCosts[$i]['cost'] .
-                                'من العميل :  ' . $this->customer_details->name .
-                                ' بتاريخ  :  '   . $this->selectedCosts[$i]['date'] .
-                                'باقي له :  ' . number_format($receipt_value_costs, 2),
-                            'date' => Carbon::now(),
-                            'time' => $this->time,
-                            'user_id' => auth()->id(),
+                            'value'     => $this->receipt_value,
+                            'notes'     =>
+                            ' تم تحصيل : ' . $this->selectedCosts[$i]['cost'] .
+                            'من العميل :  ' . $this->customer_details->name .
+                            ' بتاريخ  :  ' . $this->selectedCosts[$i]['date'] .
+                            'باقي له :  ' . number_format($receipt_value_costs, 2),
+                            'date'      => Carbon::now(),
+                            'time'      => $this->time,
+                            'user_id'   => auth()->id(),
                         ]);
                     }
                     dd($customer_account, $box);
@@ -416,26 +416,26 @@ class CollectionComponent extends Component
                 $this->updateCostsInstallmentsStatus($this->selectedCosts[$i]['id'], 'paid');
                 if ($i == $last_key) {
                     $this->updateCostsInstallmentsStatus($this->selectedCosts[$i]['id'], 'partiallycollected');
-                    $receipt_value_costs  = str_contains($receipt_value_costs, '-') ? (float) str_replace('-', '', $receipt_value_costs) : $receipt_value_costs;
-                    $cost_reaming =  costs_reamig::query()->create([
-                        'cost_id' => $this->selectedCosts[$i]['id'],
-                        'user_id' => auth()->id(),
-                        'remaining' => (float)$this->reaming,
-                        'notes' => ' المتبقى من '  . $this->selectedCosts[$i]['cost'] . '  : '
-                            . number_format($receipt_value_costs, 2) . ' رقم  : '
-                            . $this->selectedCosts[$i]['id'],
-                        'status' => 'unpaid',
+                    $receipt_value_costs = str_contains($receipt_value_costs, '-') ? (float) str_replace('-', '', $receipt_value_costs) : $receipt_value_costs;
+                    $cost_reaming        = costs_reamig::query()->create([
+                        'cost_id'   => $this->selectedCosts[$i]['id'],
+                        'user_id'   => auth()->id(),
+                        'remaining' => (float) $this->reaming,
+                        'notes'     => ' المتبقى من ' . $this->selectedCosts[$i]['cost'] . '  : '
+                        . number_format($receipt_value_costs, 2) . ' رقم  : '
+                        . $this->selectedCosts[$i]['id'],
+                        'status'    => 'unpaid',
                     ]);
                     if ($cost_reaming) {
                         boxs::query()->create([
                             'in_or_out' => 0,
-                            'value' => $this->receipt_value,
-                            'notes' => ' المتبقى من '  . $this->selectedCosts[$i]['cost'] . '  : '
-                                . number_format($cost_reaming->remaining, 2) . ' رقم  : '
-                                . $this->selectedCosts[$i]['id'],
-                            'date' => Carbon::now(),
-                            'time' => $this->time,
-                            'user_id' => auth()->id(),
+                            'value'     => $this->receipt_value,
+                            'notes'     => ' المتبقى من ' . $this->selectedCosts[$i]['cost'] . '  : '
+                            . number_format($cost_reaming->remaining, 2) . ' رقم  : '
+                            . $this->selectedCosts[$i]['id'],
+                            'date'      => Carbon::now(),
+                            'time'      => $this->time,
+                            'user_id'   => auth()->id(),
                         ]);
                     }
                 }
@@ -450,34 +450,34 @@ class CollectionComponent extends Component
     public function savePayments()
     {
         $this->validate([
-            'bank' => 'required',
-            'transaction_id' => 'required',
+            'bank'             => 'required',
+            'transaction_id'   => 'required',
             'transaction_date' => 'required',
-            'time' => 'required',
-            'reaming' => 'required',
+            'time'             => 'required',
+            'reaming'          => 'required',
         ]);
 
-        $last_key = array_key_last($this->selectedPayments);
-        $this->reaming = str_contains($this->reaming, '-') ? (float) str_replace('-', '', $this->reaming) : $this->reaming;
+        $last_key               = array_key_last($this->selectedPayments);
+        $this->reaming          = str_contains($this->reaming, '-') ? (float) str_replace('-', '', $this->reaming) : $this->reaming;
         $receipt_value_payments = 0.0;
-        $totalPaymentsValue = array_sum(array_column($this->selectedPayments, 'amount'));
+        $totalPaymentsValue     = array_sum(array_column($this->selectedPayments, 'amount'));
         $receipt_value_payments = $this->receipt_value;
 
-        if ($this->receipt_value ==  $totalPaymentsValue) {
+        if ($this->receipt_value == $totalPaymentsValue) {
             for ($i = 0; $i < count($this->selectedPayments); $i++) {
                 $receipt_value_payments -= $this->selectedPayments[$i]['amount'];
                 $this->updatePaymentsInstallmentsStatus($this->selectedPayments[$i]['id'], 'paid');
                 if ($i == $last_key) {
-                    $box =  boxs::query()->create([
+                    $box = boxs::query()->create([
                         'in_or_out' => 0,
-                        'value' => $this->receipt_value,
-                        'notes' =>
-                        ' تم تحصيل : '  . $this->selectedPayments[$i]['type'] .
-                            ' من العميل :  ' . $this->customer_details->name .
-                            ' بتاريخ  :  '   . $this->selectedPayments[$i]['date'],
-                        'date' => Carbon::now(),
-                        'time' => $this->time,
-                        'user_id' => auth()->id(),
+                        'value'     => $this->receipt_value,
+                        'notes'     =>
+                        ' تم تحصيل : ' . $this->selectedPayments[$i]['type'] .
+                        ' من العميل :  ' . $this->customer_details->name .
+                        ' بتاريخ  :  ' . $this->selectedPayments[$i]['date'],
+                        'date'      => Carbon::now(),
+                        'time'      => $this->time,
+                        'user_id'   => auth()->id(),
                     ]);
                 }
             }
@@ -487,27 +487,27 @@ class CollectionComponent extends Component
                 $this->updatePaymentsInstallmentsStatus($this->selectedPayments[$i]['id'], 'paid');
                 if ($i == $last_key) {
                     $this->updatePaymentsInstallmentsStatus($this->selectedPayments[$i]['id'], 'paid');
-                    $customer_account =   customer_account::query()->create([
+                    $customer_account = customer_account::query()->create([
                         'customersId' => $this->customer_details->id,
-                        'debit' => 0,
-                        'credit' => $receipt_value_payments,
-                        'status' => 0,
-                        'notes' => 'سداد تكاليف',
-                        'user_id' => auth()->id(),
+                        'debit'       => 0,
+                        'credit'      => $receipt_value_payments,
+                        'status'      => 0,
+                        'notes'       => 'سداد تكاليف',
+                        'user_id'     => auth()->id(),
                     ]);
 
                     if ($customer_account) {
-                        $box =  boxs::query()->create([
+                        $box = boxs::query()->create([
                             'in_or_out' => 0,
-                            'value' => $this->receipt_value,
-                            'notes' =>
-                            ' تم تحصيل : '  . $this->selectedPayments[$i]['type'] .
-                                'من العميل :  ' . $this->customer_details->name .
-                                ' بتاريخ  :  '   . $this->selectedPayments[$i]['date'] .
-                                'باقي له :  ' . number_format($receipt_value_payments, 2),
-                            'date' => Carbon::now(),
-                            'time' => $this->time,
-                            'user_id' => auth()->id(),
+                            'value'     => $this->receipt_value,
+                            'notes'     =>
+                            ' تم تحصيل : ' . $this->selectedPayments[$i]['type'] .
+                            'من العميل :  ' . $this->customer_details->name .
+                            ' بتاريخ  :  ' . $this->selectedPayments[$i]['date'] .
+                            'باقي له :  ' . number_format($receipt_value_payments, 2),
+                            'date'      => Carbon::now(),
+                            'time'      => $this->time,
+                            'user_id'   => auth()->id(),
                         ]);
                     }
                     dd($customer_account, $box);
@@ -519,26 +519,26 @@ class CollectionComponent extends Component
                 $this->updatePaymentsInstallmentsStatus($this->selectedPayments[$i]['id'], 'paid');
                 if ($i == $last_key) {
                     $this->updatePaymentsInstallmentsStatus($this->selectedPayments[$i]['id'], 'partiallycollected');
-                    $receipt_value_payments  = str_contains($receipt_value_payments, '-') ? (float) str_replace('-', '', $receipt_value_payments) : $receipt_value_payments;
-                    $payment_reaming =  payments_reaming::query()->create([
+                    $receipt_value_payments = str_contains($receipt_value_payments, '-') ? (float) str_replace('-', '', $receipt_value_payments) : $receipt_value_payments;
+                    $payment_reaming        = payments_reaming::query()->create([
                         'payment_id' => $this->selectedPayments[$i]['id'],
-                        'user_id' => auth()->id(),
-                        'remaining' => (float)$this->reaming,
-                        'notes' => ' المتبقى من '  . $this->selectedPayments[$i]['type'] . '  : '
-                            . number_format($receipt_value_payments, 2) . ' رقم  : '
-                            . $this->selectedPayments[$i]['id'],
-                        'status' => 'unpaid',
+                        'user_id'    => auth()->id(),
+                        'remaining'  => (float) $this->reaming,
+                        'notes'      => ' المتبقى من ' . $this->selectedPayments[$i]['type'] . '  : '
+                        . number_format($receipt_value_payments, 2) . ' رقم  : '
+                        . $this->selectedPayments[$i]['id'],
+                        'status'     => 'unpaid',
                     ]);
                     if ($payment_reaming) {
                         boxs::query()->create([
                             'in_or_out' => 0,
-                            'value' => $this->receipt_value,
-                            'notes' => ' المتبقى من '  . $this->selectedPayments[$i]['type'] . '  : '
-                                . number_format($payment_reaming->remaining, 2) . ' رقم  : '
-                                . $this->selectedPayments[$i]['id'],
-                            'date' => Carbon::now(),
-                            'time' => $this->time,
-                            'user_id' => auth()->id(),
+                            'value'     => $this->receipt_value,
+                            'notes'     => ' المتبقى من ' . $this->selectedPayments[$i]['type'] . '  : '
+                            . number_format($payment_reaming->remaining, 2) . ' رقم  : '
+                            . $this->selectedPayments[$i]['id'],
+                            'date'      => Carbon::now(),
+                            'time'      => $this->time,
+                            'user_id'   => auth()->id(),
                         ]);
                     }
                 }
@@ -550,7 +550,6 @@ class CollectionComponent extends Component
         $this->removeAll();
         $this->getSearch($this->selected_installment_id);
     }
-
 
     public function render()
     {

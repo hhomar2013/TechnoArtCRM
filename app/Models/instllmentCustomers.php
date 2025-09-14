@@ -12,7 +12,7 @@ class instllmentCustomers extends Model
         'customersId',
         'installment_plan_id',
     ];
-    public function customers()
+    public function customer()
     {
         return $this->belongsTo(Customers::class, 'customersId');
     }

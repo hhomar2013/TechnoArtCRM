@@ -6,14 +6,15 @@ use App\Livewire\Cp\DashboardComponent;
 use App\Livewire\Cp\Installments\AllocationOfUnitsComponent;
 use App\Livewire\Cp\Installments\CollectionComponent;
 use App\Livewire\Cp\Installments\Customers\CustomersComponent;
+use App\Livewire\Cp\Installments\ReservationsComponent;
 use App\Livewire\Cp\Pdf\CustomerPaymentsComponent;
 use App\Livewire\Cp\ProjectManagement\ProjectManagementComponent;
 use App\Livewire\Cp\Reports\CustomerDateComponent;
 use App\Livewire\Cp\Reports\PaymentMovmentComponent;
 use App\Livewire\Cp\Reports\TotalProjectsReportComponent;
 use App\Livewire\Cp\Settings\SettingsComponent;
-use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Route;
+use Livewire\Livewire;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,7 +38,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/customers', CustomersComponent::class)->name('customers');
     Route::get('/allocation-of-units', AllocationOfUnitsComponent::class)->name('allocation-of-units');
     Route::get('/collection', CollectionComponent::class)->name('collection');
-
+    Route::get('/reservations', ReservationsComponent::class)->name('reservations');
 
     /* Reports */
 
@@ -50,18 +51,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/pdf/customer-payments/{id}', CustomerPaymentsComponent::class)->name('pdf.customer-payments');
     /* End PDF Reports*/
 
-
-
-
-
-
     //Logout
     Route::get('/logout', Logout::class)->name('logout');
-});
 
+    Livewire::setUpdateRoute(function ($handle) {
+        return Route::post('/livewire/update', $handle);
+    });
+
+});
 
 Route::get('/storage-link', function () {
     $targetFolder = storage_path('app/public');
-    $linkFolder = $_SERVER['DOCUMENT_ROOT'] . '/storage';
+    $linkFolder   = $_SERVER['DOCUMENT_ROOT'] . '/storage';
     symlink($targetFolder, $linkFolder);
 });
