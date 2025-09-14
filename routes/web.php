@@ -54,14 +54,14 @@ Route::middleware('auth')->group(function () {
     //Logout
     Route::get('/logout', Logout::class)->name('logout');
 
-    Livewire::setUpdateRoute(function ($handle) {
-        return Route::post('/livewire/update', $handle);
-    });
-
 });
 
 Route::get('/storage-link', function () {
     $targetFolder = storage_path('app/public');
     $linkFolder   = $_SERVER['DOCUMENT_ROOT'] . '/storage';
     symlink($targetFolder, $linkFolder);
+});
+
+Livewire::setUpdateRoute(function ($handle) {
+    return Route::post('/livewire/update', $handle);
 });
