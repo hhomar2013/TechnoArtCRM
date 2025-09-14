@@ -1,6 +1,7 @@
 <?php
 namespace App\Livewire\Cp\Installments;
 
+use App\Models\Customers;
 use App\Models\installment_plans;
 use App\Models\instllmentCustomers;
 use Livewire\Component;
@@ -12,6 +13,8 @@ class ReservationsComponent extends Component
     public $results          = [];
     public $tabs             = "home";
     public $reservation_Info = [];
+    public $newCustomer  = false;
+    public $addedCustomer;
 
     protected $listeners = ['refreshReservations' => '$refresh', 'deleteReservation'=>'delete'];
 
@@ -19,6 +22,21 @@ class ReservationsComponent extends Component
     {
         $this->tabs = $tab;
     }
+
+
+    public function addNewCustomer($id){
+        $add_new_customer = instllmentCustomers::query()->create([
+            'customersId' => $this->addedCustomer,
+            'installment_plan_id' => $id,
+        ]);
+        if($add_new_customer){
+            $this->dispatch('refreshReservations');
+            $this->searchCustomer();
+            $this->changeTabs('home');
+            $this->newCustomer =false;
+        }
+    }
+
 
     public function searchCustomer()
     {
@@ -71,6 +89,7 @@ class ReservationsComponent extends Component
 
     public function render()
     {
-        return view('livewire.cp.installments.reservations-component')->extends('layouts.app');
+        $customers = Customers::query()->get();
+        return view('livewire.cp.installments.reservations-component',compact('customers'))->extends('layouts.app');
     }
 }

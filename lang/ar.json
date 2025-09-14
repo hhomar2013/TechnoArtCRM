@@ -651,7 +651,8 @@
         "Reservations" : "إستمارات الحجز",
         "Operations" : "العمليات",
         "Main data" :"البيانات الرئيسيه",
-        "Reservation info":"تفاصيل الاستمارة"
+        "Reservation info":"تفاصيل الاستمارة",
+        "Add a new beneficiary" : "إضافه مستفيد جديد"
     }
 
 

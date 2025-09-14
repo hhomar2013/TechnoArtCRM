@@ -74,8 +74,36 @@
                                 </div>
                                 <div class="tab-pane fade {{ $tabs == "info" ? "active show" : '' }}" id="info">
                                     <div class="pt-4 text-dark">
-                                        {{-- <h4>{{ __('Customers Count')}} : {{ $reservation_Info->customer->count() }}</h4> --}}
-                                        {{-- <hr> --}}
+                                        <button class="btn btn-rounded btn-warning text-white" wire:click="$set('newCustomer',true)">
+                                            <i class="fa fa-users"></i>
+                                            {{ __('Add a new beneficiary')}} </button>
+                                        <hr>
+                                        @if($newCustomer)
+                                        <div class="card">
+                                            <div class="card-header">
+                                               {{ __('Customer Code') }} : #{{ $addedCustomer }}
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <label for="">{{ __('Customer Name') }}</label>
+                                                        <select class="form-control-sm" name="" id="" wire:model.live="addedCustomer">
+                                                            <option value="">{{ __('Select Action') }}</option>
+                                                            @foreach ($customers as $cust)
+                                                            <option value="{{ $cust->id }}">{{ $cust->name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="card-footer">
+                                                <button class="btn btn-rounded btn-primary text-white" wire:click="addNewCustomer({{ $plan->id }})">
+                                                    {{ __('Save') }}
+                                                </button>
+                                            </div>
+                                        </div>
+                                        @endif
                                         @php
                                         $i=1;
                                         @endphp
