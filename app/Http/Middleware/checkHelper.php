@@ -15,7 +15,7 @@ class checkHelper
         $path = 'mtg.json';
 
         if (!Storage::disk('local')->exists($path)) {
-            abort(403, __('الترخيص غير موجود برجاء الاتصال بالقسم المختص.'));
+            abort(403, __('The license does not exist, please contact the relevant department.'));
         }
 
         try {
