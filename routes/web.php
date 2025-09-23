@@ -27,34 +27,36 @@ use Livewire\Livewire;
 |
 */
 
-Route::middleware('guest')->group(function () {
-    Route::get('/login', Login::class)->name('login');
+Route::middleware('check.license')->group(function () {
+    Route::middleware('guest')->group(function () {
+        Route::get('/login', Login::class)->name('login');
+    });
+
+    Route::middleware('auth')->group(function () {
+        Route::get('/', DashboardComponent::class)->name('dashboard');
+        Route::get('/settings', SettingsComponent::class)->name('settings');
+        Route::get('/project-management', ProjectManagementComponent::class)->name('project-management');
+        Route::get('/customers', CustomersComponent::class)->name('customers');
+        Route::get('/allocation-of-units', AllocationOfUnitsComponent::class)->name('allocation-of-units');
+        Route::get('/collection', CollectionComponent::class)->name('collection');
+        Route::get('/reservations', ReservationsComponent::class)->name('reservations');
+
+        /* Reports */
+
+        Route::get('/reports/payment-movements', PaymentMovmentComponent::class)->name('reports.payment-movements');
+        Route::get('/reports/totel-projects', TotalProjectsReportComponent::class)->name('reports.totel-projects');
+        Route::get('/reports/customer-data', CustomerDateComponent::class)->name('reports.customer-data');
+        /* End Reports */
+
+        /*  PDF Reports*/
+        Route::get('/pdf/customer-payments/{id}', CustomerPaymentsComponent::class)->name('pdf.customer-payments');
+        /* End PDF Reports*/
+
+        //Logout
+        Route::get('/logout', Logout::class)->name('logout');
+    });
 });
 
-Route::middleware('auth')->group(function () {
-    Route::get('/', DashboardComponent::class)->name('dashboard');
-    Route::get('/settings', SettingsComponent::class)->name('settings');
-    Route::get('/project-management', ProjectManagementComponent::class)->name('project-management');
-    Route::get('/customers', CustomersComponent::class)->name('customers');
-    Route::get('/allocation-of-units', AllocationOfUnitsComponent::class)->name('allocation-of-units');
-    Route::get('/collection', CollectionComponent::class)->name('collection');
-    Route::get('/reservations', ReservationsComponent::class)->name('reservations');
-
-    /* Reports */
-
-    Route::get('/reports/payment-movements', PaymentMovmentComponent::class)->name('reports.payment-movements');
-    Route::get('/reports/totel-projects', TotalProjectsReportComponent::class)->name('reports.totel-projects');
-    Route::get('/reports/customer-data', CustomerDateComponent::class)->name('reports.customer-data');
-    /* End Reports */
-
-    /*  PDF Reports*/
-    Route::get('/pdf/customer-payments/{id}', CustomerPaymentsComponent::class)->name('pdf.customer-payments');
-    /* End PDF Reports*/
-
-    //Logout
-    Route::get('/logout', Logout::class)->name('logout');
-
-});
 
 Route::get('/storage-link', function () {
     $targetFolder = storage_path('app/public');
