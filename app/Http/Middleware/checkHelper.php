@@ -15,7 +15,7 @@ class checkHelper
         $path = 'mtg.json';
 
         if (!Storage::disk('local')->exists($path)) {
-            abort(403, 'License missing.');
+            abort(403, __('الترخيص غير موجود برجاء الاتصال بالقسم المختص.'));
         }
 
         try {
@@ -29,7 +29,7 @@ class checkHelper
             empty($license['is_active']) ||
             now()->greaterThan($license['expires_at'])
         ) {
-            abort(403, 'License expired. Please renew.');
+            abort(403, __('License expired. Please renew.'));
         }
 
         return $next($request);

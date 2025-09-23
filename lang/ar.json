@@ -652,7 +652,9 @@
         "Operations" : "العمليات",
         "Main data" :"البيانات الرئيسيه",
         "Reservation info":"تفاصيل الاستمارة",
-        "Add a new beneficiary" : "إضافه مستفيد جديد"
+        "Add a new beneficiary" : "إضافه مستفيد جديد",
+        "License expired. Please renew." : "تم أنتهاء الترخيص برجاء التجديد",
+        "The license does not exist, please contact the relevant department." : "الترخيص غير موجود برجاء الاتصال بالقسم المختص."
     }
 
 
