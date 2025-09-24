@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Livewire\Cp\Installments;
 
 use App\Models\Banks;
@@ -7,6 +8,8 @@ use App\Models\costs_installments;
 use App\Models\costs_reamig;
 use App\Models\Customers;
 use App\Models\customer_account;
+use App\Models\CustomerNotes;
+use App\Models\customerTypes;
 use App\Models\instllmentCustomers;
 use App\Models\payments;
 use App\Models\payments_reaming;
@@ -14,6 +17,8 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+
+use function PHPUnit\Framework\returnSelf;
 
 class CollectionComponent extends Component
 {
@@ -24,6 +29,7 @@ class CollectionComponent extends Component
     public $customer_details;
     public $costs            = [];
     public $payments         = [];
+    public $notes;
     public $selectedPayments = [];
     public $selectedCosts    = [];
     public $customer_balance;
@@ -31,8 +37,8 @@ class CollectionComponent extends Component
     public $collectPayments = false;
     public $search_type     = 'code';
     public $bank, $transaction_id, $transaction_date, $time,
-    $receipt_value            = 0.0, $reaming            = 0.0, $total_payment            = 0.0, $cost_reaming            = false, $payment_reaming            = false,
-    $greaterThanCustomerCount = false, $selected_installment_id;
+        $receipt_value            = 0.0, $reaming            = 0.0, $total_payment            = 0.0, $cost_reaming            = false, $payment_reaming            = false,
+        $greaterThanCustomerCount = false, $selected_installment_id;
 
     public function mount()
     {
@@ -41,6 +47,18 @@ class CollectionComponent extends Component
             $this->customer    = session('customerId');
             $customer_search   = $this->searchCustomer($this->customer_id);
             $this->getSearch(session('installmentId'));
+        }
+    }
+
+    public function saveNotes()
+    {
+        // strlen($this->notes) > 1
+        if ($this->notes) {
+        CustomerNotes::query()->create([
+                'note' => $this->notes,
+                'user_id' => auth()->user()->id,
+                'customer_id' => $this->customer_id,
+            ]);
         }
     }
 
@@ -109,11 +127,12 @@ class CollectionComponent extends Component
                 'time'      => $this->time,
                 'user_id'   => Auth::id(),
             ]);
+            $this->saveNotes();
         }
         $this->cost_reaming  = false;
         $this->selectedCosts = [];
         $this->dispatch('message', message: __('Done Save'));
-        $this->reset(['bank', 'transaction_id', 'transaction_date', 'time', 'reaming', 'receipt_value']);
+        $this->reset(['bank', 'transaction_id', 'transaction_date', 'time', 'reaming', 'receipt_value' ,'notes']);
         $this->removeAll();
         $this->getSearch($this->selected_installment_id);
     }
@@ -136,17 +155,19 @@ class CollectionComponent extends Component
                 'time'      => $this->time,
                 'user_id'   => Auth::id(),
             ]);
+
+            $this->saveNotes();
         }
         $this->payment_reaming  = false;
         $this->selectedPayments = [];
         $this->dispatch('message', message: __('Done Save'));
-        $this->reset(['bank', 'transaction_id', 'transaction_date', 'time', 'reaming', 'receipt_value']);
+        $this->reset(['bank', 'transaction_id', 'transaction_date', 'time', 'reaming', 'receipt_value', 'notes']);
         $this->removeAll();
         $this->getSearch($this->selected_installment_id);
     }
     public function back()
     {
-        $this->reset(['collectCosts', 'collectPayments', 'selectedPayments', 'selectedCosts', 'bank', 'transaction_id', 'transaction_date', 'time', 'receipt_value', 'reaming', 'total_payment']);
+        $this->reset(['collectCosts', 'notes', 'collectPayments', 'selectedPayments', 'selectedCosts', 'bank', 'transaction_id', 'transaction_date', 'time', 'receipt_value', 'reaming', 'total_payment']);
     }
     public function totalReaming()
     {
@@ -234,7 +255,7 @@ class CollectionComponent extends Component
                     ->with('reamings')
                     ->get();
                 $this->payments = payments::query()
-                // ->where('status', 'pending')
+                    // ->where('status', 'pending')
                     ->where('installment_plan_id', '=', $installment_p_id)
                     ->with('reamings')
                     ->get();
@@ -373,8 +394,8 @@ class CollectionComponent extends Component
                         'value'     => $this->receipt_value,
                         'notes'     =>
                         ' تم تحصيل : ' . $this->selectedCosts[$i]['cost'] .
-                        ' من العميل :  ' . $this->customer_details->name .
-                        ' بتاريخ  :  ' . $this->selectedCosts[$i]['date'],
+                            ' من العميل :  ' . $this->customer_details->name .
+                            ' بتاريخ  :  ' . $this->selectedCosts[$i]['date'],
                         'date'      => Carbon::now(),
                         'time'      => $this->time,
                         'user_id'   => auth()->id(),
@@ -404,9 +425,9 @@ class CollectionComponent extends Component
                             'value'     => $this->receipt_value,
                             'notes'     =>
                             ' تم تحصيل : ' . $this->selectedCosts[$i]['cost'] .
-                            'من العميل :  ' . $this->customer_details->name .
-                            ' بتاريخ  :  ' . $this->selectedCosts[$i]['date'] .
-                            'باقي له :  ' . number_format($receipt_value_costs, 2),
+                                'من العميل :  ' . $this->customer_details->name .
+                                ' بتاريخ  :  ' . $this->selectedCosts[$i]['date'] .
+                                'باقي له :  ' . number_format($receipt_value_costs, 2),
                             'date'      => Carbon::now(),
                             'time'      => $this->time,
                             'user_id'   => auth()->id(),
@@ -427,8 +448,8 @@ class CollectionComponent extends Component
                         'user_id'   => auth()->id(),
                         'remaining' => (float) $this->reaming,
                         'notes'     => ' المتبقى من ' . $this->selectedCosts[$i]['cost'] . '  : '
-                        . number_format($receipt_value_costs, 2) . ' رقم  : '
-                        . $this->selectedCosts[$i]['id'],
+                            . number_format($receipt_value_costs, 2) . ' رقم  : '
+                            . $this->selectedCosts[$i]['id'],
                         'status'    => 'unpaid',
                     ]);
                     if ($cost_reaming) {
@@ -436,8 +457,8 @@ class CollectionComponent extends Component
                             'in_or_out' => 0,
                             'value'     => $this->receipt_value,
                             'notes'     => ' المتبقى من ' . $this->selectedCosts[$i]['cost'] . '  : '
-                            . number_format($cost_reaming->remaining, 2) . ' رقم  : '
-                            . $this->selectedCosts[$i]['id'],
+                                . number_format($cost_reaming->remaining, 2) . ' رقم  : '
+                                . $this->selectedCosts[$i]['id'],
                             'date'      => Carbon::now(),
                             'time'      => $this->time,
                             'user_id'   => auth()->id(),
@@ -446,9 +467,9 @@ class CollectionComponent extends Component
                 }
             }
         }
-
+        $this->saveNotes();
         $this->dispatch('message', message: __('Done Save'));
-        $this->reset(['bank', 'transaction_id', 'transaction_date', 'time', 'reaming', 'receipt_value']);
+        $this->reset(['bank', 'transaction_id', 'transaction_date', 'time', 'reaming', 'receipt_value','notes']);
         $this->removeAll();
     }
 
@@ -478,8 +499,8 @@ class CollectionComponent extends Component
                         'value'     => $this->receipt_value,
                         'notes'     =>
                         ' تم تحصيل : ' . $this->selectedPayments[$i]['type'] .
-                        ' من العميل :  ' . $this->customer_details->name .
-                        ' بتاريخ  :  ' . $this->selectedPayments[$i]['date'],
+                            ' من العميل :  ' . $this->customer_details->name .
+                            ' بتاريخ  :  ' . $this->selectedPayments[$i]['date'],
                         'date'      => Carbon::now(),
                         'time'      => $this->time,
                         'user_id'   => auth()->id(),
@@ -507,9 +528,9 @@ class CollectionComponent extends Component
                             'value'     => $this->receipt_value,
                             'notes'     =>
                             ' تم تحصيل : ' . $this->selectedPayments[$i]['type'] .
-                            'من العميل :  ' . $this->customer_details->name .
-                            ' بتاريخ  :  ' . $this->selectedPayments[$i]['date'] .
-                            'باقي له :  ' . number_format($receipt_value_payments, 2),
+                                'من العميل :  ' . $this->customer_details->name .
+                                ' بتاريخ  :  ' . $this->selectedPayments[$i]['date'] .
+                                'باقي له :  ' . number_format($receipt_value_payments, 2),
                             'date'      => Carbon::now(),
                             'time'      => $this->time,
                             'user_id'   => auth()->id(),
@@ -530,8 +551,8 @@ class CollectionComponent extends Component
                         'user_id'    => auth()->id(),
                         'remaining'  => (float) $this->reaming,
                         'notes'      => ' المتبقى من ' . $this->selectedPayments[$i]['type'] . '  : '
-                        . number_format($receipt_value_payments, 2) . ' رقم  : '
-                        . $this->selectedPayments[$i]['id'],
+                            . number_format($receipt_value_payments, 2) . ' رقم  : '
+                            . $this->selectedPayments[$i]['id'],
                         'status'     => 'unpaid',
                     ]);
                     if ($payment_reaming) {
@@ -539,8 +560,8 @@ class CollectionComponent extends Component
                             'in_or_out' => 0,
                             'value'     => $this->receipt_value,
                             'notes'     => ' المتبقى من ' . $this->selectedPayments[$i]['type'] . '  : '
-                            . number_format($payment_reaming->remaining, 2) . ' رقم  : '
-                            . $this->selectedPayments[$i]['id'],
+                                . number_format($payment_reaming->remaining, 2) . ' رقم  : '
+                                . $this->selectedPayments[$i]['id'],
                             'date'      => Carbon::now(),
                             'time'      => $this->time,
                             'user_id'   => auth()->id(),
@@ -549,9 +570,9 @@ class CollectionComponent extends Component
                 }
             }
         }
-
+        $this->saveNotes();
         $this->dispatch('message', message: __('Done Save'));
-        $this->reset(['bank', 'transaction_id', 'transaction_date', 'time', 'reaming', 'receipt_value']);
+        $this->reset(['bank', 'transaction_id', 'transaction_date', 'time', 'reaming', 'receipt_value','notes']);
         $this->removeAll();
         $this->getSearch($this->selected_installment_id);
     }

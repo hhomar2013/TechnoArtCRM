@@ -1,7 +1,10 @@
 <?php
+
 namespace App\Livewire\Cp\Installments;
 
+use App\Models\CustomerNotes;
 use App\Models\Customers;
+use App\Models\customerTypes;
 use App\Models\installment_plans;
 use App\Models\instllmentCustomers;
 use Livewire\Component;
@@ -15,8 +18,11 @@ class ReservationsComponent extends Component
     public $reservation_Info = [];
     public $newCustomer  = false;
     public $addedCustomer;
+    public $isWithdrawal = false;
+    public $selectedCustomerType;
+    public $selectedCustomer;
 
-    protected $listeners = ['refreshReservations' => '$refresh', 'deleteReservation'=>'delete'];
+    protected $listeners = ['refreshReservations' => '$refresh', 'deleteReservation' => 'delete'];
 
     public function changeTabs($tab)
     {
@@ -24,16 +30,51 @@ class ReservationsComponent extends Component
     }
 
 
-    public function addNewCustomer($id){
+    public function WithDrawal($id)
+    {
+        $this->isWithdrawal = true;
+        $this->selectedCustomer = $id;
+    }
+
+    public function saveWithdrawal()
+    {
+        $customer  = Customers::query()->find($this->selectedCustomer);
+        if ($customer) {
+            $customer->update([
+                'customer_type' => $this->selectedCustomerType
+            ]);
+
+            $installmentCustomer = instllmentCustomers::query()->where('customersId', '=', $customer->id)->first();
+            $selectedWithdrawelinstallment  = $installmentCustomer->installment_plan_id;
+            $installmentCustomer->delete();
+            if ($installmentCustomer) {
+                $note = CustomerNotes::query()->create([
+                    'note' => " : تم سحب العميل".' ' . $customer->name .' ' ." من أستمارة " .' #' . $selectedWithdrawelinstallment . ' ',
+                    'customer_id' => $customer->id,
+                    'user_id' => auth()->user()->id,
+                ]);
+                if ($note) {
+                    $this->dispatch('refreshReservations');
+                    $this->searchCustomer();
+                    $this->dispatch('message', message: __('Withdrawal saved successfully.') . ' للعميل : ' . $customer->name);
+                    $this->isWithdrawal = false;
+                    $this->reset(['selectedCustomer', 'selectedCustomerType']);
+                }
+            }
+        }
+    }
+
+    public function addNewCustomer($id)
+    {
         $add_new_customer = instllmentCustomers::query()->create([
             'customersId' => $this->addedCustomer,
             'installment_plan_id' => $id,
         ]);
-        if($add_new_customer){
+        if ($add_new_customer) {
             $this->dispatch('refreshReservations');
             $this->searchCustomer();
             $this->changeTabs('home');
-            $this->newCustomer =false;
+            $this->newCustomer = false;
         }
     }
 
@@ -55,7 +96,7 @@ class ReservationsComponent extends Component
             });
         } elseif ($this->searchType == 'name') {
             $query->whereHas('customers.customer', function ($q) use ($search) {
-                $q->where('name', 'like', "%{$search}%");
+                $q->where('name', 'like', '%' . $search . '%');
             });
         } elseif ($this->searchType == 'mobile') {
             $query->whereHas('customers.customer', function ($q) use ($search) {
@@ -68,7 +109,9 @@ class ReservationsComponent extends Component
             $this->dispatch('error', message: __('No Results Found.'));
             $this->reset(['results', 'reservation_Info']);
             $this->tabs = 'home';
+            $this->isWithdrawal = false;
         }
+        // dd($this->results);
     }
 
     public function reservationInfo($id)
@@ -77,19 +120,20 @@ class ReservationsComponent extends Component
         $this->tabs             = 'info';
     }
 
-    public function delete($id){
-            $installmentPlans = installment_plans::find($id);
-            if($installmentPlans){
-                $installmentPlans->delete();
-                $this->searchCustomer();
-                $this->dispatch('refreshReservations');
-
-            }
+    public function delete($id)
+    {
+        $installmentPlans = installment_plans::find($id);
+        if ($installmentPlans) {
+            $installmentPlans->delete();
+            $this->searchCustomer();
+            $this->dispatch('refreshReservations');
+        }
     }
 
     public function render()
     {
+        $CustomerTypes = customerTypes::query()->get();
         $customers = Customers::query()->get();
-        return view('livewire.cp.installments.reservations-component',compact('customers'))->extends('layouts.app');
+        return view('livewire.cp.installments.reservations-component', compact('customers', 'CustomerTypes'))->extends('layouts.app');
     }
 }

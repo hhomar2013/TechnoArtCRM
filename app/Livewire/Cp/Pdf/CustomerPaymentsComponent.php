@@ -44,8 +44,8 @@ class CustomerPaymentsComponent extends Component
             ->join('phases', 'installment_plans.phase_id', '=', 'phases.id')
             ->join('customers', 'instllment_customers.customersId', '=', 'customers.id')
             ->where('installment_plans.id', '=', $id)
-            ->first();
-
+            ->get();
+            // dd($this->header);
         $this->costs = DB::table('costs_installments')
             ->select('costs_installments.*', 'banks.name as banke_name', 'costs.name as cost_name', 'costs_reamigs.remaining')
             ->leftJoin('banks', 'costs_installments.bank', '=', 'banks.id')

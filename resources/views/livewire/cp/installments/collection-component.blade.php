@@ -103,6 +103,14 @@
                                                     {{ number_format((float) $reaming, 2) }}</b></h4>
                                         </div>
 
+                                        <div class="form-group col-md-6">
+                                            <label for=""> {{__('notes')}} </label>
+                                            <Textarea class="form-control" cols="2" rows="2" wire:model.live="notes"></Textarea>
+                                            @error('notes')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+
                                     </div>
 
                                     <button type="submit" class="btn btn-primary">

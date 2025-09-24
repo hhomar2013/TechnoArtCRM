@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Customers extends Model
 {
-    use HasFactory,SoftDeletes;
+    use HasFactory, SoftDeletes;
     protected $guarded = [];
 
     public function installmentPlans()
@@ -23,10 +23,16 @@ class Customers extends Model
 
     public function sales()
     {
-        return $this->belongsTo(sales::class,'sales_id');
+        return $this->belongsTo(sales::class, 'sales_id');
     }
 
-    public function installmentCustomers(){
-        return $this->hasMany(instllmentCustomers::class,'customersId');
+    public function installmentCustomers()
+    {
+        return $this->hasMany(instllmentCustomers::class, 'customersId');
+    }
+
+    public function notes()
+    {
+        return $this->hasMany(CustomerNotes::class,'customer_id', 'id');
     }
 }

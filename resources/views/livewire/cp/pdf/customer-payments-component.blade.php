@@ -8,21 +8,30 @@
         <div class="card shadow-lg p-3" id="printArea">
             <div class="p-2">
                 <br>
-                <h3 class="">
-                    {{-- <i class="fa fa-user"></i> --}}
-                    <b>{{ __('Name') }}</b>&nbsp;:&nbsp;
-                    {{ $header->customer_name }}
-                </h3>
-                <h4 class=""><b>{{ __('Customer ID') }}</b>&nbsp;:&nbsp;{{ $header->code }}</h4>
-                <p class=""> <b>{{ __('Project Name') }}</b> : {{ $header->project_name }}</p>
-                <p class=""><b>{{ __('Phase Name') }}</b> : {{ $header->phase_name }}</p>
-                <br>
-                <p><b>عدد الأقساط</b> : {{ $payments->count() }}</p>
-                <p><b>قيمة القسط</b> : {{ $payments->last()->amount }}</p>
-
+                <div class="row">
+                    @foreach ($header as $val_customer)
+                        <div class="row-lg-6 p-2">
+                            <h5 class="">
+                                <b>{{ __('Name') }}</b>&nbsp;:&nbsp;{{ $val_customer->customer_name }}
+                            </h5>
+                            <h6 class=""><b>{{ __('Customer ID') }}</b>&nbsp;:&nbsp;{{ $val_customer->code }}</h6>
+                        </div>
+                    @endforeach
+                </div>
+                <hr />
+                <div class="row p-2">
+                    <div class="col-lg-2" style="border-left: black 1px solid">
+                        <p class=""><b>{{ __('Project Name') }}</b> : {{ $header[0]->project_name }}</p>
+                        <p class=""><b>{{ __('Phase Name') }}</b> : {{ $header[0]->phase_name }}</p>
+                    </div>
+                    <div class="col-lg-2 " >
+                        <p><b>عدد الأقساط</b> : {{ $payments->count() }}</p>
+                        <p><b>قيمة القسط</b> : {{ $payments->last()->amount }}</p>
+                    </div>
+                </div>
             </div>
             <div class="card-body">
-                <br>
+             
                 {{-- Start Costs --}}
                 <div class="row">
                     <div class="col-lg-6 col-sm-8">
@@ -30,17 +39,17 @@
                         <table class="table table-bordered text-dark  text-center" style="border: 3px solid black;">
                             <thead style="border: 3px solid black;">
                                 <tr style="border: 3px solid black;">
-                                    <th style="font-weight: bold;font-size: 18px; border: 3px solid black;">
+                                    <th style="font-weight: bold;font-size: 15px; border: 3px solid black;">
                                         {{ __('t.date') }}</th>
-                                    <th style="font-weight: bold;font-size: 18px; border: 3px solid black;">
+                                    <th style="font-weight: bold;font-size: 15px; border: 3px solid black;">
                                         {{ __('Statement') }}</th>
-                                    <th style="font-weight: bold;font-size: 18px; border: 3px solid black;">
+                                    <th style="font-weight: bold;font-size: 15px; border: 3px solid black;">
                                         {{ __('bank') }}</th>
-                                    <th style="font-weight: bold;font-size: 18px; border: 3px solid black;">
+                                    <th style="font-weight: bold;font-size: 15px; border: 3px solid black;">
                                         {{ __('Time') }}</th>
-                                    <th style="font-weight: bold;font-size: 18px; border: 3px solid black;">
+                                    <th style="font-weight: bold;font-size: 15px; border: 3px solid black;">
                                         {{ __('Amount') }}</th>
-                                    <th style="font-weight: bold;font-size: 18px; border: 3px solid black;">
+                                    <th style="font-weight: bold;font-size: 12px; border: 3px solid black;">
                                         {{ __('Receipt Date') }}</th>
 
                                 </tr>
@@ -103,17 +112,17 @@
                         <table class="table table-bordered text-dark text-center" style="border: 3px solid black;">
                             <thead style="border: 3px solid black;">
                                 <tr style="border: 3px solid black;">
-                                    <th style="font-weight: bold;font-size: 18px; border: 3px solid black;">
+                                    <th style="font-weight: bold;font-size: 15px; border: 3px solid black;">
                                         {{ __('م') }}</th>
-                                    <th style="font-weight: bold;font-size: 18px; border: 3px solid black;">
+                                    <th style="font-weight: bold;font-size: 15px; border: 3px solid black;">
                                         {{ __('t.date') }}</th>
-                                    <th style="font-weight: bold;font-size: 18px; border: 3px solid black;">
+                                    <th style="font-weight: bold;font-size: 15px; border: 3px solid black;">
                                         {{ __('bank') }}</th>
-                                    <th style="font-weight: bold;font-size: 18px; border: 3px solid black;">
+                                    <th style="font-weight: bold;font-size: 15px; border: 3px solid black;">
                                         {{ __('Time') }}</th>
-                                    <th style="font-weight: bold;font-size: 18px; border: 3px solid black;">
+                                    <th style="font-weight: bold;font-size: 15px; border: 3px solid black;">
                                         {{ __('Amount') }}</th>
-                                    <th style="font-weight: bold;font-size: 18px; border: 3px solid black;">
+                                    <th style="font-weight: bold;font-size: 12px; border: 3px solid black;">
                                         {{ __('Receipt Date') }}</th>
 
                                 </tr>
@@ -175,7 +184,8 @@
             <div class="card-footer">
 
                 <h3><b>إجمالى المحصل</b>: {{ number_format($total_payment + $total_costs, 1) }} &nbsp; جنيه</h3>
-                <h3><b>إجمالى التكاليف & الأقساط</b>: {{ number_format($payments->sum('amount') + $costs->sum('value'), 1) }} &nbsp; جنيه</h3>
+                <h3><b>إجمالى التكاليف & الأقساط</b>:
+                    {{ number_format($payments->sum('amount') + $costs->sum('value'), 1) }} &nbsp; جنيه</h3>
             </div>
 
         </div>
