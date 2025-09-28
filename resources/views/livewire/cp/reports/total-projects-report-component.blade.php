@@ -25,7 +25,7 @@
             <br>
             @if ($results)
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-12">
                         <h4><i class="fa fa-users"></i>{{ __('Customers') }}</h4>
                         <div class="table-responsive" style="overflow-y: auto; height: 400px;">
                             <table class="table table-bordered text-dark table-sm text-center">
@@ -90,6 +90,7 @@
                                 {{ number_format($total_cost_paid, 2) }}</b>
                         </h3>
                     </div>
+                    
                 </div>
             @endif
 

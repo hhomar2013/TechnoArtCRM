@@ -603,6 +603,7 @@
         "Installments" : "الاقساط",
         "Amount" :"المبلغ",
         "Installment Value" :"قيمة القسط",
+        "Installment" : "قسط",
         "Years" : "عدد السنوات",
         "Installments Count" : "عدد الاقساط",
         "Down Payment Percent" : "نسبه دفعه المقدم",
@@ -657,7 +658,9 @@
         "The license does not exist, please contact the relevant department." : "الترخيص غير موجود برجاء الاتصال بالقسم المختص.",
         "Delete beneficiary" : "سحب المستفيد",
         "Withdrawal" : "سحب",
-        "Withdrawal saved successfully." : "تم السحب بنجاح"
+        "Withdrawal saved successfully." : "تم السحب بنجاح",
+        "Show Costs & Installments" : "عرض التكاليف والاقساط"
     }
+
 
 

@@ -35,7 +35,6 @@
                     <div class="card-header">
                         <h4 class="card-title">نتائج البحث</h4>
                     </div>
-
                     <div class="card-body">
                         <!-- Nav tabs -->
                         <div class="default-tab">
@@ -47,6 +46,11 @@
                                 <li class="nav-item">
                                     <a class="nav-link {{ $tabs == 'info' ? 'active' : 'disabled' }}" data-toggle="tab"
                                         href="#info" wire:click="changeTabs('info')">{{ __('Reservation info') }}</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link {{ $tabs == 'costs_installments' ? 'active' : 'disabled' }}"
+                                        data-toggle="tab" href="#costs_installments"
+                                        wire:click="changeTabs('costs_installments')">{{ __('Costs') . ' & ' . __('Installments') }}</a>
                                 </li>
                             </ul>
                             <div class="tab-content">
@@ -60,12 +64,12 @@
                                             <div class="card-body">
                                                 {{-- <p>{{ $plan->total_amount }}</p> --}}
                                                 <div class="row">
-                                                    <div class="col-lg-6 d">
+                                                    <div class="col-lg-6 ">
                                                         <p>{{ __('Project Code') }} : {{ $plan->project->code }}</p>
                                                         <p>{{ __('Project Name') }} : {{ $plan->project->name }}</p>
                                                         <p>{{ __('Phase Name') }} : {{ $plan->phases->name }}</p>
                                                     </div>
-                                                    <div class="col-lg-6">
+                                                    <div class="col-lg-6 ">
                                                         <button class="btn btn-sm btn-info btn-rounded text-end"
                                                             type="submit"
                                                             wire:click.prevent="reservationInfo({{ $plan->id }})">{{ __('Show') }}</button>
@@ -86,6 +90,11 @@
                                             wire:click="$set('newCustomer',true)">
                                             <i class="fa fa-users"></i>
                                             {{ __('Add a new beneficiary') }} </button>
+
+                                        <button class="btn btn-rounded btn-dark text-white"
+                                            wire:click="changeTabs('costs_installments')">
+                                            <i class="fa fa-users"></i>
+                                            {{ __('Show Costs & Installments') }} </button>
                                         <hr>
                                         @if ($newCustomer)
                                             <div class="card">
@@ -162,14 +171,44 @@
 
                                     </div>
                                 </div>
+                                <div class="tab-pane fade {{ $tabs == 'costs_installments' ? 'active show' : '' }}"
+                                    id="costs_installments">
+                                    @if ($isEditCostsInstallment)
+                                        @if ($isEditCostsInstallment = 'costs')
+                                            @include('livewire.cp.installments.edit_costs')
+                                        @else
+                                            @include('livewire.cp.installments.edit_installments')
+                                        @endif
+                                    @else
+                                        <div class="card">
+                                            <div class="card-body text-dark">
+                                                <div class="row">
+                                                    @if ($addCostsInstallments == 'costs')
+                                                        @include('livewire.cp.installments.add_costs')
+                                                    @elseif ($addCostsInstallments == 'installment')
+                                                        @include('livewire.cp.installments.add_installment')
+                                                    @else
+                                                        @include('livewire.cp.installments.show_costs')
+                                                        @include('livewire.cp.installments.show_installment')
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
 
+                                </div>
                             </div>
+
+
                         </div>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+</div>
 </div>
 
 @section('title', __('Reservations'))
