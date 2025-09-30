@@ -9,8 +9,14 @@ class installment_plans extends Model
 {
     use HasFactory;
     protected $fillable = [
-         'payment_plan_id', 'total_amount', 'down_payment_total',
-        'down_payment_parts', 'status', 'customers','project_id','phase_id'
+        'payment_plan_id',
+        'total_amount',
+        'down_payment_total',
+        'down_payment_parts',
+        'status',
+        'customers',
+        'project_id',
+        'phase_id'
     ];
 
     protected $casts = [
@@ -34,7 +40,7 @@ class installment_plans extends Model
 
     public function project()
     {
-        return $this->belongsTo(Project::class,'project_id');
+        return $this->belongsTo(Project::class, 'project_id');
     }
 
 
@@ -42,7 +48,13 @@ class installment_plans extends Model
     {
         return $this->belongsTo(phases::class, 'phase_id', 'id');
     }
-    public function customers(){
-        return $this->hasMany(instllmentCustomers::class,'installment_plan_id');
+    public function customers()
+    {
+        return $this->hasMany(instllmentCustomers::class, 'installment_plan_id');
+    }
+
+    public function transferRequest()
+    {
+        return $this->hasMany(transfer_request::class, 'installment_plan_id');
     }
 }

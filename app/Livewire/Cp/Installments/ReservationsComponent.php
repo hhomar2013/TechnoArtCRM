@@ -5,12 +5,17 @@ namespace App\Livewire\Cp\Installments;
 use App\Models\Banks;
 use App\Models\costs;
 use App\Models\costs_installments;
+use App\Models\costs_reamig;
 use App\Models\CustomerNotes;
 use App\Models\Customers;
 use App\Models\customerTypes;
 use App\Models\installment_plans;
 use App\Models\instllmentCustomers;
 use App\Models\payments;
+use App\Models\payments_reaming;
+use App\Models\phases;
+use App\Models\Project;
+use App\Models\transfer_request;
 use Livewire\Component;
 
 class ReservationsComponent extends Component
@@ -27,6 +32,7 @@ class ReservationsComponent extends Component
     public $isEditCostsInstallment = false;
     public $selectedCustomerType;
     public $selectedCustomer;
+    public $phase, $project;
     public $status;
     public $costId;
     public $installmetnId;
@@ -34,11 +40,116 @@ class ReservationsComponent extends Component
     public $costsShow = [];
     public $installments = [];
     public $installmentsShow = [];
-    public $time, $transaction_date, $transaction_id, $bank, $amount, $costType;
+    public $time, $transaction_date, $transaction_id, $bank, $amount, $costType, $transfare, $reason;
     public $addCostsInstallments = false;
+    public $payment_transfare = [], $cost_transfare = [], $total = ['total_payments' => 0, 'total_costs' => 0];
+    protected $listeners = ['refreshReservations' => '$refresh', 'deleteReservation' => 'delete', 'delteCost' => 'delteCost', 'delteInstallment' => 'delteInstallment', 'transfare'];
+    public function Transfare($id)
+    {
+        $this->transfare = $id;
+        $payments = payments::query()
+            ->where('installment_plan_id', $id)
+            ->whereIn('status', ['paid', 'partiallycollected'])
+            ->get();
+        $costs = costs_installments::query()
+            ->where('installment_plan_id', $id)
+            ->whereIn('status', ['paid', 'partiallycollected'])
+            ->get();
+        $this->payment_transfare = [];
+        $this->cost_transfare = [];
+        $this->total['total_payments'] = 0;
+        $this->total['total_costs'] = 0;
+        foreach ($payments as $payment) {
+            if ($payment->status == 'partiallycollected') {
+                // هات أول reaming مرتبط بالدفعه
+                $reaming = payments_reaming::query()
+                    ->where('payment_id', $payment->id)
+                    ->first();
 
-    protected $listeners = ['refreshReservations' => '$refresh', 'deleteReservation' => 'delete', 'delteCost' => 'delteCost', 'delteInstallment' => 'delteInstallment'];
+                if ($reaming) {
+                    // بدل amount هتعتمد على remaining
+                    $payment->amount = ($payment->amount) - ($reaming->remaining);
+                    $payment['remaining'] = $reaming->remaining;
+                } else {
+                    $payment->amount = $payment->amount;
+                }
+            } else {
+                $payment->amount = $payment->amount;
+            }
 
+
+
+            $this->total['total_payments'] += $payment->amount;
+            $this->payment_transfare[] = $payment;
+        }
+
+        foreach ($costs as $cost) {
+            if ($cost->status == 'partiallycollected') {
+                // هات أول reaming مرتبط بالدفعه
+                $reaming = costs_reamig::query()
+                    ->where('cost_id', $cost->id)
+                    ->first();
+
+                if ($reaming) {
+                    // بدل amount هتعتمد على remaining
+                    $cost->value = ($cost->value) - ($reaming->remaining);
+                    $cost['remaining'] = $reaming->remaining;
+                } else {
+                    $cost->value = $cost->value;
+                }
+            } else {
+                $cost->value = $cost->value;
+            }
+
+
+
+            $this->total['total_costs'] += $cost->value;
+            $this->cost_transfare[] = $cost;
+        }
+    } //get Transfare
+
+    public function saveTransfer()
+    {
+        $total = 0;
+        $total = ($this->total['total_costs'] + $this->total['total_payments']);
+        $installment_plan = installment_plans::query()->find($this->transfare);
+        $customer = instllmentCustomers::query()->where('installment_plan_id',$installment_plan->id)->first();
+
+        if ($installment_plan->Count() > 0) {
+            $installment_plan->update([
+                'status' => 'transferred',
+            ]);
+            if ($installment_plan) {
+                //$tr = for  transferRequest
+                $tr = transfer_request::query()->create([
+                    'installment_plan_id' => $installment_plan->id,
+                    'customer_id' => $customer->customersId,
+                    'old_project_id' => $installment_plan->project_id,
+                    'old_phase_id' => $installment_plan->phase_id,
+                    'new_project_id' => $this->project,
+                    'new_phase_id' => $this->phase,
+                    'costs_total' => $this->total['total_costs'],
+                    'payment_total' => $this->total['total_payments'],
+                    'total_amount' => $total,
+                    'status' => 'transferred',
+                    'note' => $this->reason
+                ]);
+                if ($tr) {
+                    $this->dispatch('message', message: __('Done create transferred request successfully.'));
+                    $this->reset();
+                }
+            }
+        }
+    } //saveTransfer
+
+    public function back()
+    {
+        $this->transfare = false;
+        $this->payment_transfare = [];
+        $this->cost_transfare = [];
+        $this->total['total_payments'] = 0;
+        $this->total['total_costs'] = 0;
+    }
 
     public function saveInstallment()
     {
@@ -366,10 +477,12 @@ class ReservationsComponent extends Component
 
     public function render()
     {
+        $projects = Project::all();
+        $phases = phases::all();
         $costTypes = costs::query()->get();
         $banks = Banks::query()->get();
         $CustomerTypes = customerTypes::query()->get();
         $customers = Customers::query()->get();
-        return view('livewire.cp.installments.reservations-component', compact('customers', 'CustomerTypes', 'banks', 'costTypes'))->extends('layouts.app');
+        return view('livewire.cp.installments.reservations-component', compact('customers', 'CustomerTypes', 'banks', 'costTypes', 'projects', 'phases'))->extends('layouts.app');
     }
 }

@@ -21,4 +21,6 @@ class costs extends Model
     {
         return $this->belongsTo(Banks::class, 'bank');
     }
+
+
 }

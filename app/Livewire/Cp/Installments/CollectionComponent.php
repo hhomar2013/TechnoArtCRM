@@ -197,6 +197,7 @@ class CollectionComponent extends Component
                 'customers.name',
                 'instllment_customers.installment_plan_id',
                 'installment_plans.project_id',
+                'installment_plans.status as statusip',
                 'projects.name as project_name',
                 'phases.name as phase_name',
                 'phases.id as phase_id'

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Livewire\Cp\Installments;
 
 use App\Models\Apartments;
@@ -26,8 +27,8 @@ class AllocationOfUnitsComponent extends Component
     public $project, $project_id;
     public $payment_plan = 1, $total_amount;
     public $start_down_payment_date, $start_installment_date, $installmentPlans,
-    $installment_id, $customer_payment = [], $downPayment, $downPaymentParts, $installments_count, $installment_value, $installment_pages = 10, $costs_pages = 10,
-    $costs_installments_count, $costs_installments_period, $customer_units;
+        $installment_id, $customer_payment = [], $downPayment, $downPaymentParts, $installments_count, $installment_value, $installment_pages = 10, $costs_pages = 10,
+        $costs_installments_count, $costs_installments_period, $customer_units;
     public $search_type  = 'code';
     protected $listeners = ['getInstallmentPlans' => 'getInstallmentPlans'];
 
@@ -62,6 +63,7 @@ class AllocationOfUnitsComponent extends Component
                 'customers.name',
                 'instllment_customers.installment_plan_id',
                 'installment_plans.project_id',
+                'installment_plans.status',
                 'projects.name as project_name',
                 'phases.name as phase_name',
                 'phases.id as phase_id'
@@ -71,6 +73,7 @@ class AllocationOfUnitsComponent extends Component
             ->join('projects', 'installment_plans.project_id', '=', 'projects.id')
             ->join('phases', 'installment_plans.phase_id', '=', 'phases.id')
             ->where('customers.id', $customerId)
+            ->where('installment_plans.status', 'pending')
             ->get();
         return $search;
     }
@@ -180,28 +183,6 @@ class AllocationOfUnitsComponent extends Component
         } else {
             $this->customer_id = null;
         }
-
-        // تأكد أن العميل موجود
-        // if (!$customers) {
-        //     $this->dispatch('error', message: 'Customer not found');
-        //     return;
-        // }
-
-        // // تحقق إذا كان العميل موجود بالفعل في الـ array
-        // $alreadyExists = collect($this->selected_customers)->contains(function ($item) use ($customers) {
-        //     return $item['code'] == $customers->code;
-        // });
-
-        // if ($alreadyExists) {
-        //     $this->dispatch('error', message: __('Customer already added'));
-        //     return;
-        // }
-
-        // // لو مش موجود، ضيفه
-        // $this->selected_customers[] = [
-        //     'code' => $customers->code,
-        //     'name' => $customers->name,
-        // ];
     }
 
     public function selectCustomer()

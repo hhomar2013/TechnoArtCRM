@@ -1,666 +1,668 @@
-    {
-        "Register Your Account":"تسجيل حسابك الجديد",
-        "Login to Your Account":"تسجيل الدخول إلى حسابك",
-        "Welcome Back ✔️ 👌" :"أهلا بعودتك ✔️ 👌",
-        "Register":"تسجيل",
-        "Sign In":"تسجيل الدخول",
-        "Name" :"الأسم",
-        "Username" :"أسم المستخدم",
-        "Password" : "كلمة المرور",
-        "Remember me" :"تذكرني",
-        "Can not find empty adress" : "لا يمكن البحث على عنوان فارغ",
-        "Customer Name" :"أسم العميل",
-        "Customer Code" :"كود العميل",
-        "Customer ID" :"رقم العضوية",
-        "ID Number" : "رقم البطاقة الشخصية",
-        "Users" : "المستخدمين",
-        "Count" :"العدد",
-        "Send" :"إرسال",
-        "Sent" : "تم إرساله",
-        "No data fount to be coded" :"لا يوجد بيانات لتكويدها",
-        "Coding" :"التكويد",
-        "Data processing" :"معالجة البيانات",
-        "Coding Managment" : "إدارة التكويد",
-        "Import from excel to temperary database" :"الاستيراد من excel إلى قاعدة البيانات المؤقتة",
-        "submit":"إرسال",
-        "ShipGomla" :"شيب جمله",
-        "Home" : "الرئيسية",
-        "welcome" : "أهلا وسهلا",
-        "Why us": "لماذا نحــن",
-        "Login" : "تسجيل دخول",
-        "Address" : "العنوان",
-        "Warehouses" :"المستودعات",
-        "Branches" :"الفروع",
-        "Verify Email Address": "تأكيد عنوان بريدك الإلكتروني",
-        "Click the button below to verify your email address.": "انقر فوق الزر أدناه للتحقق من عنوان البريد الإلكتروني الخاص بك.",
-        "Verify": "تحقق",
-        "A fresh verification link has been sent to your email address.": "تم أرسال رسالة التحقيق الى بريدك الالكترونى من جديد.",
-        "Before proceeding, please check your email for a verification link.": "قبل المتابعة ، يرجى التحقق من بريدك الإلكتروني للحصول على رابط التحقق.",
-        "If you did not receive the email": "إذا لم تستلم البريد الإلكتروني",
-        "click here to request another": "أضغط هنا للأرسال مره اخرى",
-        "Company Types": "أنواع الشركات",
-        "Copyrights To" : "حقوق النشر و الملكية الفكرية محفوظه لـ",
-        "There is no data" : "لا يوجد بيانات.",
-        "I don't have an account, create a new account" : "ليس لدي حساب ، أنشئ حساب جديد",
-        "Status" : "الحالة",
-        "System Status" :"حالات السيستم",
-        "Approvals" : "الموافقات",
-        "Approved" : "موافقه",
-        "Reject" : "مرفوض",
-        "Status Updated Successfully" : "تم تحديث الحالة بنجاح",
-        "Approved Successfully" : "تمت الموافقة بنجاح.",
-        "Rejected Successfully" : "تم الرفض بنجاح.",
-        "Your Orders" : "الطلبات الخاصة بك",
-        "Orders" : "الطلبات",
-        "Daily Orders": "الطلبات اليومية",
-        "Your Services" : "خدماتك",
-        "Categories" : "الأقســام",
-        "Yes, delete it!": "نعم أحذف !",
-        "Close": "إغلاق",
-        "Are you sure?" : "هل أنت متأكد ؟",
-        "Useful Pages" : "روابط مهمه",
-        "Pages" :"الصفحات" ,
-        "Main Category": "قسم رئيســي",
-        "Sub Category" : "قسم فرعــي",
-        "Or" : "أو",
-        "Company Name" : "أسم الشركة",
-        "Companies" : "الشركات",
-        "Company" : "الشركة",
-        "Profile" :"الصفحة الشخصية",
-        "The System are Create your email & password automatically and you can change your password in your profile together , make success." : "يقوم النظام بإنشاء بريدك الإلكتروني وكلمة المرور تلقائيًا ويمكنك تغيير كلمة المرور الخاصة بك في ملف التعريف الخاص بك معًا ، نحقق النجاح.",
-        "Thanks,": "شكراً لك,",
-        "All Categories" : "جميع الاقسام",
-        "Careers" : "تقديم الوظائف",
-        "Uploading..." : "جارى التحميل .... ",
-        "Earnings (Monthly)" : "الأرباح (الشهرية)",
-        "Earnings Overview": "نظرة عامة على الأرباح",
-        "Earnings (Annual)" : "الأرباح (السنوية)",
-        "Tasks" : "المهام",
-        "Pending Requests": "الطلبات المعلقة",
-        "SR": "ريال ",
-        "SAR" : "ريال سعودي",
-        "Earning": "الأرباح",
-        "type" : "النوع",
-        "Service type" : "نوع الخدمة",
-        "Service" : "الخدمة",
-        "Order a service" : "أطلب خدمتك الأن",
-        "This Record is Existed" : "هذا السجل موجود من قبل",
-        "Service Prices" : "أسعار الخدمات",
-        "price": "السعر",
-        "Management" : "الإدارة",
-        "Static": "ثابت",
-        "On Request": "على حسب الطلب",
-        "Special": "مميز",
-        "Quality Work": "جودة العمل",
-        "We have highly experienced service providers selected at the highest level" : "لدينا مزودي خدمات ذو خبره فائقة و مختارون على اعلى مستوى",
-        "Support 7 days in 24 hours" : "دعم 7 أيام في 24 ساعة",
-        "You can talk to us at any time": "يمكنك التحدث الينا في اى وقت",
-        "We provide this Services": "نحن نقدم هذه الخدمات",
-        "Clear All": "مسح الكل",
-        "Net Profit" : "الربح الصافي",
-        "Site Present": "نسبة الموقع",
-        "Request details" : "برجاء كتابة طلبك بالتفصيل.",
-        "Request Rejected" : "طلب غير مسموح به",
-        "You have canceled the transaction." : "لقد قمت بإلغاء العملية.",
-        "Something went wrong." : "هناك مشكلة ما.",
-        "Payment Success" : "عملية ناجحة.",
-        "Unable to process the purchase transaction Please try again" : "غير قادر على معالجة عملية الشراء برجاء إعادة المحاولة.",
-        "Back" : "رجوع",
-        "Back To" : "رجوع إلى",
-        "Pay Now" : "أدفع الان",
-        "reference number" : "الرقم المرجعي",
-        "Under collection" : "تحت التحصيل",
-        "Collected" : "محصل",
-        "Refund Request" : "طلب أرجاع",
-        "Payments" : "المدفوعات",
-        "Service Price" : "سعر الخدمة",
-        "Discount" : "الخصم",
-        "After Discount": "بعد الخصم",
-        "Done Discount": "تطبيق الخصم",
-        "Offer is free for a specified time" : "خدمة مجانية لوقت محدود",
-        "Service request price" : "سعر طلب الخدمة",
-        "Description": "الوصف",
-        "Ar Description": "الوصف بالعربي",
-        "En Description": "الوصف بالانجليزي",
-        "Transaction Link": "لينك الحوالة",
-        "Refund" : "أسترداد",
-        "Done Refunded" : "تم رد الأموال بنجاح",
-        "refunded": "مستردة",
-        "Request Ended" : "إنتهى الطلب",
-        "Account Balance" : "رصيد الحساب",
-        "there is no credit" : "لايوجد رصيد",
-        "Deleted": "محذوف",
-        "Service not available": "الخدمه غير متوفرة",
-        "subject" : "الموضوع",
-        "Message" : "الرسالة",
-        "Location" : "الموقع",
-        "Actions": "الإجراءات",
-        "For Any Query" : "لأي أستفسار",
-        "Get In Touch" : "أبقى على تواصل معنا",
-        "Your request has been sent and we will send it to you as soon as possible. Thank you for your understanding" : "تم ارسال طلبك وسوف نرسل لك في اسرع وقت ممكن شكرا على تفهمك",
-       "Your Order Under review" : "طلبك قيد المراجعة شكرا لاستخدامك For Engineer",
-        "Done answered your request please check your inbox" : "تم الرد على طلبك ، يرجى التحقق من صندوق الوارد الخاص بك .",
-        "Done answered your request" : "تم الرد على طلبك.",
-        "inquiries": "أستفسارات",
-        "under review" : "تحت المراجعة",
-        "answered" : "تم الرد",
-        "Career Type" : "أنواع الوظائف",
-        "Career Request" : "طلبات الوظائف",
-        "job type": "نوع الوظيفة",
-        "CV" : "السيرة الذاتية",
-        "Respond to the request" : "الرد على الطلب",
-        "notes" : "ملاحظات",
-        "offer" : "عرض",
-        "offer price" : "عرض سعر",
-        "Go to website" : "الذهاب الى الموقع",
-        "Show Invoice" : "عرض الفاتورة",
-        "Invoice" : "فاتورة طلبك",
-        "Have a Invoice" : "يوجد فاتورة",
-        "This transaction already collected!" : "هذه العمليه محصلة من قبل!",
-        "The transaction is deleted" : "هذه العملية محذوفة بالفعل !",
-        "Last Updated" : "أخر تحديث",
-        "Accept Offer" : "قبول العرض",
-        "Reject Offer" : "رفض العرض",
-        "reason of refuse" : "سبب الرفض",
-        "Invoice Collected" : "فاتورة محصله",
-        "Invoice Rejected" : "فاتورة مرفوضه",
-        "Your deal is confirmed by your customer ,You can work now" : "تم تأكيد صفقتك من قبل عميلك ، يمكنك العمل الآن",
-        "Finish Order Successfully" : "إنهاء الطلب بنجاح ✔️",
-        "Order Has Comment" : "لديك رد على طلبك",
-        "You Have New Order" : "لديك طلب جديد",
-        "There are no notifications" : "ليس هناك أي إشعارات",
-        "Show Comment" : "مشاهدة الرد",
-        "pending" : "غير محصل",
-        "Done" : "تم أنجازه",
-        "Done Replayed" : "تم الرد",
-        "system users" : "مستخدمى النظام",
-        "visiting users" : "المستخدمين الزائرين",
-        "users" : "المستخدمين",
-        "Last Orders" : "الطلبات الأخيرة",
-        "Your Account is not activated" : "حسابك غير مفعل",
-        "Alerts Center" : "مركز التنبيهات",
-        "From" : "من",
-        "To" : "إلى",
-        "Accounting" : "الحسابات",
-        "Your Shippings" : "شحناتك",
-        "Details": "التفاصيل",
-        "If you did not request a password reset, no further action is required.": "إذا لم تطلب إعادة تعيين كلمة المرور ، فلا يلزم اتخاذ أي إجراء آخر",
-        "Reset Password": "إعادة تعيين كلمة المرور",
-        "Sorry! You are not authorized to perform this action.": ".عذراً! لست مخولاً للقيام بهذا الإجراء",
-        "You are receiving this email because we received a password reset request for your account.": ".لقد تلقيت هذا البريد الإلكتروني لأننا تلقينا طلبًا لإعادة تعيين كلمة المرور لحسابك",
-        "Confirm Password": "تأكيد كلمة المرور",
-        "Dashboard": "لوحة المعلومات",
-        "Email Address": "البريد الإلكتروني",
-        "Forgot Password": "نسيت كلمة المرور الخاصة بك؟ ",
-        "Forgot your password?": "نسيت كلمة المرور الخاصة بك؟ ",
-        "Log In": "تسجيل الدخول",
-        "Logout": "تسجيل الخروج",
-        "Remember Me": "تذكرني",
-        "Resources": "المصادر",
-        "Send Password Reset Link": "أرسل رابط إعادة تعيين كلمة المرور",
-        "Welcome Back!": "!مرحبا بك مرة أخرى",
-        "Delete Resource": "حذف المصدر",
-        "Delete": "حذف",
-        "Detach Resource": "فصل المصدر",
-        "Detach": "فصل",
-        "Detach Selected": "فصل المحدد",
-        "Delete Selected": "حذف المحدد",
-        "Force Delete Selected": "حذف المحدد نهائياً",
-        "Restore Selected": "استعادة المحدد",
-        "Restore Resource": "استعادة المصادر",
-        "Restore": "استعادة",
-        "Force Delete Resource": "حذف المصدر نهائياً",
-        "Force Delete": "حذف نهائي",
-        "Are you sure you want to delete this resource?": "هل أنت متأكد من حذف هذه المصادر؟",
-        "Are you sure you want to delete the selected resources?": "هل أنت متأكد من حذف المصادر المحددة؟",
-        "Are you sure you want to detach this resource?": "هل أنت متأكد من أنك تريد فصل هذه المصادر؟",
-        "Are you sure you want to detach the selected resources?": "هل أنت متأكد من أنك تريد فصل المصادر المحددة؟",
-        "Are you sure you want to force delete this resource?": "هل أنت متأكد من أنك تريد حذف هذه المصادر نهائياً؟",
-        "Are you sure you want to force delete the selected resources?": "هل أنت متأكد من أنك تريد حذف المصادر المحددة نهائياً؟",
-        "Are you sure you want to restore this resource?": "هل أنت متأكد من أنك تريد استعادة هذه المصادر؟",
-        "Are you sure you want to restore the selected resources?": "هل أنت متأكد من أنك تريد استعادة المصادر المحددة؟",
-        "No :resource matched the given criteria.": "لا يوجد أي مصدر لـ :resource يطابق مابحثت عنه",
-        "Another user has updated this resource since this page was loaded. Please refresh the page and try again.": ".هناك مستخدم آخر قام بتحديث هذه البيانات بعد تحميل هذه الصفحة. يرجى تحديث الصفحة والمحاولة مرة أخرى",
-        "Are you sure you want to delete this file?": "هل أنت متأكد من حذف هذا الملف؟",
-        "Are you sure you want to run this action?": "هل أنت متأكد من تنفيذ هذا الإجراء؟",
-        "Attach": "ربط",
-        "Attach & Attach Another": "ربط الحالي والإنتقال لربط آخر",
-        "Cancel": "إلغاء",
-        "Choose": "اختر",
-        "Choose File": "اختر ملف",
-        "Choose Type": "اختر نوع",
-        "Choose an option": "اختر خيار",
-        "Click to choose": "انقر لتختار",
-        "Reset Filters": "إعادة تعين الفلتر",
-        "Create": "إنشاء",
-        "Create & Add Another": "إنشاء والإنتقال لإنشاء مورد آخر",
-        "Delete File": "حذف الملف",
-        "Edit": "تعديل",
-        "Edit Attached": "تحرير المرفق",
-        "Go Home": "الذهاب إلى الصفحة الرئيسية",
-        "Hold Up!": "!انتظر من فضلك",
-        "Lens": "عدسة",
-        "New": "جديد",
-        "Next": "التالي",
-        "Only Trashed": "المحذوف فقط",
-        "Per Page": "في كل صفحة:",
-        "Preview": "معاينة",
-        "Previous": "السابق",
-        "No Data": "لا يوجد بيانات",
-        "No Current Data": "لا يوجد بيانات حالية",
-        "No Prior Data": "لا توجد بيانات سابقة",
-        "No Increase": "لا زيادة",
-        "No Results Found.": "لا توجد نتائج",
-        "Run Action": "تنفيذ الإجراء",
-        "Select Action": "اختر إجراء",
-        "Search": "بحث",
-        "Advanced Search" : "بحث متقدم",
-        "Press / to search": "إضغط / للبحث",
-        "Select all": "تحديد الكل",
-        "The action was executed successfully.": "تم تنفيذ الإجراء بنجاح!",
-        "The government won't let us show you what's behind these doors": "عذراً! لايمكنك الدخول لهذه الصفحة",
-        "Update": "تحديث",
-        "Update & Continue Editing": "تحديث البيانات والإستمرار في التعديل",
-        "View": "عرض",
-        "We're lost in space. The page you were trying to view does not exist.": ".الصفحة المرادة غير متوفرة",
-        "Show Order": "مشاهدة طلبك",
-        "Hide Content": "إخفاء المحتوى",
-        "Whoops": "أووه",
-        "Whoops!": "أووه!",
-        "With Trashed": "مع المحذوف",
-        "Trashed": "المحذوف",
-        "Write": "اكتب",
-        "total": "الاجمالي",
-        "Yes": "نعم",
-        "No": "لا",
-        "Action Initiated By": "بدأ بواسطة",
-        "Action Target": "الهدف",
-        "Action Status": "الحالة",
-        "Action Happened At": "حدث في",
-        "resource": "المصدر",
-        "resources": "المصادر",
-        "Choose date": "اختر تاريخ",
-        "The :resource was created!": ":resource تم إنشاؤه",
-        "The :resource was updated!": "تم تعديل :resource",
-        "The resource was updated!": "تم تعديل المصدر",
-        "The :resource was deleted!": "تم حذف :resource",
-        "The :resource was restored!": "تم إسترجاع :resource",
-        "Increase": "زيادة",
-        "Constant": "ثابت",
-        "Decrease": "تخفيض",
-        "Reset Password Notification": "إشعار إعادة تعيين كلمة المرور",
-        "Nova User": "مستخدم نوفا",
-        "of": "من",
-        "no file selected": "لم يتم اختيار اي ملف",
-        "Sorry, your session has expired.": "عذرا، تم انهاء الجلسة",
-        "Reload": "إعادة تحميل",
-        "Key": "مفتاح",
-        "Value": "القيمة",
-        "Add row": "اضف سطر",
-        "Attach :resource": "ربط بـ :resource",
-        "Create :resource": "إنشاء :resource",
-        "Choose :resource": "أختر :resource",
-        "New :resource": ":resource جديد",
-        "Edit :resource": "تحرير :resource",
-        "Update :resource": "تحديث :resource",
-        "Choose :field": "أختر :field",
-        "Download": "تحميل",
-        "Action": "إجراء",
-        "Changes": "تغييرات",
-        "Original": "الأصلي",
-        "This resource no longer exists": "هذا المصدر لم يعد موجودا",
-        ":resource Details": "تفاصيل :resource",
-        "There are no available options for this resource.": "لا توجد خيارات متاحة لهذا المصدر.",
-        "All resources loaded.": "تم تحميل جميع المصادر.",
-        "Load :perPage More": "حمل :perPage زيادة",
-        ":amount Total": ":amount إجمالي",
-        "Show All Fields": "إظهار كافة الحقول",
-        "Show":"مشاهدة",
-        "There was a problem submitting the form.": "حصل خطأ في إرسال الإستمارة.",
-        "There was a problem executing the action.": "حصل خطأ في تنفيذ الإجراء.",
-        "Do you really want to leave? You have unsaved changes.": "هل تريد حقا المغادرة؟ لم تحفظ التغييرات.",
-        "The file was deleted!": "تم حذف الملف!",
-        "This file field is read-only.": "حقل الملف لا يقبل التغيير.",
-        "No additional information...": "ليس هناك معلومات إضافية...",
-        "ID": "المعرف",
-        "30 Days": "٣٠ يوم",
-        "60 Days": "٦٠ يوم",
-        "90 Days": "٩٠ يوم",
-        "Today": "اليوم",
-        "Month To Date": "شهر من الآن",
-        "Quarter To Date": "ربع سنة من الآن",
-        "Year To Date": "سنة من الآن",
-        "Customize": "تخصيص",
-        "Update :resource: :title": "تحديث :resource: :title",
-        "Update attached :resource: :title": "تحديث المرفق :resource: :title",
-        ":resource Details: :title": ":resource تفاصيل: :title",
-        "Apps":"البرنامج",
-        "Employees":"الموظفين",
-        "Add New" :"أضافة جديد",
-        "New Employee" : "موظف جديد",
-        "New Customer" : "عميل جديد",
-        "Submit" :"إرسال",
-        "Your Request is submited ❤️" : "تم إرسال طلبك بنجاح ❤️",
-        "Customers" :"العملاء",
-        "Personal data" :"البيانات الشخصية",
-        "Password Change" :"تغير كلمة المرور",
-        "Re Password" :"إعاده كلمة المرور",
-        "Phone (Whatsapp)" :"تليفون (واتساب)",
-        "Address in egypt" : "العنوان في مصر",
-        "Address in usa" : "العنوان في أميريكا إن وجد",
-        "Go To ShipGomla" : "أذهب إلى شيب جمله",
-        "GO To" : "إذهب إلى ",
-        "Good Mornign":"صباح الخير",
-        "Good Afternoon" : "مساء الخير",
-        "Order New Shipment" :"أطلب شحنه جديد",
-        "New Order" :"أوردر جديد",
-        "Arabic Name" : "الأسم باللغة العربيه",
-        "English Name" : "الأسم باللغة الإنجليزيه",
-        "Take Screen Shoot from Confirmed Email" :"ألتقط صوره من البريد الألكتروني المؤكد",
-        "Expected weight" :"الوزن المتوقع",
-        "Governorate" :"المحافظه",
-        "Select an option"  :"حدد أختيار",
-        "Color" : "اللون",
-        "Size" : "المقاس",
-        "shipments" :"الشحنــات",
-        "Send Shipment" : "أرسال شحنه",
-        "Receive Shipment" : "أستقبال شحنه",
-        "Main Menu" :"القائمة الرئيسية",
-        "Shipping data" : "بيانات الشحنه",
-        "Shipment components" : "مكونات الشحنه",
-        "Kindly create the shipment first" :"يرجى أنشاء الشحنه أولاً.",
-        "Number of boxes" :"عدد الصناديق",
-        "Total weight" : "إجمالى الوزن",
-        "weight" :"الوزن",
-        "Sending Date" :"تاريخ الإرسال",
-        "heading to" :"متجه الى",
-        "Show Sent Shipments" :"مشاهده الشحنات المرسله",
-        "Code":"الكود",
-        "Add New Box" : "أضافة صندوق جديد",
-        "Maximum of the Boxs is" :"الحد الاقصى للصناديق هو ",
-        "Tracking Number" : "رقم التتبع",
-        "Barcode" : "الباركود",
-        "Customers Count" : "عدد العملاء",
-        "Add Customers" : "أضف العملاء",
-        "Box Num #" : "صندوق رقم #",
-        "Product type" : "نوع البضاعة",
-        "Products" :"المنتجات",
-        "KG" :"كيلو جرام",
-        "Total customer weight" : "إجمالى وزن العملاء",
-        "The total written weight is greater than the total weight of the box" :"إجمالى الوزن المكتوب أكبر من إجمالى وزن الصندوق",
-        "Can not add another customer":"لا يمكن إضافة عميل اخر",
-        "Close The Box" :"تقفيل الصندوق 👌",
-        "Store Link" : "رابط المتجر",
-        "Sales Channels" : "قنوات البيع",
-        "Website" : "ويبسايت",
-        "Facebook Or Instagram" : "فيس بوك او انستجرام",
-        "ShowRoom" : "شورووم",
-        "live shipping" : "لايف سيبينج",
-        "Total weight of customers inside the boxes" : "إجمالي وزن العملاء داخل الصناديق",
-        "The remaining weight" : "المتبقى من الوزن",
-        "The box is ready to send" :"👌 الصندوق جاهز للإرسال",
-        "Can not close the box before all operations are completed":"لا يمكن إغلاق الصندوق قبل إتمام كافة العمليات",
-        "Managements" : "الإدارات",
-        "Product Management" :"إدارة المنتجات",
-        "Product Name" : "أسم المنتج",
-        "Product Price" : "سعر المنتج",
-        "Product details":"تفاصيل المنتج",
-        "Product Image":"صوره المنتج",
-        "Save" : "حفظ",
-        "Add New Product" : "أضافة منتج جديد",
-        "Show Products" : "عرض المنتجات",
-        "Manage Variants" : "إدارة المتغيرات",
-        "Manage Extra" : "إدارة الإضافات",
-        "Add Extra" : "أضافة إضافة",
-        "Addons" : "الإضافات",
-        "Extra" : "إضافي",
-        "Options" : "الخيارات",
-        "Add Option" : "أضافة خيار",
-        "pictures" : "الصور",
-        "Variants" : "المتغيرات",
-        "Added Options" : "الخيارات المضافة",
-        "Variants Name" : "أسم المتغير",
-        "Setup": "الإعداد",
-        "Settings": "الإعدادات",
-        "General Settings": "الإعدادات العامة",
-        "Account Setting" : "إعدادات الحساب",
-        "Phone Number" : "رقم الهاتف",
-        "Mobile" : "رقم الموبايل",
-        "Currency" : "العملة",
-        "Company logo" : "شعار الشركة",
-        "faveicon" : "أيقونة الموقع",
-        "status" : "الحالة",
-        "Photos" :"الصور",
-        "Done Save" :"تم الحفظ",
-        "Done Delete" : "تم الحذف",
-        "Done Successfully modified" :"تم التعديل بنجاح",
-        "Registration has been successfully completed" :"تم التسجيل بنجاح",
-        "Attributes": "السمات",
-        "You won't be able to undo this!" :"لن تتمكن من التراجع عن هذا!",
-        "Your record has been deleted" :"تم حذف السجل الخاص بك",
-        "Cancelled" :"أُلغيت",
-        "Whoops, your device has lost connection. The web page you are viewing is offline.": "عفوا ، فقد جهازك الاتصال. صفحة الويب التي تشاهدها غير متصلة بالإنترنت.",
-        "Roles & Permissions" : "الأدوار والصلاحيات",
-        "Role" : "الدور",
-        "Permissions" : "الصلاحيات",
-        "Manage Roles" : "إدارة الأدوار",
-        "Manage Permissions" : "إدارة الصلاحيات",
-        "Create Role" : "إنشاء دور",
-        "Role Name" :"أسم الدور",
-        "Existing Roles" :"الأدوار الموجودة",
-        "Permission Name" : "أسم الصلاحية",
-        "Existing Permissions" :"الصلاحيات الموجودة",
-        "Create Permission" : "إنشاء صلاحية",
-        "Assign to Roles" : "تعيينها للأدوار",
-        "Update Role" : "تعديل دور",
-        "Update Permission" : "تعديل صلاحية",
-        "Stores" : "المتاجر",
-        "Store Name" : "أسم المتجر",
-        "Store Logo" : "شعار المتجر",
-        "Block": "حظر",
-        "Vendors" : "الأيدي العامله" ,
-        "Vendor Name" : "أسم العامل / ة",
-        "Logo": "الشعار",
-        "Male": "ذكر",
-        "Female": "أنثى",
-        "Done Update":"تم التحديث",
-        "Copyright to" : "حقوق النشر ل",
-        "All rights reserved":"جميع الحقوق محفوظة",
-        "Designed & Developed by" : "تصميم وتطوير",
-        "Variants type" : "نوع المتغير",
-        "one choice" :"خيار واحد",
-        "multiple choices" : "خيارات متعددة",
-        "Promo": "العروض الترويجيه",
-        "Offers": "العروض",
-        "Offer Name" : "أسم العرض",
-        "Offer Price" : "سعر العرض",
-        "Offer details" : "تفاصيل العرض",
-        "Offer Image" : "صوره العرض",
-        "Offer Discount" : "خصم العرض",
-        "Offer Start Date" : "تاريخ بداية العرض",
-        "Offer Expiry Date" : "تاريخ إنتهاء العرض",
-        "Add New Offer" : "أضافة عرض جديد",
-        "Show Offers" : "عرض العروض",
-        "Offer Management" : "إدارة العروض",
-        "Coupons" : "الكوبونات",
-        "Coupon Name" : "أسم الكوبون",
-        "Coupon Code" : "كود الكوبون",
-        "Coupon details" : "تفاصيل الكوبون",
-        "Coupon Discount" : "خصم الكوبون",
-        "Coupon Start Date" : "تاريخ بداية الكوبون",
-        "Coupon Expiry Date" : "تاريخ إنتهاء الكوبون",
-        "Coupon Usage Limit" : "حد استخدام الكوبون",
-        "Coupon Image" : "صوره الكوبون",
-        "Add New Coupon" : "أضافة كوبون جديد",
-        "Show Coupons" : "عرض الكوبونات",
-        "Coupon Management" : "إدارة الكوبونات",
-        "Sliders" :"شرائح الإعلانات",
-        "Slider Title" : "عنوان الإعلان",
-        "Sliders Image" : "صوره الإعلان",
-        "Reports" :"التقارير",
-        "Areas" :"المناطق",
-        "Area Name" : "أسم المنطقه",
-        "Area Code" : "كود المنطقه",
-        "Area Details" : "تفاصيل المنطقه",
-        "Add New Area" : "أضافة منطقه جديده",
-        "Show Areas" : "عرض المناطق",
-        "Hints" : "تلميحات",
-        "All Hints" : "كل التلميحات",
-        "Hint content" : "محتوى التلميح",
-        "Add New Hint" : "أضافة تلميح جديد",
-        "Text" : "نص",
-        "Files" : "صورة / فيديو",
-        "Background Color" : "لون الخلفية",
-        "Font Color" : "لون الخط",
-        "Log in as a" : "تسجيل الدخول كـ",
-        "Log in as a user" : "تسجيل الدخول كمستخدم",
-        "Log in as a customer" : "تسجيل الدخول كعميل",
-        "Log in as a admins" : "تسجيل الدخول كمسئولي النظام",
-        "Log in as a cheefs" : "تسجيل الدخول كطباخين",
-        "Load More" : "مشاهده المزيد",
-        "Total Orders" : "إجمالي الطلبات",
-        "Total Customers" : "إجمالي العملاء",
-        "Total Projects" : "إجمالي المشاريع",
-        "Total Products" : "إجمالي المنتجات",
-        "Total Vendors" : "إجمالي الأيدي العامله",
-        "Total Sales" : "إجمالي المبيعات",
-        "Total Revenue" : "إجمالي الإيرادات",
-        "Total Expenses" : "إجمالي المصروفات",
-        "Total Profit" : "إجمالي الأرباح",
-        "Total Loss" : "إجمالي الخسائر",
-        "Login Information" : "معلومات تسجيل الدخول",
-        "FAQ" : "الأسئلة الشائعة",
-        "Terms" : "الشروط",
-        "Terms and Conditions" : "الشروط والأحكام",
-        "Application Policy" : "سياسة التطبيق",
-        "Payment Methods" : "طرق الدفع",
-        "Payment Method" : "طريقة الدفع",
-        "Add New Payment Method" : "أضافة طريقة دفع جديده",
-        "Show Payment Methods" : "عرض طرق الدفع",
-        "Payment Method Name" : "أسم طريقة الدفع",
-        "Payment Method Details" : "تفاصيل طريقة الدفع",
-        "Payment Method Image" : "صورة طريقة الدفع",
-        "Config": "الإعدادات",
-        "Projects Management" : "إدارة المشاريع",
-        "Project Main Data" : "بيانات المشروع الرئيسية",
-        "Projects" :  "المشاريع",
-        "Project Code":"كود المشروع",
-        "Project Name" : "أسم المشروع",
-        "Goverments Management" : "إدارة المحافظات",
-        "Governorate Code" : "كود المحافظه",
-        "Governorate Name" : "أسم المحافظه",
-        "Districts Management" : "إدارة المناطق",
-        "Districts" : "المناطق/الحى",
-        "District Code" : "كود المنطقة",
-        "District Name" : "أسم المنطقة",
-        "Owner Management" : "إدارة المالك",
-        "Owner" : "المالك",
-        "Owner Name" : "أسم المالك",
-        "Owner Code" : "كود المالك",
-        "Marketing Companies Management" : "إدارة شركات التسويق",
-        "Marketing" :"مخصص لصالح",
-        "Marketing Company Name" : "أسم شركة التسويق",
-        "Marketing Company Code" : "كود شركة التسويق",
-        "Developers Management" : "إدارة المطورين",
-        "Developers" : "القائم بالتنفيذ",
-        "Developer Name" : "أسم المطور",
-        "Developer Code" : "كود المطور",
-        "Banks Management" : "إدارة البنوك",
-        "Bank" :"الشركة الداعمة / البنك",
-        "Bank Name" : "أسم البنك",
-        "Bank Code" : "كود البنك",
-        "Bank Account Number" : "رقم حساب البنك",
-        "Other" :"أخرى",
-        "Consultant Management" : "إدارة الاستشاريين",
-        "Consultants":  "الاستشاريين",
-        "Consultant Name" : "أسم الاستشاري",
-        "Consultant Code" : "كود الاستشاري",
-        "Phases" : "المراحل",
-        "Phase Name" : "أسم المرحلة",
-        "Phase Code" : "كود المرحلة",
-        "Phase Details" : "تفاصيل المرحلة",
-        "Add New Phase" : "أضافة مرحلة جديده",
-        "Show Phases" : "عرض المراحل",
-        "Phase Management" : "إدارة المراحل",
-        "Installment system" : "نظام الاقساط",
-        "Allocation Of Units" : "تخصيص الوحدات",
-        "Contract Total" : "إجمالي التعاقد",
-        "Area" : "المساحة",
-        "Floor" : "الدور",
-        "Add Customer To Contract" : "إضافة العميل للعقد",
-        "Serial number" : "الرقم التسلسلي",
-        "Customer already added" : "العميل تم إضافته مسبقاً",
-        "Customer Information" : "بيانات العميل",
-        "Select An Customer" : "إختار عميل",
-        "Buildings" : "العمارات",
-        "Appartments" : "الشقق",
-        "Appartment Code" :"رقم الشقه" ,
-        "Appartment Name" : "أسم الشقه",
-        "Building Code" : "رقم العماره",
-        "Building Name" : "أسم العماره",
-        "Payment Plans" :  "خطط الدفع",
-        "Sume The Installments" : "أحسب الاقساط",
-        "Installments" : "الاقساط",
-        "Amount" :"المبلغ",
-        "Installment Value" :"قيمة القسط",
-        "Installment" : "قسط",
-        "Years" : "عدد السنوات",
-        "Installments Count" : "عدد الاقساط",
-        "Down Payment Percent" : "نسبه دفعه المقدم",
-        "Down Payment" :"المقدم",
-        "Installments Of Down Payment  Count" :"عدد دفعات ( المقدم )",
-        "Starting from the date" : "بدايه من تاريخ",
-        "Number of installments" :"عدد الأقساط",
-        "allocation payment" :"دفعه تخصيص",
-        "Payment received" :"دفعه أستلام",
-        "Admin Fees" :"المصاريف الإدارية",
-        "Costs" : "التكاليف" ,
-        "Add Costs" : "إضافة التكاليف",
-        "Generate Costs" : "توليد التكاليف",
-        "Collections" :"التحصيلات",
-        "Collect": "تحصيل",
-        "Remove All" : "حذف الكل",
-        "Receipt number" : "رقم الإيصال",
-        "Receipt date" : "تاريخ الإيصال",
-        "Time" :  "الوقت",
-        "Paid" :"محصل",
-        "Movement of payment receipts" :"حركه إيصالات الدفع",
-        "Total of each project" : "إجمالي كل مشروع",
-        "Total installments" : "إجمالي الاقساط",
-        "Total Paid" : "إجمالي المحصل",
-        "Total installment paid" : "إجمالي الاقساط المحصلة",
-        "Total Costs Paid"  : "إجمالي التكاليف المحصلة",
-        "Total Admin Fees" : "إجمالي المصاريف الإدارية",
-        "Total Costs" : "إجمالي التكاليف",
-        "Total Collections" : "إجمالي التحصيلات",
-        "Customer data" : "بيانات العملاء",
-        "Customers Types" : "موقف العضو",
-        "Employee Name" : "أسم الموظف",
-        "Employee Code" :"كود الموظف",
-        "Sales" : "المبيعات",
-        "One Payment" : "دفعة واحده",
-        "Total receipt" : "إجمالي الإيصال",
-        "reaming" : "المتبقي",
-        "Partially collected" : "محصل جزئياََ",
-        "Customer Balance" : "رصيد العميل",
-        "Total payments" : "إجمالي المدفوعات",
-        "Statement" :"البيان",
-        "bank" :"البنك",
-        "Receipt Date" :"تاريخ الإيصال",
-        "Choose Search type" :"اختر نوع البحث",
-        "Contracts" : "العقود",
-        "Reservations" : "إستمارات الحجز",
-        "Operations" : "العمليات",
-        "Main data" :"البيانات الرئيسيه",
-        "Reservation info":"تفاصيل الاستمارة",
-        "Add a new beneficiary" : "إضافه مستفيد جديد",
-        "License expired. Please renew." : "تم أنتهاء الترخيص برجاء التجديد",
-        "The license does not exist, please contact the relevant department." : "الترخيص غير موجود برجاء الاتصال بالقسم المختص.",
-        "Delete beneficiary" : "سحب المستفيد",
-        "Withdrawal" : "سحب",
-        "Withdrawal saved successfully." : "تم السحب بنجاح",
-        "Show Costs & Installments" : "عرض التكاليف والاقساط"
-    }
-
-
-
+{
+    "Register Your Account": "تسجيل حسابك الجديد",
+    "Login to Your Account": "تسجيل الدخول إلى حسابك",
+    "Welcome Back ✔️ 👌": "أهلا بعودتك ✔️ 👌",
+    "Register": "تسجيل",
+    "Sign In": "تسجيل الدخول",
+    "Name": "الأسم",
+    "Username": "أسم المستخدم",
+    "Password": "كلمة المرور",
+    "Remember me": "تذكرني",
+    "Can not find empty adress": "لا يمكن البحث على عنوان فارغ",
+    "Customer Name": "أسم العميل",
+    "Customer Code": "كود العميل",
+    "Customer ID": "رقم العضوية",
+    "ID Number": "رقم البطاقة الشخصية",
+    "Users": "المستخدمين",
+    "Count": "العدد",
+    "Send": "إرسال",
+    "Sent": "تم إرساله",
+    "No data fount to be coded": "لا يوجد بيانات لتكويدها",
+    "EGP": "جنيه",
+    "Coding": "التكويد",
+    "Data processing": "معالجة البيانات",
+    "Coding Managment": "إدارة التكويد",
+    "Import from excel to temperary database": "الاستيراد من excel إلى قاعدة البيانات المؤقتة",
+    "submit": "إرسال",
+    "ShipGomla": "شيب جمله",
+    "Home": "الرئيسية",
+    "welcome": "أهلا وسهلا",
+    "Why us": "لماذا نحــن",
+    "Login": "تسجيل دخول",
+    "Address": "العنوان",
+    "Warehouses": "المستودعات",
+    "Branches": "الفروع",
+    "Verify Email Address": "تأكيد عنوان بريدك الإلكتروني",
+    "Click the button below to verify your email address.": "انقر فوق الزر أدناه للتحقق من عنوان البريد الإلكتروني الخاص بك.",
+    "Verify": "تحقق",
+    "A fresh verification link has been sent to your email address.": "تم أرسال رسالة التحقيق الى بريدك الالكترونى من جديد.",
+    "Before proceeding, please check your email for a verification link.": "قبل المتابعة ، يرجى التحقق من بريدك الإلكتروني للحصول على رابط التحقق.",
+    "If you did not receive the email": "إذا لم تستلم البريد الإلكتروني",
+    "click here to request another": "أضغط هنا للأرسال مره اخرى",
+    "Company Types": "أنواع الشركات",
+    "Copyrights To": "حقوق النشر و الملكية الفكرية محفوظه لـ",
+    "There is no data": "لا يوجد بيانات.",
+    "I don't have an account, create a new account": "ليس لدي حساب ، أنشئ حساب جديد",
+    "Status": "الحالة",
+    "System Status": "حالات السيستم",
+    "Approvals": "الموافقات",
+    "Approved": "موافقه",
+    "Reject": "مرفوض",
+    "Status Updated Successfully": "تم تحديث الحالة بنجاح",
+    "Approved Successfully": "تمت الموافقة بنجاح.",
+    "Rejected Successfully": "تم الرفض بنجاح.",
+    "Your Orders": "الطلبات الخاصة بك",
+    "Orders": "الطلبات",
+    "Daily Orders": "الطلبات اليومية",
+    "Your Services": "خدماتك",
+    "Categories": "الأقســام",
+    "Yes, delete it!": "نعم أحذف !",
+    "Close": "إغلاق",
+    "Are you sure?": "هل أنت متأكد ؟",
+    "Useful Pages": "روابط مهمه",
+    "Pages": "الصفحات",
+    "Main Category": "قسم رئيســي",
+    "Sub Category": "قسم فرعــي",
+    "Or": "أو",
+    "Company Name": "أسم الشركة",
+    "Companies": "الشركات",
+    "Company": "الشركة",
+    "Profile": "الصفحة الشخصية",
+    "The System are Create your email & password automatically and you can change your password in your profile together , make success.": "يقوم النظام بإنشاء بريدك الإلكتروني وكلمة المرور تلقائيًا ويمكنك تغيير كلمة المرور الخاصة بك في ملف التعريف الخاص بك معًا ، نحقق النجاح.",
+    "Thanks,": "شكراً لك,",
+    "All Categories": "جميع الاقسام",
+    "Careers": "تقديم الوظائف",
+    "Uploading...": "جارى التحميل .... ",
+    "Earnings (Monthly)": "الأرباح (الشهرية)",
+    "Earnings Overview": "نظرة عامة على الأرباح",
+    "Earnings (Annual)": "الأرباح (السنوية)",
+    "Tasks": "المهام",
+    "Pending Requests": "الطلبات المعلقة",
+    "SR": "ريال ",
+    "SAR": "ريال سعودي",
+    "Earning": "الأرباح",
+    "type": "النوع",
+    "Service type": "نوع الخدمة",
+    "Service": "الخدمة",
+    "Order a service": "أطلب خدمتك الأن",
+    "This Record is Existed": "هذا السجل موجود من قبل",
+    "Service Prices": "أسعار الخدمات",
+    "price": "السعر",
+    "Management": "الإدارة",
+    "Static": "ثابت",
+    "On Request": "على حسب الطلب",
+    "Special": "مميز",
+    "Quality Work": "جودة العمل",
+    "We have highly experienced service providers selected at the highest level": "لدينا مزودي خدمات ذو خبره فائقة و مختارون على اعلى مستوى",
+    "Support 7 days in 24 hours": "دعم 7 أيام في 24 ساعة",
+    "You can talk to us at any time": "يمكنك التحدث الينا في اى وقت",
+    "We provide this Services": "نحن نقدم هذه الخدمات",
+    "Clear All": "مسح الكل",
+    "Net Profit": "الربح الصافي",
+    "Site Present": "نسبة الموقع",
+    "Request details": "برجاء كتابة طلبك بالتفصيل.",
+    "Request Rejected": "طلب غير مسموح به",
+    "You have canceled the transaction.": "لقد قمت بإلغاء العملية.",
+    "Something went wrong.": "هناك مشكلة ما.",
+    "Payment Success": "عملية ناجحة.",
+    "Unable to process the purchase transaction Please try again": "غير قادر على معالجة عملية الشراء برجاء إعادة المحاولة.",
+    "Back": "رجوع",
+    "Back To": "رجوع إلى",
+    "Pay Now": "أدفع الان",
+    "reference number": "الرقم المرجعي",
+    "Under collection": "تحت التحصيل",
+    "Collected": "محصل",
+    "Refund Request": "طلب أرجاع",
+    "Payments": "المدفوعات",
+    "Service Price": "سعر الخدمة",
+    "Discount": "الخصم",
+    "After Discount": "بعد الخصم",
+    "Done Discount": "تطبيق الخصم",
+    "Offer is free for a specified time": "خدمة مجانية لوقت محدود",
+    "Service request price": "سعر طلب الخدمة",
+    "Description": "الوصف",
+    "Ar Description": "الوصف بالعربي",
+    "En Description": "الوصف بالانجليزي",
+    "Transaction Link": "لينك الحوالة",
+    "Refund": "أسترداد",
+    "Done Refunded": "تم رد الأموال بنجاح",
+    "refunded": "مستردة",
+    "Request Ended": "إنتهى الطلب",
+    "Account Balance": "رصيد الحساب",
+    "there is no credit": "لايوجد رصيد",
+    "Deleted": "محذوف",
+    "Service not available": "الخدمه غير متوفرة",
+    "subject": "الموضوع",
+    "Message": "الرسالة",
+    "Location": "الموقع",
+    "Actions": "الإجراءات",
+    "For Any Query": "لأي أستفسار",
+    "Get In Touch": "أبقى على تواصل معنا",
+    "Your request has been sent and we will send it to you as soon as possible. Thank you for your understanding": "تم ارسال طلبك وسوف نرسل لك في اسرع وقت ممكن شكرا على تفهمك",
+    "Your Order Under review": "طلبك قيد المراجعة شكرا لاستخدامك For Engineer",
+    "Done answered your request please check your inbox": "تم الرد على طلبك ، يرجى التحقق من صندوق الوارد الخاص بك .",
+    "Done answered your request": "تم الرد على طلبك.",
+    "inquiries": "أستفسارات",
+    "under review": "تحت المراجعة",
+    "answered": "تم الرد",
+    "Career Type": "أنواع الوظائف",
+    "Career Request": "طلبات الوظائف",
+    "job type": "نوع الوظيفة",
+    "CV": "السيرة الذاتية",
+    "Respond to the request": "الرد على الطلب",
+    "notes": "ملاحظات",
+    "offer": "عرض",
+    "offer price": "عرض سعر",
+    "Go to website": "الذهاب الى الموقع",
+    "Show Invoice": "عرض الفاتورة",
+    "Invoice": "فاتورة طلبك",
+    "Have a Invoice": "يوجد فاتورة",
+    "This transaction already collected!": "هذه العمليه محصلة من قبل!",
+    "The transaction is deleted": "هذه العملية محذوفة بالفعل !",
+    "Last Updated": "أخر تحديث",
+    "Accept Offer": "قبول العرض",
+    "Reject Offer": "رفض العرض",
+    "reason of refuse": "سبب الرفض",
+    "reason of transferred" : "سبب التحويل",
+    "Invoice Collected": "فاتورة محصله",
+    "Invoice Rejected": "فاتورة مرفوضه",
+    "Your deal is confirmed by your customer ,You can work now": "تم تأكيد صفقتك من قبل عميلك ، يمكنك العمل الآن",
+    "Finish Order Successfully": "إنهاء الطلب بنجاح ✔️",
+    "Order Has Comment": "لديك رد على طلبك",
+    "You Have New Order": "لديك طلب جديد",
+    "There are no notifications": "ليس هناك أي إشعارات",
+    "Show Comment": "مشاهدة الرد",
+    "pending": "غير محصل",
+    "Done": "تم أنجازه",
+    "Done Replayed": "تم الرد",
+    "system users": "مستخدمى النظام",
+    "visiting users": "المستخدمين الزائرين",
+    "users": "المستخدمين",
+    "Last Orders": "الطلبات الأخيرة",
+    "Your Account is not activated": "حسابك غير مفعل",
+    "Alerts Center": "مركز التنبيهات",
+    "From": "من",
+    "To": "إلى",
+    "Accounting": "الحسابات",
+    "Your Shippings": "شحناتك",
+    "Details": "التفاصيل",
+    "If you did not request a password reset, no further action is required.": "إذا لم تطلب إعادة تعيين كلمة المرور ، فلا يلزم اتخاذ أي إجراء آخر",
+    "Reset Password": "إعادة تعيين كلمة المرور",
+    "Sorry! You are not authorized to perform this action.": ".عذراً! لست مخولاً للقيام بهذا الإجراء",
+    "You are receiving this email because we received a password reset request for your account.": ".لقد تلقيت هذا البريد الإلكتروني لأننا تلقينا طلبًا لإعادة تعيين كلمة المرور لحسابك",
+    "Confirm Password": "تأكيد كلمة المرور",
+    "Dashboard": "لوحة المعلومات",
+    "Email Address": "البريد الإلكتروني",
+    "Forgot Password": "نسيت كلمة المرور الخاصة بك؟ ",
+    "Forgot your password?": "نسيت كلمة المرور الخاصة بك؟ ",
+    "Log In": "تسجيل الدخول",
+    "Logout": "تسجيل الخروج",
+    "Remember Me": "تذكرني",
+    "Resources": "المصادر",
+    "Send Password Reset Link": "أرسل رابط إعادة تعيين كلمة المرور",
+    "Welcome Back!": "!مرحبا بك مرة أخرى",
+    "Delete Resource": "حذف المصدر",
+    "Delete": "حذف",
+    "Detach Resource": "فصل المصدر",
+    "Detach": "فصل",
+    "Detach Selected": "فصل المحدد",
+    "Delete Selected": "حذف المحدد",
+    "Force Delete Selected": "حذف المحدد نهائياً",
+    "Restore Selected": "استعادة المحدد",
+    "Restore Resource": "استعادة المصادر",
+    "Restore": "استعادة",
+    "Force Delete Resource": "حذف المصدر نهائياً",
+    "Force Delete": "حذف نهائي",
+    "Are you sure you want to delete this resource?": "هل أنت متأكد من حذف هذه المصادر؟",
+    "Are you sure you want to delete the selected resources?": "هل أنت متأكد من حذف المصادر المحددة؟",
+    "Are you sure you want to detach this resource?": "هل أنت متأكد من أنك تريد فصل هذه المصادر؟",
+    "Are you sure you want to detach the selected resources?": "هل أنت متأكد من أنك تريد فصل المصادر المحددة؟",
+    "Are you sure you want to force delete this resource?": "هل أنت متأكد من أنك تريد حذف هذه المصادر نهائياً؟",
+    "Are you sure you want to force delete the selected resources?": "هل أنت متأكد من أنك تريد حذف المصادر المحددة نهائياً؟",
+    "Are you sure you want to restore this resource?": "هل أنت متأكد من أنك تريد استعادة هذه المصادر؟",
+    "Are you sure you want to restore the selected resources?": "هل أنت متأكد من أنك تريد استعادة المصادر المحددة؟",
+    "No :resource matched the given criteria.": "لا يوجد أي مصدر لـ :resource يطابق مابحثت عنه",
+    "Another user has updated this resource since this page was loaded. Please refresh the page and try again.": ".هناك مستخدم آخر قام بتحديث هذه البيانات بعد تحميل هذه الصفحة. يرجى تحديث الصفحة والمحاولة مرة أخرى",
+    "Are you sure you want to delete this file?": "هل أنت متأكد من حذف هذا الملف؟",
+    "Are you sure you want to run this action?": "هل أنت متأكد من تنفيذ هذا الإجراء؟",
+    "Attach": "ربط",
+    "Attach & Attach Another": "ربط الحالي والإنتقال لربط آخر",
+    "Cancel": "إلغاء",
+    "Choose": "اختر",
+    "Choose File": "اختر ملف",
+    "Choose Type": "اختر نوع",
+    "Choose an option": "اختر خيار",
+    "Click to choose": "انقر لتختار",
+    "Reset Filters": "إعادة تعين الفلتر",
+    "Create": "إنشاء",
+    "Create & Add Another": "إنشاء والإنتقال لإنشاء مورد آخر",
+    "Delete File": "حذف الملف",
+    "Edit": "تعديل",
+    "Edit Attached": "تحرير المرفق",
+    "Go Home": "الذهاب إلى الصفحة الرئيسية",
+    "Hold Up!": "!انتظر من فضلك",
+    "Lens": "عدسة",
+    "New": "جديد",
+    "Next": "التالي",
+    "Only Trashed": "المحذوف فقط",
+    "Per Page": "في كل صفحة:",
+    "Preview": "معاينة",
+    "Previous": "السابق",
+    "No Data": "لا يوجد بيانات",
+    "No Current Data": "لا يوجد بيانات حالية",
+    "No Prior Data": "لا توجد بيانات سابقة",
+    "No Increase": "لا زيادة",
+    "No Results Found.": "لا توجد نتائج",
+    "Run Action": "تنفيذ الإجراء",
+    "Select Action": "اختر إجراء",
+    "Search": "بحث",
+    "Advanced Search": "بحث متقدم",
+    "Press / to search": "إضغط / للبحث",
+    "Select all": "تحديد الكل",
+    "The action was executed successfully.": "تم تنفيذ الإجراء بنجاح!",
+    "The government won't let us show you what's behind these doors": "عذراً! لايمكنك الدخول لهذه الصفحة",
+    "Update": "تحديث",
+    "Update & Continue Editing": "تحديث البيانات والإستمرار في التعديل",
+    "View": "عرض",
+    "We're lost in space. The page you were trying to view does not exist.": ".الصفحة المرادة غير متوفرة",
+    "Show Order": "مشاهدة طلبك",
+    "Hide Content": "إخفاء المحتوى",
+    "Whoops": "أووه",
+    "Whoops!": "أووه!",
+    "With Trashed": "مع المحذوف",
+    "Trashed": "المحذوف",
+    "Write": "اكتب",
+    "total": "الاجمالي",
+    "Yes": "نعم",
+    "No": "لا",
+    "Action Initiated By": "بدأ بواسطة",
+    "Action Target": "الهدف",
+    "Action Status": "الحالة",
+    "Action Happened At": "حدث في",
+    "resource": "المصدر",
+    "resources": "المصادر",
+    "Choose date": "اختر تاريخ",
+    "The :resource was created!": ":resource تم إنشاؤه",
+    "The :resource was updated!": "تم تعديل :resource",
+    "The resource was updated!": "تم تعديل المصدر",
+    "The :resource was deleted!": "تم حذف :resource",
+    "The :resource was restored!": "تم إسترجاع :resource",
+    "Increase": "زيادة",
+    "Constant": "ثابت",
+    "Decrease": "تخفيض",
+    "Reset Password Notification": "إشعار إعادة تعيين كلمة المرور",
+    "Nova User": "مستخدم نوفا",
+    "of": "من",
+    "no file selected": "لم يتم اختيار اي ملف",
+    "Sorry, your session has expired.": "عذرا، تم انهاء الجلسة",
+    "Reload": "إعادة تحميل",
+    "Key": "مفتاح",
+    "Value": "القيمة",
+    "Add row": "اضف سطر",
+    "Attach :resource": "ربط بـ :resource",
+    "Create :resource": "إنشاء :resource",
+    "Choose :resource": "أختر :resource",
+    "New :resource": ":resource جديد",
+    "Edit :resource": "تحرير :resource",
+    "Update :resource": "تحديث :resource",
+    "Choose :field": "أختر :field",
+    "Download": "تحميل",
+    "Action": "إجراء",
+    "Changes": "تغييرات",
+    "Original": "الأصلي",
+    "This resource no longer exists": "هذا المصدر لم يعد موجودا",
+    ":resource Details": "تفاصيل :resource",
+    "There are no available options for this resource.": "لا توجد خيارات متاحة لهذا المصدر.",
+    "All resources loaded.": "تم تحميل جميع المصادر.",
+    "Load :perPage More": "حمل :perPage زيادة",
+    ":amount Total": ":amount إجمالي",
+    "Show All Fields": "إظهار كافة الحقول",
+    "Show": "مشاهدة",
+    "There was a problem submitting the form.": "حصل خطأ في إرسال الإستمارة.",
+    "There was a problem executing the action.": "حصل خطأ في تنفيذ الإجراء.",
+    "Do you really want to leave? You have unsaved changes.": "هل تريد حقا المغادرة؟ لم تحفظ التغييرات.",
+    "The file was deleted!": "تم حذف الملف!",
+    "This file field is read-only.": "حقل الملف لا يقبل التغيير.",
+    "No additional information...": "ليس هناك معلومات إضافية...",
+    "ID": "المعرف",
+    "30 Days": "٣٠ يوم",
+    "60 Days": "٦٠ يوم",
+    "90 Days": "٩٠ يوم",
+    "Today": "اليوم",
+    "Month To Date": "شهر من الآن",
+    "Quarter To Date": "ربع سنة من الآن",
+    "Year To Date": "سنة من الآن",
+    "Customize": "تخصيص",
+    "Update :resource: :title": "تحديث :resource: :title",
+    "Update attached :resource: :title": "تحديث المرفق :resource: :title",
+    ":resource Details: :title": ":resource تفاصيل: :title",
+    "Apps": "البرنامج",
+    "Employees": "الموظفين",
+    "Add New": "أضافة جديد",
+    "New Employee": "موظف جديد",
+    "New Customer": "عميل جديد",
+    "Submit": "إرسال",
+    "Your Request is submited ❤️": "تم إرسال طلبك بنجاح ❤️",
+    "Customers": "العملاء",
+    "Personal data": "البيانات الشخصية",
+    "Password Change": "تغير كلمة المرور",
+    "Re Password": "إعاده كلمة المرور",
+    "Phone (Whatsapp)": "تليفون (واتساب)",
+    "Address in egypt": "العنوان في مصر",
+    "Address in usa": "العنوان في أميريكا إن وجد",
+    "Go To ShipGomla": "أذهب إلى شيب جمله",
+    "GO To": "إذهب إلى ",
+    "Good Mornign": "صباح الخير",
+    "Good Afternoon": "مساء الخير",
+    "Order New Shipment": "أطلب شحنه جديد",
+    "New Order": "أوردر جديد",
+    "Arabic Name": "الأسم باللغة العربيه",
+    "English Name": "الأسم باللغة الإنجليزيه",
+    "Take Screen Shoot from Confirmed Email": "ألتقط صوره من البريد الألكتروني المؤكد",
+    "Expected weight": "الوزن المتوقع",
+    "Governorate": "المحافظه",
+    "Select an option": "حدد أختيار",
+    "Color": "اللون",
+    "Size": "المقاس",
+    "shipments": "الشحنــات",
+    "Send Shipment": "أرسال شحنه",
+    "Receive Shipment": "أستقبال شحنه",
+    "Main Menu": "القائمة الرئيسية",
+    "Shipping data": "بيانات الشحنه",
+    "Shipment components": "مكونات الشحنه",
+    "Kindly create the shipment first": "يرجى أنشاء الشحنه أولاً.",
+    "Number of boxes": "عدد الصناديق",
+    "Total weight": "إجمالى الوزن",
+    "weight": "الوزن",
+    "Sending Date": "تاريخ الإرسال",
+    "heading to": "متجه الى",
+    "Show Sent Shipments": "مشاهده الشحنات المرسله",
+    "Code": "الكود",
+    "Add New Box": "أضافة صندوق جديد",
+    "Maximum of the Boxs is": "الحد الاقصى للصناديق هو ",
+    "Tracking Number": "رقم التتبع",
+    "Barcode": "الباركود",
+    "Customers Count": "عدد العملاء",
+    "Add Customers": "أضف العملاء",
+    "Box Num #": "صندوق رقم #",
+    "Product type": "نوع البضاعة",
+    "Products": "المنتجات",
+    "KG": "كيلو جرام",
+    "Total customer weight": "إجمالى وزن العملاء",
+    "The total written weight is greater than the total weight of the box": "إجمالى الوزن المكتوب أكبر من إجمالى وزن الصندوق",
+    "Can not add another customer": "لا يمكن إضافة عميل اخر",
+    "Close The Box": "تقفيل الصندوق 👌",
+    "Store Link": "رابط المتجر",
+    "Sales Channels": "قنوات البيع",
+    "Website": "ويبسايت",
+    "Facebook Or Instagram": "فيس بوك او انستجرام",
+    "ShowRoom": "شورووم",
+    "live shipping": "لايف سيبينج",
+    "Total weight of customers inside the boxes": "إجمالي وزن العملاء داخل الصناديق",
+    "The remaining weight": "المتبقى من الوزن",
+    "The box is ready to send": "👌 الصندوق جاهز للإرسال",
+    "Can not close the box before all operations are completed": "لا يمكن إغلاق الصندوق قبل إتمام كافة العمليات",
+    "Managements": "الإدارات",
+    "Product Management": "إدارة المنتجات",
+    "Product Name": "أسم المنتج",
+    "Product Price": "سعر المنتج",
+    "Product details": "تفاصيل المنتج",
+    "Product Image": "صوره المنتج",
+    "Save": "حفظ",
+    "Add New Product": "أضافة منتج جديد",
+    "Show Products": "عرض المنتجات",
+    "Manage Variants": "إدارة المتغيرات",
+    "Manage Extra": "إدارة الإضافات",
+    "Add Extra": "أضافة إضافة",
+    "Addons": "الإضافات",
+    "Extra": "إضافي",
+    "Options": "الخيارات",
+    "Add Option": "أضافة خيار",
+    "pictures": "الصور",
+    "Variants": "المتغيرات",
+    "Added Options": "الخيارات المضافة",
+    "Variants Name": "أسم المتغير",
+    "Setup": "الإعداد",
+    "Settings": "الإعدادات",
+    "General Settings": "الإعدادات العامة",
+    "Account Setting": "إعدادات الحساب",
+    "Phone Number": "رقم الهاتف",
+    "Mobile": "رقم الموبايل",
+    "Currency": "العملة",
+    "Company logo": "شعار الشركة",
+    "faveicon": "أيقونة الموقع",
+    "status": "الحالة",
+    "Photos": "الصور",
+    "Done Save": "تم الحفظ",
+    "Done Delete": "تم الحذف",
+    "Done Successfully modified": "تم التعديل بنجاح",
+    "Registration has been successfully completed": "تم التسجيل بنجاح",
+    "Attributes": "السمات",
+    "You won't be able to undo this!": "لن تتمكن من التراجع عن هذا!",
+    "Your record has been deleted": "تم حذف السجل الخاص بك",
+    "Cancelled": "أُلغيت",
+    "Whoops, your device has lost connection. The web page you are viewing is offline.": "عفوا ، فقد جهازك الاتصال. صفحة الويب التي تشاهدها غير متصلة بالإنترنت.",
+    "Roles & Permissions": "الأدوار والصلاحيات",
+    "Role": "الدور",
+    "Permissions": "الصلاحيات",
+    "Manage Roles": "إدارة الأدوار",
+    "Manage Permissions": "إدارة الصلاحيات",
+    "Create Role": "إنشاء دور",
+    "Role Name": "أسم الدور",
+    "Existing Roles": "الأدوار الموجودة",
+    "Permission Name": "أسم الصلاحية",
+    "Existing Permissions": "الصلاحيات الموجودة",
+    "Create Permission": "إنشاء صلاحية",
+    "Assign to Roles": "تعيينها للأدوار",
+    "Update Role": "تعديل دور",
+    "Update Permission": "تعديل صلاحية",
+    "Stores": "المتاجر",
+    "Store Name": "أسم المتجر",
+    "Store Logo": "شعار المتجر",
+    "Block": "حظر",
+    "Vendors": "الأيدي العامله",
+    "Vendor Name": "أسم العامل / ة",
+    "Logo": "الشعار",
+    "Male": "ذكر",
+    "Female": "أنثى",
+    "Done Update": "تم التحديث",
+    "Copyright to": "حقوق النشر ل",
+    "All rights reserved": "جميع الحقوق محفوظة",
+    "Designed & Developed by": "تصميم وتطوير",
+    "Variants type": "نوع المتغير",
+    "one choice": "خيار واحد",
+    "multiple choices": "خيارات متعددة",
+    "Promo": "العروض الترويجيه",
+    "Offers": "العروض",
+    "Offer Name": "أسم العرض",
+    "Offer Price": "سعر العرض",
+    "Offer details": "تفاصيل العرض",
+    "Offer Image": "صوره العرض",
+    "Offer Discount": "خصم العرض",
+    "Offer Start Date": "تاريخ بداية العرض",
+    "Offer Expiry Date": "تاريخ إنتهاء العرض",
+    "Add New Offer": "أضافة عرض جديد",
+    "Show Offers": "عرض العروض",
+    "Offer Management": "إدارة العروض",
+    "Coupons": "الكوبونات",
+    "Coupon Name": "أسم الكوبون",
+    "Coupon Code": "كود الكوبون",
+    "Coupon details": "تفاصيل الكوبون",
+    "Coupon Discount": "خصم الكوبون",
+    "Coupon Start Date": "تاريخ بداية الكوبون",
+    "Coupon Expiry Date": "تاريخ إنتهاء الكوبون",
+    "Coupon Usage Limit": "حد استخدام الكوبون",
+    "Coupon Image": "صوره الكوبون",
+    "Add New Coupon": "أضافة كوبون جديد",
+    "Show Coupons": "عرض الكوبونات",
+    "Coupon Management": "إدارة الكوبونات",
+    "Sliders": "شرائح الإعلانات",
+    "Slider Title": "عنوان الإعلان",
+    "Sliders Image": "صوره الإعلان",
+    "Reports": "التقارير",
+    "Areas": "المناطق",
+    "Area Name": "أسم المنطقه",
+    "Area Code": "كود المنطقه",
+    "Area Details": "تفاصيل المنطقه",
+    "Add New Area": "أضافة منطقه جديده",
+    "Show Areas": "عرض المناطق",
+    "Hints": "تلميحات",
+    "All Hints": "كل التلميحات",
+    "Hint content": "محتوى التلميح",
+    "Add New Hint": "أضافة تلميح جديد",
+    "Text": "نص",
+    "Files": "صورة / فيديو",
+    "Background Color": "لون الخلفية",
+    "Font Color": "لون الخط",
+    "Log in as a": "تسجيل الدخول كـ",
+    "Log in as a user": "تسجيل الدخول كمستخدم",
+    "Log in as a customer": "تسجيل الدخول كعميل",
+    "Log in as a admins": "تسجيل الدخول كمسئولي النظام",
+    "Log in as a cheefs": "تسجيل الدخول كطباخين",
+    "Load More": "مشاهده المزيد",
+    "Total Orders": "إجمالي الطلبات",
+    "Total Customers": "إجمالي العملاء",
+    "Total Projects": "إجمالي المشاريع",
+    "Total Products": "إجمالي المنتجات",
+    "Total Vendors": "إجمالي الأيدي العامله",
+    "Total Sales": "إجمالي المبيعات",
+    "Total Revenue": "إجمالي الإيرادات",
+    "Total Expenses": "إجمالي المصروفات",
+    "Total Profit": "إجمالي الأرباح",
+    "Total Loss": "إجمالي الخسائر",
+    "Login Information": "معلومات تسجيل الدخول",
+    "FAQ": "الأسئلة الشائعة",
+    "Terms": "الشروط",
+    "Terms and Conditions": "الشروط والأحكام",
+    "Application Policy": "سياسة التطبيق",
+    "Payment Methods": "طرق الدفع",
+    "Payment Method": "طريقة الدفع",
+    "Add New Payment Method": "أضافة طريقة دفع جديده",
+    "Show Payment Methods": "عرض طرق الدفع",
+    "Payment Method Name": "أسم طريقة الدفع",
+    "Payment Method Details": "تفاصيل طريقة الدفع",
+    "Payment Method Image": "صورة طريقة الدفع",
+    "Config": "الإعدادات",
+    "Projects Management": "إدارة المشاريع",
+    "Project Main Data": "بيانات المشروع الرئيسية",
+    "Projects": "المشاريع",
+    "Project Code": "كود المشروع",
+    "Project Name": "أسم المشروع",
+    "Goverments Management": "إدارة المحافظات",
+    "Governorate Code": "كود المحافظه",
+    "Governorate Name": "أسم المحافظه",
+    "Districts Management": "إدارة المناطق",
+    "Districts": "المناطق/الحى",
+    "District Code": "كود المنطقة",
+    "District Name": "أسم المنطقة",
+    "Owner Management": "إدارة المالك",
+    "Owner": "المالك",
+    "Owner Name": "أسم المالك",
+    "Owner Code": "كود المالك",
+    "Marketing Companies Management": "إدارة شركات التسويق",
+    "Marketing": "مخصص لصالح",
+    "Marketing Company Name": "أسم شركة التسويق",
+    "Marketing Company Code": "كود شركة التسويق",
+    "Developers Management": "إدارة المطورين",
+    "Developers": "القائم بالتنفيذ",
+    "Developer Name": "أسم المطور",
+    "Developer Code": "كود المطور",
+    "Banks Management": "إدارة البنوك",
+    "Bank": "الشركة الداعمة / البنك",
+    "Bank Name": "أسم البنك",
+    "Bank Code": "كود البنك",
+    "Bank Account Number": "رقم حساب البنك",
+    "Other": "أخرى",
+    "Consultant Management": "إدارة الاستشاريين",
+    "Consultants": "الاستشاريين",
+    "Consultant Name": "أسم الاستشاري",
+    "Consultant Code": "كود الاستشاري",
+    "Phases": "المراحل",
+    "Phase Name": "أسم المرحلة",
+    "Phase Code": "كود المرحلة",
+    "Phase Details": "تفاصيل المرحلة",
+    "Add New Phase": "أضافة مرحلة جديده",
+    "Show Phases": "عرض المراحل",
+    "Phase Management": "إدارة المراحل",
+    "Installment system": "نظام الاقساط",
+    "Allocation Of Units": "تخصيص الوحدات",
+    "Contract Total": "إجمالي التعاقد",
+    "Area": "المساحة",
+    "Floor": "الدور",
+    "Add Customer To Contract": "إضافة العميل للعقد",
+    "Serial number": "الرقم التسلسلي",
+    "Customer already added": "العميل تم إضافته مسبقاً",
+    "Customer Information": "بيانات العميل",
+    "Select An Customer": "إختار عميل",
+    "Buildings": "العمارات",
+    "Appartments": "الشقق",
+    "Appartment Code": "رقم الشقه",
+    "Appartment Name": "أسم الشقه",
+    "Building Code": "رقم العماره",
+    "Building Name": "أسم العماره",
+    "Payment Plans": "خطط الدفع",
+    "Sume The Installments": "أحسب الاقساط",
+    "Installments": "الاقساط",
+    "Amount": "المبلغ",
+    "Installment Value": "قيمة القسط",
+    "Installment": "قسط",
+    "Years": "عدد السنوات",
+    "Installments Count": "عدد الاقساط",
+    "Down Payment Percent": "نسبه دفعه المقدم",
+    "Down Payment": "المقدم",
+    "Installments Of Down Payment  Count": "عدد دفعات ( المقدم )",
+    "Starting from the date": "بدايه من تاريخ",
+    "Number of installments": "عدد الأقساط",
+    "allocation payment": "دفعه تخصيص",
+    "Payment received": "دفعه أستلام",
+    "Admin Fees": "المصاريف الإدارية",
+    "Costs": "التكاليف",
+    "Add Costs": "إضافة التكاليف",
+    "Generate Costs": "توليد التكاليف",
+    "Collections": "التحصيلات",
+    "Collect": "تحصيل",
+    "Remove All": "حذف الكل",
+    "Receipt number": "رقم الإيصال",
+    "Receipt date": "تاريخ الإيصال",
+    "Time": "الوقت",
+    "Paid": "محصل",
+    "Movement of payment receipts": "حركه إيصالات الدفع",
+    "Total of each project": "إجمالي كل مشروع",
+    "Total installments": "إجمالي الاقساط",
+    "Total Paid": "إجمالي المحصل",
+    "Total installment paid": "إجمالي الاقساط المحصلة",
+    "Total Costs Paid": "إجمالي التكاليف المحصلة",
+    "Total Admin Fees": "إجمالي المصاريف الإدارية",
+    "Total Costs": "إجمالي التكاليف",
+    "Total Collections": "إجمالي التحصيلات",
+    "Customer data": "بيانات العملاء",
+    "Customers Types": "موقف العضو",
+    "Employee Name": "أسم الموظف",
+    "Employee Code": "كود الموظف",
+    "Sales": "المبيعات",
+    "One Payment": "دفعة واحده",
+    "Total receipt": "إجمالي الإيصال",
+    "reaming": "المتبقي",
+    "Partially collected": "محصل جزئياََ",
+    "Customer Balance": "رصيد العميل",
+    "Total payments": "إجمالي المدفوعات",
+    "Statement": "البيان",
+    "bank": "البنك",
+    "Receipt Date": "تاريخ الإيصال",
+    "Choose Search type": "اختر نوع البحث",
+    "Contracts": "العقود",
+    "Reservations": "إستمارات الحجز",
+    "Operations": "العمليات",
+    "Main data": "البيانات الرئيسيه",
+    "Reservation info": "تفاصيل الاستمارة",
+    "Add a new beneficiary": "إضافه مستفيد جديد",
+    "License expired. Please renew.": "تم أنتهاء الترخيص برجاء التجديد",
+    "The license does not exist, please contact the relevant department.": "الترخيص غير موجود برجاء الاتصال بالقسم المختص.",
+    "Delete beneficiary": "سحب المستفيد",
+    "Withdrawal": "سحب",
+    "Withdrawal saved successfully.": "تم السحب بنجاح",
+    "Show Costs & Installments": "عرض التكاليف والاقساط",
+    "Transfer": "تحويل",
+    "Transfer request to" :"طلب نقل إلى",
+    "Done create transferred request successfully." : "تم إنشاءطلب نقل التحويل بنجاح"
+}
