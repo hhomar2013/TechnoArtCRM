@@ -664,5 +664,6 @@
     "Show Costs & Installments": "عرض التكاليف والاقساط",
     "Transfer": "تحويل",
     "Transfer request to" :"طلب نقل إلى",
-    "Done create transferred request successfully." : "تم إنشاءطلب نقل التحويل بنجاح"
+    "Done create transferred request successfully." : "تم إنشاءطلب نقل التحويل بنجاح",
+    "Partial payment" :"دفعه جزئية"
 }

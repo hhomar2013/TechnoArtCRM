@@ -16,6 +16,10 @@ return new class extends Migration
             $table->foreignId('cost_id')->nullable()->constrained('costs_installments')->onDelete('cascade');
             $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
             $table->decimal('remaining', 10, 2);
+            $table->string('bank')->nullable();
+            $table->string('time')->nullable();
+            $table->string('transaction_id')->nullable();
+            $table->string('transaction_date')->nullable();
             $table->string('notes')->nullable();
             $table->string('status')->nullable();
             $table->timestamps();

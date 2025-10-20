@@ -54,7 +54,7 @@ class CollectionComponent extends Component
     {
         // strlen($this->notes) > 1
         if ($this->notes) {
-        CustomerNotes::query()->create([
+            CustomerNotes::query()->create([
                 'note' => $this->notes,
                 'user_id' => auth()->user()->id,
                 'customer_id' => $this->customer_id,
@@ -113,6 +113,10 @@ class CollectionComponent extends Component
     {
         $costs_reaming         = costs_reamig::where('cost_id', $this->cost_reaming)->first();
         $costs_reaming->status = 'paid';
+        $costs_reaming->bank = $this->bank;
+        $costs_reaming->time = $this->time;
+        $costs_reaming->transaction_id = $this->transaction_id;
+        $costs_reaming->transaction_date = $this->transaction_id;
         $costs_reaming->save();
         if ($costs_reaming) {
             $costs = costs_installments::query()->findOrFail($this->cost_reaming);
@@ -132,7 +136,7 @@ class CollectionComponent extends Component
         $this->cost_reaming  = false;
         $this->selectedCosts = [];
         $this->dispatch('message', message: __('Done Save'));
-        $this->reset(['bank', 'transaction_id', 'transaction_date', 'time', 'reaming', 'receipt_value' ,'notes']);
+        $this->reset(['bank', 'transaction_id', 'transaction_date', 'time', 'reaming', 'receipt_value', 'notes']);
         $this->removeAll();
         $this->getSearch($this->selected_installment_id);
     }
@@ -141,6 +145,10 @@ class CollectionComponent extends Component
     {
         $payment_reamings         = payments_reaming::where('payment_id', $this->payment_reaming)->first();
         $payment_reamings->status = 'paid';
+        $payment_reamings->bank = $this->bank;
+        $payment_reamings->time = $this->time;
+        $payment_reamings->transaction_id = $this->transaction_id;
+        $payment_reamings->transaction_date = $this->transaction_date;
         $payment_reamings->save();
         if ($payment_reamings) {
             $payments = payments::query()->findOrFail($this->payment_reaming);
@@ -470,7 +478,7 @@ class CollectionComponent extends Component
         }
         $this->saveNotes();
         $this->dispatch('message', message: __('Done Save'));
-        $this->reset(['bank', 'transaction_id', 'transaction_date', 'time', 'reaming', 'receipt_value','notes']);
+        $this->reset(['bank', 'transaction_id', 'transaction_date', 'time', 'reaming', 'receipt_value', 'notes']);
         $this->removeAll();
     }
 
@@ -573,7 +581,7 @@ class CollectionComponent extends Component
         }
         $this->saveNotes();
         $this->dispatch('message', message: __('Done Save'));
-        $this->reset(['bank', 'transaction_id', 'transaction_date', 'time', 'reaming', 'receipt_value','notes']);
+        $this->reset(['bank', 'transaction_id', 'transaction_date', 'time', 'reaming', 'receipt_value', 'notes']);
         $this->removeAll();
         $this->getSearch($this->selected_installment_id);
     }

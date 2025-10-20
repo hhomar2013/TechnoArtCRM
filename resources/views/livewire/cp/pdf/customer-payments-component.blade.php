@@ -3,9 +3,9 @@
         <button class="btn btn-primary" id="printButton" onclick="printDiv()">طباعة</button>
         <hr>
     </div>
-    <div class="container-fluid text-dark" style="font-weight: bold">
+    <div class="container-fluid text-dark " style="font-weight: bold">
 
-        <div class="card shadow-lg p-3" id="printArea">
+        <div class="card shadow-lg p-3 {{ $transfer ? 'bg-warning' : '' }}" id="printArea">
             <div class="p-2">
                 <br>
                 <div class="row">
@@ -24,14 +24,22 @@
                         <p class=""><b>{{ __('Project Name') }}</b> : {{ $header[0]->project_name }}</p>
                         <p class=""><b>{{ __('Phase Name') }}</b> : {{ $header[0]->phase_name }}</p>
                     </div>
-                    <div class="col-lg-2 " >
+                    <div class="col-lg-2 ">
                         <p><b>عدد الأقساط</b> : {{ $payments->count() }}</p>
                         <p><b>قيمة القسط</b> : {{ $payments->last()->amount }}</p>
+                    </div>
+                    <div class="col-lg-6">
+                        @if ($transfer)
+                            <label for=""> {{ __('موقف العميل') }} </label>
+                            <p><b> {{ $transfer->note }} </b></p>
+                        @else
+                        @endif
+
                     </div>
                 </div>
             </div>
             <div class="card-body">
-             
+
                 {{-- Start Costs --}}
                 <div class="row">
                     <div class="col-lg-6 col-sm-8">
@@ -39,6 +47,8 @@
                         <table class="table table-bordered text-dark  text-center" style="border: 3px solid black;">
                             <thead style="border: 3px solid black;">
                                 <tr style="border: 3px solid black;">
+                                    <th style="font-weight: bold;font-size: 15px; border: 3px solid black;">
+                                        {{ __('#') }}</th>
                                     <th style="font-weight: bold;font-size: 15px; border: 3px solid black;">
                                         {{ __('t.date') }}</th>
                                     <th style="font-weight: bold;font-size: 15px; border: 3px solid black;">
@@ -69,6 +79,9 @@
                                     @endif
 
                                     <tr style="border: 3px solid black;">
+                                        <td>
+                                            {{ $cost->id }}
+                                        </td>
                                         <td style="border: 3px solid black;">{{ str_replace('-', '/', $cost->date) }}
                                         </td>
                                         <td style="border: 3px solid black;">{{ $cost->cost_name }}</td>
@@ -79,6 +92,27 @@
                                         <td style="border: 3px solid black;">
                                             {{ str_replace('-', '/', $cost->transaction_date) }}</td>
                                     </tr>
+                                    {{-- شوف لو فيه reaming بنفس cost_id --}}
+                                    @foreach ($costs_reaming as $reaming)
+                                        @if ($reaming->cost_id == $cost->id)
+                                            <tr style="border: 3px solid black; background-color: rgb(164, 237, 153);">
+                                                <td>
+                                                    {{ $cost->id }}
+                                                </td>
+                                                <td style="border: 3px solid black;">
+                                                    {{-- {{ str_replace('-', '/', $reaming->updated_at) }} --}}
+                                                </td>
+                                                <td style="border: 3px solid black;">{{ __('Partial payment') }}</td>
+                                                <td style="border: 3px solid black;">{{ $reaming->banke_name }}</td>
+                                                <td style="border: 3px solid black;">{{ $reaming->time }}</td>
+                                                <td style="border: 3px solid black;">
+                                                    {{ number_format($reaming->remaining, 2) . __('EGP') }}
+                                                </td>
+                                                <td style="border: 3px solid black;">
+                                                    {{ str_replace('-', '/', $reaming->transaction_date) }}</td>
+                                            </tr>
+                                        @endif
+                                    @endforeach
                                 @endforeach
                                 <tr style="border: 3px solid black;">
                                     <td colspan="4" class="text-center" style="border: 3px solid black;">
