@@ -46,7 +46,7 @@
                                             <input type="number" wire:model="costs.{{ $index }}.transaction_id"
                                                 class="form-control" placeholder="0" min="0">
                                             <label for="">المبلغ</label>
-                                            <input type="number" wire:model.live="costs.{{ $index }}.value" wire:change="calculateTotalAmount"
+                                            <input type="number" wire:model.live="costs.{{ $index }}.value"
                                                 class="form-control" placeholder="{{ __('Value') }}">
 
                                             <label for="">دفعه / مقسمه</label>
