@@ -7,6 +7,7 @@ use App\Livewire\Cp\Installments\AllocationOfUnitsComponent;
 use App\Livewire\Cp\Installments\CollectionComponent;
 use App\Livewire\Cp\Installments\Customers\CustomersComponent;
 use App\Livewire\Cp\Installments\ReservationsComponent;
+use App\Livewire\Cp\Installments\Withdrawal\WithdarawalComponent;
 use App\Livewire\Cp\Pdf\CustomerPaymentsComponent;
 use App\Livewire\Cp\ProjectManagement\ProjectManagementComponent;
 use App\Livewire\Cp\Reports\CustomerDateComponent;
@@ -40,6 +41,7 @@ Route::middleware('check.license')->group(function () {
         Route::get('/allocation-of-units', AllocationOfUnitsComponent::class)->name('allocation-of-units');
         Route::get('/collection', CollectionComponent::class)->name('collection');
         Route::get('/reservations', ReservationsComponent::class)->name('reservations');
+        Route::get('/withdrawal', WithdarawalComponent::class)->name('withdrawal');
 
         /* Reports */
 

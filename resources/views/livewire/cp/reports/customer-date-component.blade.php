@@ -93,14 +93,14 @@
                                         <td>{{ $customer->sales->name }}</td>
                                         <td>
                                             <button class="btn btn-warning btn-sm btn-rounded" type="submit"
-                                            wire:click.prevent="showNotes({{ $customer->id }})">
-                                            <i class="fa fa-eye"></i>
-                                        </button> |
+                                                wire:click.prevent="showNotes({{ $customer->id }})">
+                                                <i class="fa fa-eye"></i>
+                                            </button> |
                                             <button class="btn btn-primary btn-sm btn-rounded" type="submit"
                                                 wire:click.prevent="customerdEdit({{ $customer->id }})">
                                                 <i class="fa fa-edit"></i>
                                             </button>
-                                           
+
                                         </td>
                                     @endforeach
                                 </tbody>
@@ -131,7 +131,8 @@
             </div>
             @forelse ($customerNotes as $notes)
                 <div class="card-body p-3" style="border-bottom: 1px solid #706e6e;">
-                    <h5> {{ $notes->note }}</h5>    <small> {{ $notes->created_at }}</small> <br> من خلال : {{ $notes->user->name }}
+                    <h5> {!! $notes->note !!}</h5> <small> {{ $notes->created_at }}</small> <br> من خلال :
+                    {{ $notes->user->name }}
                 </div>
 
             @empty

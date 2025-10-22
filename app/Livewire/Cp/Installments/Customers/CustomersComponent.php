@@ -49,22 +49,28 @@ class CustomersComponent extends Component
             // 'floor' => 'required',
             // 'total' => 'required',
         ]);
-        Customers::create([
-            'code' => $this->code,
-            'name' => $this->name,
-            'idCard' => $this->idCard,
-            'address' => $this->address,
-            'mobile' => $this->mobile,
-            'phone' => $this->phone,
-            'area' => $this->area,
-            'floor' => $this->floor,
-            'other' => $this->other,
-            'total' => $this->total,
-            'customer_type' => $this->customersTypeId ? $this->customersTypeId : 1,
-            'sales_id' => $this->salesId ? $this->salesId : 1,
-        ]);
-        $this->resetForm();
-        $this->dispatch('message', message: __('Done Save'));
+        $customer = Customers::query()->where('code', $this->code)->first();
+        if ($customer) {
+            $this->dispatch('error', message: __('Customer already exists'));
+            return;
+        } else {
+            Customers::create([
+                'code' => $this->code,
+                'name' => $this->name,
+                'idCard' => $this->idCard,
+                'address' => $this->address,
+                'mobile' => $this->mobile,
+                'phone' => $this->phone,
+                'area' => $this->area,
+                'floor' => $this->floor,
+                'other' => $this->other,
+                'total' => $this->total,
+                'customer_type' => $this->customersTypeId ? $this->customersTypeId : 1,
+                'sales_id' => $this->salesId ? $this->salesId : 1,
+            ]);
+            $this->resetForm();
+            $this->dispatch('message', message: __('Done Save'));
+        }
     }
 
     public function editCustomer($id)

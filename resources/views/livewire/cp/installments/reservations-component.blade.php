@@ -90,6 +90,7 @@
                                                     {{-- <p>{{ $plan->total_amount }}</p> --}}
                                                     <div class="row">
                                                         <div class="col-lg-6 ">
+                                                            <p>{{__('Reservation Number')}} : {{ $plan->id }}</p>
                                                             <p>{{ __('Project Code') }} : {{ $plan->project->code }}
                                                             </p>
                                                             <p>{{ __('Project Name') }} : {{ $plan->project->name }}
@@ -180,6 +181,11 @@
                                                                 <option value=""> {{ __('No Data') }} </option>
                                                             @endforelse
                                                         </select>
+                                                        <label for=""> {{__('Reason')}} </label>
+                                                        <textarea class="form-control" wire:model.live="notes" name="" id="" cols="30" rows="10"></textarea>
+                                                        @error('notes')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
                                                         <br>
                                                         <button class="btn btn-danger btn-sm btn-rounded"
                                                             wire:click="saveWithdrawal">

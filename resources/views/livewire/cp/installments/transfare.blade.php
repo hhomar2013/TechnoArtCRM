@@ -85,7 +85,7 @@
                     <div class="col-lg-3">
                         <label for="">{{ __('Projects') }}</label>
                         <select class="form-control" wire:model.live="project">
-                            <option value="">{{ __('Select an option') }}</option>
+                            <option value="">{{ __('Select an option') }}</option> 
                             @foreach ($projects as $project_val)
                                 <option value="{{ $project_val->id }}">{{ $project_val->name }}</option>
                             @endforeach

@@ -25,12 +25,11 @@
                                     <div class="col-lg-6">
                                         <label for="">{{ __('Customer Code') }}</label>
                                         <input type="text" wire:model="code" placeholder="{{ __('Customer Code') }}"
-                                            readonly class="form-control">
+                                             class="form-control">
                                         @error('code')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                         <br>
-
                                         <label for="">{{ __('Customer Name') }}</label>
                                         <input type="text" wire:model="name" placeholder="{{ __('Customer Name') }}"
                                             class="form-control">

@@ -43,6 +43,7 @@ class ReservationsComponent extends Component
     public $time, $transaction_date, $transaction_id, $bank, $amount, $costType, $transfare, $reason;
     public $addCostsInstallments = false;
     public $payment_transfare = [], $cost_transfare = [], $total = ['total_payments' => 0, 'total_costs' => 0];
+    public $notes;
     protected $listeners = ['refreshReservations' => '$refresh', 'deleteReservation' => 'delete', 'delteCost' => 'delteCost', 'delteInstallment' => 'delteInstallment', 'transfare'];
     public function Transfare($id)
     {
@@ -113,7 +114,7 @@ class ReservationsComponent extends Component
         $total = 0;
         $total = ($this->total['total_costs'] + $this->total['total_payments']);
         $installment_plan = installment_plans::query()->find($this->transfare);
-        $customer = instllmentCustomers::query()->where('installment_plan_id',$installment_plan->id)->first();
+        $customer = instllmentCustomers::query()->where('installment_plan_id', $installment_plan->id)->first();
 
         if ($installment_plan->Count() > 0) {
             $installment_plan->update([
@@ -386,14 +387,16 @@ class ReservationsComponent extends Component
 
             $installmentCustomer = instllmentCustomers::query()->where('customersId', '=', $customer->id)->first();
             $selectedWithdrawelinstallment  = $installmentCustomer->installment_plan_id;
-            $installmentCustomer->delete();
+
             if ($installmentCustomer) {
+                $this->validate(['notes' => 'required']);
                 $note = CustomerNotes::query()->create([
-                    'note' => " : تم سحب العميل" . ' ' . $customer->name . ' ' . " من أستمارة " . ' #' . $selectedWithdrawelinstallment . ' ',
+                    'note' => $this->notes,
                     'customer_id' => $customer->id,
                     'user_id' => auth()->user()->id,
                 ]);
                 if ($note) {
+                    $installmentCustomer->delete();
                     $this->dispatch('refreshReservations');
                     $this->searchCustomer();
                     $this->dispatch('message', message: __('Withdrawal saved successfully.') . ' للعميل : ' . $customer->name);

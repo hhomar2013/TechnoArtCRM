@@ -169,11 +169,7 @@
                                         <input type="text" class="form-control" wire:model.live="customer_id" />
                                         <br />
                                     </div>
-                                    {{-- <div class="col-lg-2">
-                                    <label for=""><i class="fa fa-search"></i></label> <br>
-                                    <button class="btn btn-primary btn-rounded" wire:click="searchCustomer({{ $customer_id }})">{{ __('Search') }}</button>
-                                </div> --}}
-
+                                  
                                     <div class="col-lg-3">
                                         <label for="">{{ __('Customers') }}</label>
                                         <select name="" id="" class="form-control"
@@ -271,6 +267,7 @@
                                             <th>{{ __('type') }}</th>
                                             <th>{{ __('Amount') }}</th>
                                             <th>{{ __('t.date') }}</th>
+                                            <th>{{ __('Receipt date') }}</th>
                                             <th>{{ __('Status') }}</th>
                                             <th>{{ __('Actions') }}</th>
                                         </tr>
@@ -282,6 +279,7 @@
                                             <td>{{ $cost_val->costs->name }}</td>
                                             <td>{{ number_format($cost_val->value, 2) }}</td>
                                             <td>{{ $cost_val->date }}</td>
+                                            <td>{{ $cost_val->transaction_date }}</td>
                                             <td>
                                                 @if ($cost_val->status == 'pending')
                                                     <span class="badge badge-warning">{{ __('pending') }}</span>
@@ -342,6 +340,7 @@
                                             <th>{{ __('type') }}</th>
                                             <th>{{ __('Amount') }}</th>
                                             <th>{{ __('t.date') }}</th>
+                                            <th>{{ __('Receipt date') }}</th>
                                             <th>{{ __('Status') }}</th>
                                             <th>{{ __('Actions') }}</th>
                                         </tr>
@@ -356,6 +355,7 @@
                                             </td>
                                             <td>{{ number_format($payment_val->amount, 2) }}</td>
                                             <td>{{ $payment_val->due_date }}</td>
+                                            <td>{{ $payment_val->transaction_date }}</td>
                                             <td>
                                                 @if ($payment_val->status == 'pending')
                                                     <span class="badge badge-warning">{{ __('pending') }}</span>
