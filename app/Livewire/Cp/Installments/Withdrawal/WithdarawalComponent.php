@@ -156,6 +156,12 @@ class WithdarawalComponent extends Component
 
     public function save()
     {
+        $this->validate([
+            'customer_id' => 'required',
+            'amount'      => 'required',
+            'notes'       => 'required',
+            'costs'       => 'required',
+        ]);
         $withdrawal = withdrawal::query()->updateOrCreate([
             'customer_id' => $this->customer_id,
         ], [
