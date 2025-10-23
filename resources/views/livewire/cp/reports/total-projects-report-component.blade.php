@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     <label for="">{{ __('Projects') }}</label>
-                    <select wire:model.live="project_id" class="form-control" wire:change="getResult()">
+                    <select wire:model.live="project_id" class="form-control" >
                         <option value="">{{ __('Select an option') }}</option>
                         @foreach ($projects as $project)
                             <option value="{{ $project->id }}">{{ $project->name }}</option>
@@ -90,7 +90,7 @@
                                 {{ number_format($total_cost_paid, 2) }}</b>
                         </h3>
                     </div>
-                    
+
                 </div>
             @endif
 

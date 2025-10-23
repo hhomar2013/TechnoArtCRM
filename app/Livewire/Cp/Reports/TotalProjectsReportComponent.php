@@ -45,24 +45,6 @@ class TotalProjectsReportComponent extends Component
     public function getProjectTotal($project_id)
     {
         $search = '';
-        // $search = DB::table('customers')
-        //     ->select(
-        //         'customers.*',
-        //         'instllment_customers.installment_plan_id',
-        //         'installment_plans.project_id',
-        //         'projects.name as project_name',
-        //         'phases.name as phase_name',
-        //         'customer_types.name as customer_type_name',
-        //         'sales.name as sales_name'
-        //     )
-        //     ->join('instllment_customers', 'customers.id', '=', 'instllment_customers.customersId')
-        //     ->join('installment_plans', 'instllment_customers.installment_plan_id', '=', 'installment_plans.id')
-        //     ->join('projects', 'installment_plans.project_id', '=', 'projects.id')
-        //     ->join('phases', 'installment_plans.phase_id', '=', 'phases.id')
-        //     ->join('customer_types', 'customers.customer_type', '=', 'customer_types.id')
-        //     ->join('sales', 'customers.sales_id', '=', 'sales.id')
-        //     ->where('projects.id', $project_id)
-        //     ->get();
         $search = DB::table('customers')
             ->select(
                 'customers.*',
@@ -81,13 +63,9 @@ class TotalProjectsReportComponent extends Component
             ->join('customer_types', 'customers.customer_type', '=', 'customer_types.id')
             ->join('sales', 'customers.sales_id', '=', 'sales.id')
             ->where('projects.id', $project_id)
-            // ->where('phases.id', $this->phase_id)
-            // ->orderBy('customers.id', 'desc') // علشان يجيب أول واحد
             ->get()
             ->unique('installment_plan_id') // هنا بيشيل التكرار ويخلي أول عميل بس
             ->values();
-
-        // dd($search);
         return $search ?? [];
     }
     public function getTolalPayments($project_id)

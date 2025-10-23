@@ -10,12 +10,12 @@
                 <br>
                 <div class="row">
                     @foreach ($header as $val_customer)
-                        <div class="row-lg-6 p-2">
-                            <h5 class="">
-                                <b>{{ __('Name') }}</b>&nbsp;:&nbsp;{{ $val_customer->customer_name }}
-                            </h5>
-                            <h6 class=""><b>{{ __('Customer ID') }}</b>&nbsp;:&nbsp;{{ $val_customer->code }}</h6>
-                        </div>
+                    <div class="row-lg-6 p-2">
+                        <h5 class="">
+                            <b>{{ __('Name') }}</b>&nbsp;:&nbsp;{{ $val_customer->customer_name }}
+                        </h5>
+                        <h6 class=""><b>{{ __('Customer ID') }}</b>&nbsp;:&nbsp;{{ $val_customer->code }}</h6>
+                    </div>
                     @endforeach
                 </div>
                 <hr />
@@ -23,6 +23,7 @@
                     <div class="col-lg-2" style="border-left: black 1px solid">
                         <p class=""><b>{{ __('Project Name') }}</b> : {{ $header[0]->project_name }}</p>
                         <p class=""><b>{{ __('Phase Name') }}</b> : {{ $header[0]->phase_name }}</p>
+                        <p class=""><b>{{ __('Area') }}</b> : {{ $header[0]->area }} م</p>
                     </div>
                     <div class="col-lg-2 ">
                         <p><b>عدد الأقساط</b> : {{ $payments->count() }}</p>
@@ -30,8 +31,8 @@
                     </div>
                     <div class="col-lg-6">
                         @if ($transfer)
-                            <label for=""> {{ __('موقف العميل') }} </label>
-                            <p><b> {{ $transfer->note }} </b></p>
+                        <label for=""> {{ __('موقف العميل') }} </label>
+                        <p><b> {{ $transfer->note }} </b></p>
                         @else
                         @endif
 
@@ -42,7 +43,7 @@
 
                 {{-- Start Costs --}}
                 <div class="row">
-                    <div class="col-lg-6 col-sm-8">
+                    <div class="col-lg-8 col-sm-8">
                         <h3>{{ __('Costs') }}</h3>
                         <table class="table table-bordered text-dark  text-center" style="border: 3px solid black;">
                             <thead style="border: 3px solid black;">
@@ -66,53 +67,53 @@
                             </thead>
                             <tbody>
                                 @foreach ($costs as $cost)
-                                    @if ($cost->status == 'partiallycollected')
-                                        @php
-                                            $remaing_costs = $cost->value - $cost->remaining;
-                                            $cost->value = $cost->value - $cost->remaining;
-                                            $total_costs += $remaing_costs;
-                                        @endphp
-                                    @elseif($cost->status == 'paid')
-                                        @php
-                                            $total_costs += $cost->value;
-                                        @endphp
-                                    @endif
+                                @if ($cost->status == 'partiallycollected')
+                                @php
+                                $remaing_costs = $cost->value - $cost->remaining;
+                                $cost->value = $cost->value - $cost->remaining;
+                                $total_costs += $remaing_costs;
+                                @endphp
+                                @elseif($cost->status == 'paid')
+                                @php
+                                $total_costs += $cost->value;
+                                @endphp
+                                @endif
 
-                                    <tr style="border: 3px solid black;">
-                                        <td>
-                                            {{ $cost->id }}
-                                        </td>
-                                        <td style="border: 3px solid black;">{{ str_replace('-', '/', $cost->date) }}
-                                        </td>
-                                        <td style="border: 3px solid black;">{{ $cost->cost_name }}</td>
-                                        <td style="border: 3px solid black;">{{ $cost->banke_name }}</td>
-                                        <td style="border: 3px solid black;">{{ $cost->time }}</td>
-                                        <td style="border: 3px solid black;">{{ number_format($cost->value, 1) }}
-                                            {{ $cost->status == 'partiallycollected' ? '(محصل جزئيا)' : null }}</td>
-                                        <td style="border: 3px solid black;">
-                                            {{ str_replace('-', '/', $cost->transaction_date) }}</td>
-                                    </tr>
-                                    {{-- شوف لو فيه reaming بنفس cost_id --}}
-                                    @foreach ($costs_reaming as $reaming)
-                                        @if ($reaming->cost_id == $cost->id)
-                                            <tr style="border: 3px solid black; background-color: rgb(164, 237, 153);">
-                                                <td>
-                                                    {{ $cost->id }}
-                                                </td>
-                                                <td style="border: 3px solid black;">
-                                                    {{-- {{ str_replace('-', '/', $reaming->updated_at) }} --}}
-                                                </td>
-                                                <td style="border: 3px solid black;">{{ __('Partial payment') }}</td>
-                                                <td style="border: 3px solid black;">{{ $reaming->banke_name }}</td>
-                                                <td style="border: 3px solid black;">{{ $reaming->time }}</td>
-                                                <td style="border: 3px solid black;">
-                                                    {{ number_format($reaming->remaining, 2) . __('EGP') }}
-                                                </td>
-                                                <td style="border: 3px solid black;">
-                                                    {{ str_replace('-', '/', $reaming->transaction_date) }}</td>
-                                            </tr>
-                                        @endif
-                                    @endforeach
+                                <tr style="border: 3px solid black;">
+                                    <td>
+                                        {{ $cost->id }}
+                                    </td>
+                                    <td style="border: 3px solid black;">{{ str_replace('-', '/', $cost->date) }}
+                                    </td>
+                                    <td style="border: 3px solid black;">{{ $cost->cost_name }}</td>
+                                    <td style="border: 3px solid black;">{{ $cost->banke_name }}</td>
+                                    <td style="border: 3px solid black;">{{ $cost->time }}</td>
+                                    <td style="border: 3px solid black;">{{ number_format($cost->value, 1) }}
+                                        {{ $cost->status == 'partiallycollected' ? '(محصل جزئيا)' : null }}</td>
+                                    <td style="border: 3px solid black;">
+                                        {{ str_replace('-', '/', $cost->transaction_date) }}</td>
+                                </tr>
+                                {{-- شوف لو فيه reaming بنفس cost_id --}}
+                                @foreach ($costs_reaming as $reaming)
+                                @if ($reaming->cost_id == $cost->id)
+                                <tr style="border: 3px solid black; background-color: rgb(164, 237, 153);">
+                                    <td>
+                                        {{ $cost->id }}
+                                    </td>
+                                    <td style="border: 3px solid black;">
+                                        {{-- {{ str_replace('-', '/', $reaming->updated_at) }} --}}
+                                    </td>
+                                    <td style="border: 3px solid black;">{{ __('Partial payment') }}</td>
+                                    <td style="border: 3px solid black;">{{ $reaming->banke_name }}</td>
+                                    <td style="border: 3px solid black;">{{ $reaming->time }}</td>
+                                    <td style="border: 3px solid black;">
+                                        {{ number_format($reaming->remaining, 2) . __('EGP') }}
+                                    </td>
+                                    <td style="border: 3px solid black;">
+                                        {{ str_replace('-', '/', $reaming->transaction_date) }}</td>
+                                </tr>
+                                @endif
+                                @endforeach
                                 @endforeach
                                 <tr style="border: 3px solid black;">
                                     <td colspan="4" class="text-center" style="border: 3px solid black;">
@@ -136,12 +137,32 @@
                         </table>
                     </div>
 
+
+                    <div class="col-lg-4 col-sm-4">
+                        <h3>{{ __('notes') }}</h3>
+                        <table class="table table-bordered text-dark  text-center" style="border: 3px solid black;">
+                            {{-- <thead style="border: 3px solid black;">
+                                <tr style="border: 3px solid black;">
+                                    <th style="font-weight: bold;font-size: 15px; border: 3px solid black;">
+                                        {{ __('notes') }}</th>
+                                </tr>
+                            </thead> --}}
+                            <tbody>
+                                @foreach ($CustomersNotes as $note)
+
+                                <tr style="border: 3px solid black;">
+                                    <td style="border: 3px solid black;">{{ $note->note }}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>{{-- End Costs --}}
                 <br>
                 <hr><br>
                 {{-- Start Installments --}}
                 <div class="row">
-                    <div class="col-lg-6 col-sm-8">
+                    <div class="col-lg-6 col-sm-12">
                         <h3>{{ __('Installments') }}</h3>
                         <table class="table table-bordered text-dark text-center" style="border: 3px solid black;">
                             <thead style="border: 3px solid black;">
@@ -164,30 +185,30 @@
                             <tbody>
                                 <?php $i = 1; ?>
                                 @foreach ($payments as $payment)
-                                    @if ($payment->status == 'partiallycollected')
-                                        @php
-                                            $remaing_costs = $payment->amount - $payment->remaining;
-                                            $payment->amount = $payment->amount - $payment->remaining;
-                                            $total_payment += $remaing_costs;
-                                        @endphp
-                                    @elseif($payment->status == 'paid')
-                                        @php
-                                            $total_payment += $payment->amount;
-                                        @endphp
-                                    @endif
+                                @if ($payment->status == 'partiallycollected')
+                                @php
+                                $remaing_costs = $payment->amount - $payment->remaining;
+                                $payment->amount = $payment->amount - $payment->remaining;
+                                $total_payment += $remaing_costs;
+                                @endphp
+                                @elseif($payment->status == 'paid')
+                                @php
+                                $total_payment += $payment->amount;
+                                @endphp
+                                @endif
 
-                                    <tr style="border: 3px solid black;">
-                                        <td style="border: 3px solid black;">{{ $i++ }}</td>
-                                        <td style="border: 3px solid black;">
-                                            {{ str_replace('-', '/', $payment->due_date) }} </td>
-                                        <td style="border: 3px solid black;">{{ $payment->bank_name }}</td>
-                                        <td style="border: 3px solid black;">{{ $payment->paid_at }}</td>
-                                        <td style="border: 3px solid black;">{{ number_format($payment->amount, 1) }}
-                                            {{ $payment->status == 'partiallycollected' ? '(محصل جزئيا)' : null }}
-                                        </td>
-                                        <td style="border: 3px solid black;">
-                                            {{ str_replace('-', '/', $payment->transaction_date) }}</td>
-                                    </tr>
+                                <tr style="border: 3px solid black;">
+                                    <td style="border: 3px solid black;">{{ $i++ }}</td>
+                                    <td style="border: 3px solid black;">
+                                        {{ str_replace('-', '/', $payment->due_date) }} </td>
+                                    <td style="border: 3px solid black;">{{ $payment->bank_name }}</td>
+                                    <td style="border: 3px solid black;">{{ $payment->paid_at }}</td>
+                                    <td style="border: 3px solid black;">{{ number_format($payment->amount, 1) }}
+                                        {{ $payment->status == 'partiallycollected' ? '(محصل جزئيا)' : null }}
+                                    </td>
+                                    <td style="border: 3px solid black;">
+                                        {{ str_replace('-', '/', $payment->transaction_date) }}</td>
+                                </tr>
                                 @endforeach
                                 <tr style="border: 3px solid black;">
                                     <td colspan="4" class="text-center" style="border: 3px solid black;">
@@ -242,4 +263,5 @@
         document.body.innerHTML = originalContents;
         location.reload(); // يعيد تحميل الصفحة بعد الطباعة
     }
+
 </script>

@@ -370,7 +370,6 @@ class ReservationsComponent extends Component
         $this->tabs = $tab;
     }
 
-
     public function WithDrawal($id)
     {
         $this->isWithdrawal = true;
@@ -421,7 +420,6 @@ class ReservationsComponent extends Component
         }
     }
 
-
     public function searchCustomer()
     {
         $this->reset(['results', 'reservation_Info']);
@@ -450,6 +448,7 @@ class ReservationsComponent extends Component
             });
         }
         $this->results = $query->with('customers.customer')->get();
+        // dd($this->results);
         if (count($this->results) < 1) {
             $this->dispatch('error', message: __('No Results Found.'));
             $this->reset(['results', 'reservation_Info']);

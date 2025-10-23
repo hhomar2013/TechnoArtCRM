@@ -1,18 +1,12 @@
 <?php
-
 namespace App\Livewire\Cp\Pdf;
 
-use App\Models\costs_installments;
-use App\Models\costs_reamig;
-use App\Models\installment_plans;
-use App\Models\instllmentCustomers;
+use App\Models\CustomerNotes;
 use App\Models\payments_reaming;
 use App\Models\transfer_request;
 use Illuminate\Support\Facades\DB;
-use Livewire\Attributes\On;
 use Livewire\Attributes\Url;
 use Livewire\Component;
-
 
 class CustomerPaymentsComponent extends Component
 {
@@ -23,10 +17,10 @@ class CustomerPaymentsComponent extends Component
     public $costs_reaming;
     public $payments;
     public $payments_reaming;
+    public $CustomersNotes = [];
     public $total, $total_payment, $total_costs, $remaing_costs, $remaing_payment;
     #[Url]
     public $installmentId;
-
 
     public function mount($id)
     {
@@ -39,12 +33,11 @@ class CustomerPaymentsComponent extends Component
         $this->showPayments($this->installmentId);
     }
 
-
     public function showPayments($id)
     {
         $this->transfer = transfer_request::where('installment_plan_id', $id)->first();
-        $this->header = DB::table('installment_plans')
-            ->select('installment_plans.*', 'customers.name as customer_name', 'customers.code as code', 'projects.name as project_name', 'phases.name as phase_name')
+        $this->header   = DB::table('installment_plans')
+            ->select('installment_plans.*', 'customers.name as customer_name', 'customers.area as area', 'customers.code as code', 'projects.name as project_name', 'phases.name as phase_name')
             ->join('instllment_customers', 'installment_plans.id', '=', 'instllment_customers.installment_plan_id')
             ->join('projects', 'installment_plans.project_id', '=', 'projects.id')
             ->join('phases', 'installment_plans.phase_id', '=', 'phases.id')
@@ -66,13 +59,19 @@ class CustomerPaymentsComponent extends Component
             ->where('status', 'paid')
             ->get();
         $this->payments_reaming = payments_reaming::query()->get();
-        $this->payments = DB::table('payments')
+        $this->payments         = DB::table('payments')
             ->select('payments.*', 'banks.name as bank_name', 'payments_reamings.remaining')
             ->leftJoin('payments_reamings', 'payments.id', '=', 'payments_reamings.payment_id')
             ->leftJoin('banks', 'payments.bank', '=', 'banks.id')
             ->where('payments.installment_plan_id', '=', $id)
             ->get();
 
+        $customer_id = $this->header[0]->code;
+
+        $this->CustomersNotes = CustomerNotes::query()
+            ->where('customer_id', '=', $customer_id)
+            ->get();
+        // dd($this->CustomersNotes);
         // dd($this->costs_reaming);
     }
     public function render()
