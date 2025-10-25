@@ -154,6 +154,7 @@ class CollectionComponent extends Component
             $payments = payments::query()->findOrFail($this->payment_reaming);
             $payments->update([
                 'status' => 'paid',
+
             ]);
             boxs::query()->create([
                 'in_or_out' => 0,

@@ -31,9 +31,7 @@ class AllocationOfUnitsComponent extends Component
         $costs_installments_count, $costs_installments_period, $customer_units;
     public $search_type  = 'code';
     protected $listeners = ['getInstallmentPlans' => 'getInstallmentPlans'];
-
     public $costs = [];
-
     public $actionsOptions = [
         'one_payment' => 'دفعه واحده',
         'payments'    => 'مقسمه على دفعات',
@@ -50,6 +48,15 @@ class AllocationOfUnitsComponent extends Component
         ];
     }
 
+    public function hasEmptyDate()
+{
+    foreach ($this->costs as $cost) {
+        if ($cost['date'] == 0) {
+            return true; // يوجد صف بدون تاريخ
+        }
+    }
+    return false; // كل التواريخ سليمة
+}
     public function deleteAllCosts()
     {
         $this->reset(['costs']);
@@ -80,6 +87,12 @@ class AllocationOfUnitsComponent extends Component
 
     public function generateCostPayments($index)
     {
+        $this->validate([
+            "costs.$index.costs_installments_count"  => 'required|numeric|min:1',
+            "costs.$index.costs_installments_period" => 'required|numeric|min:1',
+            "costs.$index.value"                     => 'required|numeric|min:0',
+            "costs.$index.date"                      => 'required|date',
+        ]);
         $costId            = $this->costs[$index]['cost_id'];
         $date              = $this->costs[$index]['date'];
         $value             = $this->costs[$index]['value'];
@@ -99,13 +112,13 @@ class AllocationOfUnitsComponent extends Component
             ];
         }
         $this->removeCosts($index);
+
     }
 
     public function generate()
     {
         $this->validate([
             'selected_customers' => 'required',
-
         ]);
 
         $installmentPlan = installment_plans::create([
@@ -262,6 +275,11 @@ class AllocationOfUnitsComponent extends Component
                 'value'               => $value['value'],
             ]);
         }
+    }
+
+      public function getHasEmptyDateProperty()
+    {
+        return collect($this->costs)->contains(fn($cost) => $cost['date'] == 0 || empty($cost['date']));
     }
 
     public function render()
