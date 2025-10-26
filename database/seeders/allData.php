@@ -56,7 +56,7 @@ class allData extends Seeder
 
         $user= User::query()->create([
             'name' => 'superadmin',
-            'email' => 'omar@app.com',
+            'email' => 'admin',
             'password' => bcrypt('123456'),
         ]);
         $user->syncRoles($role);
