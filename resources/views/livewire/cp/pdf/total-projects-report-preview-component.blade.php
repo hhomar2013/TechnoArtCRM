@@ -10,21 +10,21 @@
                 <h4><i class="fa fa-home"></i> {{ __('Total of each project') }}</h4>
                 <hr>
                 <div class="table-responsive" style="overflow-y: auto; height: auto;">
-                    <table class="table table-bordered text-dark  text-center" style="font-weight: bold">
+                    <table class="table table-bordered text-dark  text-center" style="font-weight: bold; font-size: 17px;">
                         <thead>
                             <tr class=" text-danger bg-light">
-                                <th>#</th>
-                                <th>{{ __('Customer ID') }}</th>
-                                <th>{{ __('Name') }}</th>
-                                <th>{{ __('Project Name') }}</th>
-                                <th>{{ __('Phases') }}</th>
-                                <th>{{ __('Area') }}</th>
-                                <th>{{ __('Customers Types') }}</th>
-                                <th>{{ __('Sales') }}</th>
-                                <th>{{ __('Monthly payment') }}</th>
-                                <th>{{ __('Total Payments') }}</th>
-                                <th>{{ __('Total Costs') }}</th>
-                                <th>{{ __('Grand Total') }}</th>
+                                <th style="font-weight: bold; font-size: 17px;">#</th>
+                                <th style="font-weight: bold; font-size: 17px;">{{ __('Customer ID') }}</th>
+                                <th style="font-weight: bold; font-size: 17px;">{{ __('Name') }}</th>
+                                <th style="font-weight: bold; font-size: 17px;">{{ __('Project Name') }}</th>
+                                <th style="font-weight: bold; font-size: 17px;">{{ __('Phases') }}</th>
+                                <th style="font-weight: bold; font-size: 17px;">{{ __('Area') }}</th>
+                                <th style="font-weight: bold; font-size: 17px;">{{ __('Customers Types') }}</th>
+                                <th style="font-weight: bold; font-size: 17px;">{{ __('Sales') }}</th>
+                                <th style="font-weight: bold; font-size: 17px;">{{ __('Monthly payment') }}</th>
+                                <th style="font-weight: bold; font-size: 17px;">{{ __('Total Payments') }}</th>
+                                <th style="font-weight: bold; font-size: 17px;">{{ __('Total Costs') }}</th>
+                                <th style="font-weight: bold; font-size: 17px;">{{ __('Grand Total') }}</th>
                             </tr>
                         </thead>
                         <tbody>
