@@ -10,7 +10,7 @@
                 <h4><i class="fa fa-home"></i> {{ __('Total of each project') }}</h4>
                 <hr>
                 <div class="table-responsive" style="overflow-y: auto; height: auto;">
-                    <table class="table table-bordered text-dark  text-center">
+                    <table class="table table-bordered text-dark  text-center" style="font-weight: bold">
                         <thead>
                             <tr class=" text-danger bg-light">
                                 <th>#</th>
