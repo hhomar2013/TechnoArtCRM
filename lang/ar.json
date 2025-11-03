@@ -678,5 +678,7 @@
     "Withdraw savings": "سحب مدخرات",
     "Check": "شيك",
     "Cash": "كاش",
-    "Requested Area" : "المساحة المطلوبة"
+    "Requested Area" : "المساحة المطلوبة",
+    "Collection Summary" : "ملخص التحصيلات الشهرية",
+    "Summary of the next monthly collections" : "ملخص التحصيلات الشهرية القادمة"
 }

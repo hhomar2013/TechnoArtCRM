@@ -11,6 +11,7 @@ use App\Livewire\Cp\Installments\Withdrawal\WithdarawalComponent;
 use App\Livewire\Cp\Pdf\CustomerPaymentsComponent;
 use App\Livewire\Cp\Pdf\TotalProjectsReportPreviewComponent;
 use App\Livewire\Cp\ProjectManagement\ProjectManagementComponent;
+use App\Livewire\Cp\Reports\CollectionIndex;
 use App\Livewire\Cp\Reports\CustomerDateComponent;
 use App\Livewire\Cp\Reports\PaymentMovmentComponent;
 use App\Livewire\Cp\Reports\TotalProjectsReportComponent;
@@ -49,6 +50,8 @@ Route::middleware('check.license')->group(function () {
         Route::get('/reports/payment-movements', PaymentMovmentComponent::class)->name('reports.payment-movements');
         Route::get('/reports/totel-projects', TotalProjectsReportComponent::class)->name('reports.totel-projects');
         Route::get('/reports/customer-data', CustomerDateComponent::class)->name('reports.customer-data');
+        Route::get('/reports/collection-summary', CollectionIndex::class)->name('reports.collection-summary');
+
         /* End Reports */
 
         /*  PDF Reports*/
