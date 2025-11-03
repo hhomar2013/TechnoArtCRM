@@ -1,5 +1,8 @@
 <div>
-    <div class="card text-dark">
+    <div class="col-12 p-4">
+        <button class="btn btn-primary btn-rounded" id="printButton" onclick="printDiv()"> <i class="fas fa-print"> </i> {{ __('Print report') }}</button>
+    </div>
+    <div class="card text-dark p-4" id="printArea">
         <div class="card-header">
             <h3>
                 {{ __('Summary of the next monthly collections') }}
@@ -7,36 +10,20 @@
             @include('tools.spinner')
         </div>
         <div class="card-body">
-            <div class="row">
-                <div class="col-lg-3">
-                    <label for="">{{ __('From') }}</label>
-                    <input type="date" name="" id="" class="form-control" wire:model="start_date">
-                    <small class="text-danger">{{ $errors->first('start_date') }}</small><br>
-                    <label for="">{{ __('To') }}</label>
-                    <input type="date" name="" id="" class="form-control" wire:model="end_date">
-                    <small class="text-danger">{{ $errors->first('end_date') }}</small>
-                    <br>
-                    <button class="btn btn-danger btn-rounded" wire:click.prevent="getBetweenTwoDates()">
-                        {{ __('Search') }} <i class="fa fa-search"></i>
-                    </button>
-                </div>
-            </div>
-            <br>
-
-            <div class="table-responsive" style="overflow-y: auto; height: 800px;">
-                <table class="table table-bordered text-dark table-striped table-hover text-center" key="{{ now() }}">
+            <div class="table-responsive" style="overflow-y: auto; height: auto;">
+                <table class="table table-bordered text-dark  text-start" style="font-weight: bold; font-size: 17px;">
                     <thead>
-                        <tr class="bg-dark text-white ">
-                            <th>#</th>
-                            <th>{{ __('Customer Name') }}</th>
-                            <th>{{ __('type') }}</th>
-                            <th>{{ __('Amount') }}</th>
-                            <th>{{ __('t.date') }}</th>
+                        <tr class=" text-danger bg-light">
+                            <th style="font-weight: bold; font-size: 17px;">#</th>
+                            <th style="font-weight: bold; font-size: 17px;">{{ __('Customer Name') }}</th>
+                            <th style="font-weight: bold; font-size: 17px;">{{ __('type') }}</th>
+                            <th style="font-weight: bold; font-size: 17px;">{{ __('Amount') }}</th>
+                            <th style="font-weight: bold; font-size: 17px;">{{ __('t.date') }}</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td colspan="5" class="text-center bg-secondary text-white"><b>{{ __('Installments') }}</b></td>
+                            <td colspan="5" class="text-center text-danger" style="background-color: rgb(171, 177, 202);"><b>{{ __('Installments') }}</b></td>
                         </tr>
                         @foreach ($payments as $payment)
                         @php
@@ -57,7 +44,7 @@
                         </tr>
                         @endforeach
                         <tr>
-                            <td colspan="5" class="text-center bg-secondary text-white"><b>{{ __('Costs') }}</b></td>
+                            <td colspan="5" class="text-center text-danger" style="background-color: rgb(171, 177, 202);"><b>{{ __('Costs') }}</b></td>
                         </tr>
                         @foreach ($costInstallments as $costInstallment)
                         @php
@@ -89,11 +76,6 @@
         </div>
         <div class="card-footer">
             @if ($costInstallments || $payments)
-            <button class="btn btn-dark btn-rounded" wire:click.prevent="printView()">
-                <i class="fas fa-eye"></i>
-                {{ __('Preview') }}
-            </button><br>
-            <hr>
             <div class="row">
                 <div class="col-lg-6">
                     <h2><b class="text-danger">{{ __('Total Costs') }} : {{ number_format($costInstallments->sum('value'), 2) }} جنيه</b></h2> <br>
@@ -103,6 +85,7 @@
                     <h2><b class="text-danger">{{ __('Total installments') }} : {{ number_format($payments->sum('amount'), 2) }} جنيه</b></h2><br>
                     <h3><b class="text-primary">{{ __('Count') }} : {{ $payments->count() }}</b></h3>
                 </div>
+
             </div>
             @endif
 
@@ -111,3 +94,17 @@
 </div>
 
 @section('title', __('Collection Summary'))
+<script>
+    function printDiv() {
+        var printContents = document.getElementById('printArea').innerHTML;
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+
+        window.print();
+
+        document.body.innerHTML = originalContents;
+        location.reload(); // يعيد تحميل الصفحة بعد الطباعة
+    }
+
+</script>

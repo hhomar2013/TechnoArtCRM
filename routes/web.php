@@ -8,6 +8,7 @@ use App\Livewire\Cp\Installments\CollectionComponent;
 use App\Livewire\Cp\Installments\Customers\CustomersComponent;
 use App\Livewire\Cp\Installments\ReservationsComponent;
 use App\Livewire\Cp\Installments\Withdrawal\WithdarawalComponent;
+use App\Livewire\Cp\Pdf\CollectionSummaryReview;
 use App\Livewire\Cp\Pdf\CustomerPaymentsComponent;
 use App\Livewire\Cp\Pdf\TotalProjectsReportPreviewComponent;
 use App\Livewire\Cp\ProjectManagement\ProjectManagementComponent;
@@ -57,6 +58,7 @@ Route::middleware('check.license')->group(function () {
         /*  PDF Reports*/
         Route::get('/pdf/customer-payments/{id}', CustomerPaymentsComponent::class)->name('pdf.customer-payments');
         Route::get('/pdf/total-projects-report', TotalProjectsReportPreviewComponent::class)->name('pdf.total-projects-report');
+        Route::get('/pdf/collection-summary', CollectionSummaryReview::class)->name('pdf.collection-summary');
         /* End PDF Reports*/
 
         //Logout

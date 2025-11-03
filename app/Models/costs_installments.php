@@ -20,4 +20,10 @@ class costs_installments extends Model
     {
         return $this->belongsTo(costs_reamig::class, 'cost_id');
     }
+
+    public function installmentPlan()
+    {
+        return $this->belongsTo(installment_plans::class, 'installment_plan_id');
+    }
+
 }

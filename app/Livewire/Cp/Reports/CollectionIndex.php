@@ -2,9 +2,9 @@
 namespace App\Livewire\Cp\Reports;
 
 use App\Models\costs_installments;
-use App\Models\costs_reamig;
 use App\Models\payments;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 
 class CollectionIndex extends Component
@@ -14,6 +14,8 @@ class CollectionIndex extends Component
     public $costInstallmentsReaming = [];
     public $payments                = [];
     public $paymentsReaming         = [];
+    public $start_date;
+    public $end_date;
     public function resetAll()
     {
         $this->costInstallments        = [];
@@ -21,33 +23,68 @@ class CollectionIndex extends Component
         $this->payments                = [];
         $this->paymentsReaming         = [];
     }
-    public function getByMounth()
+
+    public function getBetweenTwoDates()
+    {
+        $this->getByMounth($this->start_date, $this->end_date);
+
+    }
+
+    public function getByMounth($from = null, $to = null)
     {
 
-        $this->resetAll();
         //costs installmetns
-        $this->costInstallments = costs_installments::query()->with('costs')
-            ->whereMonth('date', Carbon::now()->month)
-            ->whereYear('date', Carbon::now()->year)
-            ->where('status', 'pending')->get();
+        if ($from && $to) {
+            $this->resetAll();
+            $this->costInstallments = costs_installments::query()->with(['costs', 'installmentPlan.customers.customer'])
+                ->whereBetween('date', [$from, $to])
+                ->orderBy('date', 'ASC')
+                ->where('status', 'pending')->get();
+            // dd($this->costInstallments);
+            //Payments
+            $this->payments = payments::query()->with(['installmentPlan.customers.customer'])
+                ->whereBetween('due_date', [$from, $to])
+                ->orderBy('due_date', 'ASC')
+                ->where('status', 'pending')->get();
+            $this->dispatch('$refresh');
+            // Log::info('Updated:', [
+            //     'payments' => $this->payments,
+            //     'costs'    => $this->costInstallments,
+            // ]);
+        } else {
+            $this->resetAll();
+            $this->costInstallments = costs_installments::query()->with(['costs', 'installmentPlan.customers.customer'])
+                ->whereMonth('date', Carbon::now()->month)
+                ->whereYear('date', Carbon::now()->year)
+                ->orderBy('date', 'ASC')
+                ->where('status', 'pending')->get();
 
             //Payments
-            $this->payments = payments::query()
-            ->whereMonth('due_date', Carbon::now()->month)
-            ->whereYear('due_date', Carbon::now()->year)
-            ->where('status', 'pending')->get();
+            $this->payments = payments::query()->with(['installmentPlan.customers.customer'])
+                ->whereMonth('due_date', Carbon::now()->month)
+                ->whereYear('due_date', Carbon::now()->year)
+                ->orderBy('due_date', 'ASC')
+                ->where('status', 'pending')->get();
 
-        //costs reamings
-        // $this->costInstallmentsReaming = costs_reamig::query()
-        //     ->whereMonth('date', Carbon::now()->month)
-        //     ->whereYear('date', Carbon::now()->year)
-        //     ->where('status', 'unpaid')->get();
-        // dd($this->costInstallments , $this->payments);
+        }
+
+        //  dd($this->payments);
+    }
+
+    public function printView()
+    {
+        Session::put('costInstallments', $this->costInstallments);
+        Session::put('payments', $this->payments);
+        return redirect()->route('pdf.collection-summary');
+    }
+    public function mount()
+    {
+        $this->getByMounth();
     }
 
     public function render()
     {
-        $this->getByMounth();
+
         return view('livewire.cp.reports.collection-index')
             ->extends('layouts.app');
     }
